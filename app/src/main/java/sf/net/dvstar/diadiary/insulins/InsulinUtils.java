@@ -41,10 +41,12 @@ public class InsulinUtils {
     public static String mDateFormat = "dd.MM.yyyy";
     public static String mTimeFormat = "HH:mm";
     public static String mDateTimeFormat = "HH:mm dd.MM.yyyy";
+    public static String mDateTimeFormatRev = "dd.MM.yyyy HH:mm";
 
     public static SimpleDateFormat mSimpleDateFormatDate = new SimpleDateFormat(mDateFormat);
     public static SimpleDateFormat mSimpleTimeFormatDate = new SimpleDateFormat(mTimeFormat);
     public static SimpleDateFormat mSimpleDateTimeFormatDate = new SimpleDateFormat(mDateTimeFormat);
+    public static SimpleDateFormat mSimpleDateTimeFormatRev = new SimpleDateFormat(mDateTimeFormatRev);
 
     public static String getDateText(Date date) {
         String ret = "";
@@ -66,6 +68,14 @@ public class InsulinUtils {
             ret = mSimpleDateTimeFormatDate.format(date);
         return ret;
     }
+
+    public static String getDateTimeTextRev(Date date) {
+        String ret = "";
+        if(date !=null)
+            ret = mSimpleDateTimeFormatRev.format(date);
+        return ret;
+    }
+
 
 
     public static String getDateText(int year, int monthOfYear, int dayOfMonth) {
