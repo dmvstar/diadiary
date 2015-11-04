@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="ACTION_TYPE_INJECT" type="id"/>
+    <item name="ACTION_TYPE_GLUCOSE" type="id"/>
+</resources>

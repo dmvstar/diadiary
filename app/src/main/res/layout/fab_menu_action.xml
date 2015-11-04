@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.clans.fab.FloatingActionMenu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+
+
+    android:id="@+id/menu_actions_add"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    fab:menu_labels_ellipsize="end"
+    fab:menu_labels_singleLine="true"
+
+    fab:menu_labels_textColor="#000000"
+    fab:menu_labels_colorNormal="#c0c0c0"
+
+    fab:menu_shadowColor="#444"
+    fab:menu_colorNormal="#FFB805"
+    fab:menu_colorPressed="#F2AB00"
+    fab:menu_colorRipple="#D99200"
+
+    fab:menu_backgroundColor="@android:color/transparent"
+
+    fab:menu_labels_position="right">
+    <!--fab_menu_action:menu_backgroundColor="#ccffffff"-->
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fab_inject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_edit"
+        fab:fab_size="mini"
+        fab:fab_label="@string/menu_event_add_inject" />
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fab_eating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_edit"
+        fab:fab_size="mini"
+        fab:fab_label="@string/menu_event_add_eating" />
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fab_glucose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_edit"
+        fab:fab_size="mini"
+        fab:fab_label="@string/menu_event_add_glucose" />
+
+</com.github.clans.fab.FloatingActionMenu>
