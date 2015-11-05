@@ -15,5 +15,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_insulin" />
+        android:src="@drawable/ic_about_dialog" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/gpl_v3_logo_2_200x82"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>
