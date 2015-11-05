@@ -154,6 +154,11 @@ public class DiaryActionActivity extends AppCompatActivity {
             clearDB();
             initDB();
         }
+
+        if (id == R.id.action_about) {
+            showAboutActivity();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -395,6 +400,11 @@ public class DiaryActionActivity extends AppCompatActivity {
         this.startActivity(intent);
     }
 
+    private void showAboutActivity() {
+
+        Intent intent = new Intent(this, AboutActivity.class);
+        this.startActivity(intent);
+    }
 
     private void showDelAction(int mode, View view, CommonItem item) {
         if(item instanceof InsulinInjection){

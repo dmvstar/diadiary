@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">DiaDiary</string>
     <string name="app_desc">Дневник Диабетика (insulin, glucose etc)</string>
+    <string name="action_about">About</string>
 </resources>

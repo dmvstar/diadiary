@@ -29,6 +29,7 @@
         <activity android:name="sf.net.dvstar.diadiary.activity.InsulinDescActivity" />
         <activity android:name="sf.net.dvstar.diadiary.activity.InsulinDescAddActivity" />
         <activity android:name="sf.net.dvstar.diadiary.activity.DiaryGlucoseAddActivity" />
+        <activity android:name="sf.net.dvstar.diadiary.activity.AboutActivity" />
 
         <meta-data
             android:name="AA_DB_NAME"
