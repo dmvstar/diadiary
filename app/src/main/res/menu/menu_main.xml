@@ -8,8 +8,8 @@
     <item android:id="@+id/action_insulins" android:title="@string/action_insulins"
         android:orderInCategory="100" app:showAsAction="never" />
 
-    <item android:id="@+id/action_injections" android:title="@string/action_injections"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <!--item android:id="@+id/action_injections" android:title="@string/action_injections"
+        android:orderInCategory="100" app:showAsAction="never" /-->
 
     <item android:id="@+id/action_graph" android:title="@string/action_graph"
         android:orderInCategory="100" app:showAsAction="never" />

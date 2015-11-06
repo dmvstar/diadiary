@@ -82,6 +82,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:singleLine="true"
+                android:hint="@string/insulin_inject_comm"
+                android:text="..." />
+
+            <TextView
+                android:id="@+id/tv_notes"
+                style="@android:style/TextAppearance.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:layout_weight="1"
                 android:hint="@string/insulin_inject_comm"
                 android:text="..." />
 

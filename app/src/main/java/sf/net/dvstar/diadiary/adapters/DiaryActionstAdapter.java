@@ -33,8 +33,8 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
     static class ViewHolderGlucose {
         public TextView tv_value;
         public TextView tv_time;
-        public TextView tv_note;
         public TextView tv_comment;
+        public TextView tv_notes;
     }
 
 
@@ -81,6 +81,7 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
             viewHolder.tv_value = (TextView) rowView.findViewById(R.id.tv_value);
             viewHolder.tv_time = (TextView) rowView.findViewById(R.id.tv_time);
             viewHolder.tv_comment = (TextView) rowView.findViewById(R.id.tv_comment);
+            viewHolder.tv_notes = (TextView) rowView.findViewById(R.id.tv_notes);
             rowView.setTag(R.id.ACTION_TYPE_GLUCOSE, viewHolder);
         }
 
@@ -106,6 +107,7 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
                 holder.tv_value.setText("" + item.value);
                 holder.tv_time.setText(InsulinUtils.getDateTimeTextRev(item.created));
                 holder.tv_comment.setText(item.comment);
+                holder.tv_notes.setText(item.notes);
             }
         }
         return rowView;

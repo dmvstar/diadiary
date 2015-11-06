@@ -10,11 +10,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CalendarView;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +26,6 @@ import com.activeandroid.query.Select;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -43,12 +45,13 @@ import sf.net.dvstar.diadiary.database.InsulinDatabaseInit;
 import sf.net.dvstar.diadiary.adapters.DiaryActionstAdapter;
 import sf.net.dvstar.diadiary.insulins.InsulinConstants;
 import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CalendarDialogBuilder;
 
 
-public class DiaryActionActivity extends AppCompatActivity {
+public class DiaryActionsActivity extends AppCompatActivity {
 
 
-    private static final String TAG = "DiaryActionActivity";
+    private static final String TAG = "DiaryActionsActivity";
 
     private ArrayList<ActionCommonItem> mDiaryActions;
 
@@ -137,11 +140,11 @@ public class DiaryActionActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
+/*
         if (id == R.id.action_injections) {
             showActionsActivity();
         }
-
+*/
         if (id == R.id.action_insulins) {
             showInsulinDescActivity();
         }
@@ -180,7 +183,7 @@ public class DiaryActionActivity extends AppCompatActivity {
     }
 
     private void showActionsActivity() {
-        Intent intent = new Intent(this, DiaryActionActivity.class);
+        Intent intent = new Intent(this, DiaryActionsActivity.class);
         //intent.putExtra("key", value); //Optional parameters
         this.startActivity(intent);
     }
@@ -191,11 +194,13 @@ public class DiaryActionActivity extends AppCompatActivity {
         this.startActivity(intent);
     }
 
-    class ActionsOnDateSetListener implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
+    class ActionsOnDateSetListener implements DatePickerDialog.OnDateSetListener, View.OnClickListener, CalendarDialogBuilder.OnDateSetListener {
 
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             String test = InsulinUtils.getDateText(year, monthOfYear + 1, dayOfMonth);
+
+
             if(!mDiaryActionsDate.getText().toString().equals(test)) {
                 mDiaryActionsDate.setText(test);
                 mDiaryActionsDateDate = InsulinUtils.getDateTimeFrom(year, monthOfYear, dayOfMonth);
@@ -206,9 +211,54 @@ public class DiaryActionActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
+/*
+            LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
+                    (Context.LAYOUT_INFLATER_SERVICE);
+            LinearLayout ll= (LinearLayout)inflater.inflate(R.layout.calendar_dialog, null, false);
+            CalendarView cv = (CalendarView) ll.getChildAt(0);
+            cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+                @Override
+                public void onSelectedDayChange(CalendarView view, int year, int month,
+                                                int dayOfMonth) {
+
+                }
+            });
+            new AlertDialog.Builder(DiaryActionsActivity.this)
+                    .setTitle("Event Calendar")
+                    .setMessage("Click to schedule or view events.")
+                    .setView(ll)
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            //do nothing...yet
+                        }
+                    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            // Do nothing.
+                        }
+                    }
+            ).show();
+*/
+
+
+            CalendarDialogBuilder calendar;
+            calendar = new CalendarDialogBuilder(mContext, this);
+            //calendar.setStartDate( mCalendarActionsDate.getTime().getTime()  );
+            //calendar.setEndDate( mCalendarActionsDate.getTime().getTime() );
+            calendar.showCalendar();
+
+
+//            CalendarDialogBuilder.showCalendarViewDialog(mContext);
+/*
             new DatePickerDialog(mContext, this, mCalendarActionsDate
                     .get(Calendar.YEAR), mCalendarActionsDate.get(Calendar.MONTH),
                     mCalendarActionsDate.get(Calendar.DAY_OF_MONTH)).show();
+*/
+        }
+
+        @Override
+        public void onDateSet(int Year, int Month, int Day) {
+
         }
     }
 
@@ -447,7 +497,7 @@ public class DiaryActionActivity extends AppCompatActivity {
                     break;
             }
 
-            Toast.makeText(DiaryActionActivity.this, text, Toast.LENGTH_SHORT).show();
+            Toast.makeText(DiaryActionsActivity.this, text, Toast.LENGTH_SHORT).show();
         }
     };
 

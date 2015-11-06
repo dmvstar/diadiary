@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DiaDiary</string>
-    <string name="app_desc">Дневник Диабетика (insulin, glucose etc)</string>
+    <string name="app_desc">Дневник Диабетика (insulin, glucose и другое)</string>
     <string name="action_about">About</string>
+    <string name="menu_event_add_action">Добавить действие</string>
+    <string name="menu_event_add_eating">Прием пищи</string>
+    <string name="menu_event_add_glucose">Уровень глюкозы</string>
+    <string name="menu_event_add_inject">Инсулин</string>
 </resources>
