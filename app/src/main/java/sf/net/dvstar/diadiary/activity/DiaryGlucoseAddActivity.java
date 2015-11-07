@@ -50,6 +50,21 @@ public class DiaryGlucoseAddActivity extends AppCompatActivity {
         mEtGlucoseComment = (EditText) findViewById(R.id.et_comment);
         mBtAdd = (Button) findViewById(R.id.bt_add_update);
 
+        mEtGlucoseValue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    EditText et = (EditText)v;
+                    String svalue = et.getText().toString();
+                    Double dvalue = Double.parseDouble(svalue);
+                    if(dvalue>50.0){
+                        svalue = String.format("%.2f",dvalue/18.0).replace(',','.');
+                        et.setText(svalue);
+                    }
+                }
+            }
+        });
+
         SetDateTime.SetTime fromTime = new SetDateTime.SetTime(mEtGlucoseTime, this);
         SetDateTime.SetDate fromDate = new SetDateTime.SetDate(mEtGlucoseDate, this);
 

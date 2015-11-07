@@ -210,6 +210,7 @@ public class CalendarDialogBuilder {
         // sets the background color.
         mCv.setBackgroundColor(context.getResources().getColor(R.color.a200_orange));
 
+
         // theses methods are API 16+ only.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             //The background color for the selected week.

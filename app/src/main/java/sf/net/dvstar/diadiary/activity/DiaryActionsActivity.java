@@ -48,7 +48,7 @@ import sf.net.dvstar.diadiary.insulins.InsulinUtils;
 import sf.net.dvstar.diadiary.utilitis.CalendarDialogBuilder;
 
 
-public class DiaryActionsActivity extends AppCompatActivity {
+public class DiaryActionsActivity extends AppCompatActivity implements CalendarDialogBuilder.OnDateSetListener {
 
 
     private static final String TAG = "DiaryActionsActivity";
@@ -194,6 +194,21 @@ public class DiaryActionsActivity extends AppCompatActivity {
         this.startActivity(intent);
     }
 
+    @Override
+    public void onDateSet(int Year, int Month, int Day) {
+        setDateTextField(Year, Month, Day);
+    }
+
+    public void setDateTextField(int Year, int Month, int Day){
+        String test = InsulinUtils.getDateText(Year, Month + 1, Day);
+       if(Year>0 && !mDiaryActionsDate.getText().toString().equals(test)) {
+            mDiaryActionsDate.setText(test);
+            mDiaryActionsDateDate = InsulinUtils.getDateTimeFrom(Year, Month, Day);
+            mCalendarActionsDate.set(Year, Month, Day);
+            setListViewContent();
+        }
+    }
+
     class ActionsOnDateSetListener implements DatePickerDialog.OnDateSetListener, View.OnClickListener, CalendarDialogBuilder.OnDateSetListener {
 
         @Override
@@ -211,54 +226,14 @@ public class DiaryActionsActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-/*
-            LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
-                    (Context.LAYOUT_INFLATER_SERVICE);
-            LinearLayout ll= (LinearLayout)inflater.inflate(R.layout.calendar_dialog, null, false);
-            CalendarView cv = (CalendarView) ll.getChildAt(0);
-            cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
-                @Override
-                public void onSelectedDayChange(CalendarView view, int year, int month,
-                                                int dayOfMonth) {
+            showDateSelect(v);
 
-                }
-            });
-            new AlertDialog.Builder(DiaryActionsActivity.this)
-                    .setTitle("Event Calendar")
-                    .setMessage("Click to schedule or view events.")
-                    .setView(ll)
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            //do nothing...yet
-                        }
-                    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            // Do nothing.
-                        }
-                    }
-            ).show();
-*/
-
-
-            CalendarDialogBuilder calendar;
-            calendar = new CalendarDialogBuilder(mContext, this);
-            //calendar.setStartDate( mCalendarActionsDate.getTime().getTime()  );
-            //calendar.setEndDate( mCalendarActionsDate.getTime().getTime() );
-            calendar.showCalendar();
-
-
-//            CalendarDialogBuilder.showCalendarViewDialog(mContext);
-/*
-            new DatePickerDialog(mContext, this, mCalendarActionsDate
-                    .get(Calendar.YEAR), mCalendarActionsDate.get(Calendar.MONTH),
-                    mCalendarActionsDate.get(Calendar.DAY_OF_MONTH)).show();
-*/
         }
 
         @Override
         public void onDateSet(int Year, int Month, int Day) {
-
+            setDateTextField(Year, Month, Day);
         }
     }
 
@@ -361,6 +336,54 @@ public class DiaryActionsActivity extends AppCompatActivity {
         mLvDiaryActions.setAdapter(adapter);
 
         calculateTotalInsulinDose();
+    }
+
+    public void showDateSelect(View view){
+
+/*
+            LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
+                    (Context.LAYOUT_INFLATER_SERVICE);
+            LinearLayout ll= (LinearLayout)inflater.inflate(R.layout.calendar_dialog, null, false);
+            CalendarView cv = (CalendarView) ll.getChildAt(0);
+            cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+                @Override
+                public void onSelectedDayChange(CalendarView view, int year, int month,
+                                                int dayOfMonth) {
+
+                }
+            });
+            new AlertDialog.Builder(DiaryActionsActivity.this)
+                    .setTitle("Event Calendar")
+                    .setMessage("Click to schedule or view events.")
+                    .setView(ll)
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            //do nothing...yet
+                        }
+                    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            // Do nothing.
+                        }
+                    }
+            ).show();
+*/
+
+
+        CalendarDialogBuilder calendar;
+        calendar = new CalendarDialogBuilder(this, this);
+        //calendar.setStartDate( mCalendarActionsDate.getTime().getTime()  );
+        //calendar.setEndDate( mCalendarActionsDate.getTime().getTime() );
+        calendar.showCalendar();
+
+
+//            CalendarDialogBuilder.showCalendarViewDialog(mContext);
+/*
+            new DatePickerDialog(mContext, this, mCalendarActionsDate
+                    .get(Calendar.YEAR), mCalendarActionsDate.get(Calendar.MONTH),
+                    mCalendarActionsDate.get(Calendar.DAY_OF_MONTH)).show();
+*/
+
     }
 
     private void calculateTotalInsulinDose() {
