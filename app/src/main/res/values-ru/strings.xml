@@ -7,4 +7,6 @@
     <string name="menu_event_add_eating">Прием пищи</string>
     <string name="menu_event_add_glucose">Уровень глюкозы</string>
     <string name="menu_event_add_inject">Инсулин</string>
+    <string name="diary_action_label">Список действий</string>
+    <string name="action_date_label">За дату</string>
 </resources>

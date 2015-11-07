@@ -10,14 +10,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.CalendarView;
 import android.widget.DatePicker;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,7 +53,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
     private ArrayList<ActionCommonItem> mDiaryActions;
 
 
-    private TextView mDiaryActionsDate;
+    private TextView mTvDiaryActionsDateInto;
     private ListView mLvDiaryActions;
     private Context mContext;
     private TextView mTotalInsulunDose;
@@ -67,17 +64,16 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
     private FloatingActionButton fab32;
     private FloatingActionMenu mFloatingActionMenu;
     private DiaryActionsComparator mDiaryActionsComparator;
-    private Date mDiaryActionsDateDate;
+    private Date mDiaryActionsDateFrom;
+    private Date mDiaryActionsDateInto;
     private Calendar mCalendarActionsDate;
-
-
+    private TextView mTvDiaryActionsDateFrom;
 
     @Override
     protected void onResume() {
         super.onResume();
         setListViewContent();
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,13 +87,16 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
 
         mCalendarActionsDate = Calendar.getInstance();
 
-        mDiaryActionsDate = (TextView) findViewById(R.id.tv_diary_actions_date);
+        mTvDiaryActionsDateFrom = (TextView) findViewById(R.id.tv_diary_actions_date_from);
+        mTvDiaryActionsDateInto = (TextView) findViewById(R.id.tv_diary_actions_date_into);
         mTotalInsulunDose = (TextView) findViewById(R.id.tv_injection_total_value);
 
         Date today = Calendar.getInstance().getTime();
-        mDiaryActionsDate.setText(InsulinUtils.getDateText(today));
-        mDiaryActionsDateDate = InsulinUtils.getDateTimeFrom(null, today);
-        mDiaryActionsDate.setOnClickListener(new ActionsOnDateSetListener());
+        mTvDiaryActionsDateFrom.setText(InsulinUtils.getDateText(today));
+        mTvDiaryActionsDateInto.setText(InsulinUtils.getDateText(today));
+        mDiaryActionsDateFrom = InsulinUtils.getDateTimeFrom(null, today);
+        mDiaryActionsDateInto = InsulinUtils.getDateTimeFrom(today, Calendar.DAY_OF_MONTH,1);
+        mTvDiaryActionsDateInto.setOnClickListener(new ActionsOnDateSetListener());
 
         /*
         FloatingActionButton fab_menu_action = (FloatingActionButton) findViewById(R.id.fab_menu_action);
@@ -182,12 +181,6 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
         iIsulinInitDatabase.initCreate();
     }
 
-    private void showActionsActivity() {
-        Intent intent = new Intent(this, DiaryActionsActivity.class);
-        //intent.putExtra("key", value); //Optional parameters
-        this.startActivity(intent);
-    }
-
     private void showInsulinDescActivity() {
         Intent intent = new Intent(this, InsulinDescActivity.class);
         //intent.putExtra("key", value); //Optional parameters
@@ -201,9 +194,9 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
 
     public void setDateTextField(int Year, int Month, int Day){
         String test = InsulinUtils.getDateText(Year, Month + 1, Day);
-       if(Year>0 && !mDiaryActionsDate.getText().toString().equals(test)) {
-            mDiaryActionsDate.setText(test);
-            mDiaryActionsDateDate = InsulinUtils.getDateTimeFrom(Year, Month, Day);
+       if(Year>0 && !mTvDiaryActionsDateInto.getText().toString().equals(test)) {
+            mTvDiaryActionsDateInto.setText(test);
+            mDiaryActionsDateFrom = InsulinUtils.getDateTimeFrom(Year, Month, Day);
             mCalendarActionsDate.set(Year, Month, Day);
             setListViewContent();
         }
@@ -216,9 +209,9 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
             String test = InsulinUtils.getDateText(year, monthOfYear + 1, dayOfMonth);
 
 
-            if(!mDiaryActionsDate.getText().toString().equals(test)) {
-                mDiaryActionsDate.setText(test);
-                mDiaryActionsDateDate = InsulinUtils.getDateTimeFrom(year, monthOfYear, dayOfMonth);
+            if(!mTvDiaryActionsDateInto.getText().toString().equals(test)) {
+                mTvDiaryActionsDateInto.setText(test);
+                mDiaryActionsDateFrom = InsulinUtils.getDateTimeFrom(year, monthOfYear, dayOfMonth);
                 mCalendarActionsDate.set(year, monthOfYear, dayOfMonth);
                 setListViewContent();
             }
@@ -401,10 +394,11 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
         List<GlucoseReading> ret;
         ret = new Select()
                 .from(GlucoseReading.class)
-                .where("created >= ?", mDiaryActionsDateDate.getTime())
+                .where("created >= ?", mDiaryActionsDateFrom.getTime())
+                .and("created <= ?", mDiaryActionsDateInto.getTime())
                 .orderBy("created")
                 .execute();
-        Log.v(TAG, "++++++++[" + mDiaryActionsDateDate + "][" + ret.size() + "]" + ret.toString());
+        Log.v(TAG, "++++++++[" + mDiaryActionsDateFrom + "][" + ret.size() + "]" + ret.toString());
         return (ArrayList<GlucoseReading>) ret;
     }
 
@@ -413,11 +407,11 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
         ret = new Select()
                 .from(InsulinInjection.class)
                 .where("plan = ?", InsulinInjection.INJECTION_PLAN_REGULAR)
-                .or("date >= ?", mDiaryActionsDateDate.getTime())
+                .or("date >= ?", mDiaryActionsDateFrom.getTime())
                 .orderBy("time")
                 .execute();
 
-        Log.v(TAG, "!!!!!!!![" + mDiaryActionsDateDate + "][" + ret.size() + "]" + ret.toString());
+        Log.v(TAG, "!!!!!!!![" + mDiaryActionsDateFrom + "][" + ret.size() + "]" + ret.toString());
         return (ArrayList<InsulinInjection>) ret;
     }
 

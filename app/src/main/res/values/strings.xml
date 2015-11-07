@@ -10,8 +10,8 @@
     <string name="insulin_label_dose">Dose injection</string>
 
     <string name="insulin_label_comment">Comment</string>
-    <string name="injection_date_label">For date:</string>
-    <string name="injection_date_text">dd.mm.yyyy</string>
+    <string name="action_date_label">For date</string>
+    <string name="action_date_text">dd.mm.yyyy</string>
     <string name="planned_none">None</string>
     <string name="planned_regular">Regular</string>
     <string name="planned_additionals">Additional</string>
@@ -52,7 +52,7 @@
     <string name="glucose_add_label_concentration">Concentration</string>
     <string name="glucose_add_title">Add glucose reading result</string>
     <string name="glucose_add_label_comment">Comment</string>
-    <string name="glucose_add_label_measure">mmol/L</string>
+    <string name="glucose_add_label_measure" translatable="false">mmol/L</string>
 
     <string name="common_label_time">Time</string>
     <string name="common_label_date">Date</string>
@@ -66,5 +66,7 @@
     <string name="insulin_inject_unit">unit(s)</string>
     <string name="glucose_add_label_when">When reading</string>
     <string name="action_about">About</string>
+    <string name="action_date_label_from">From</string>
+    <string name="action_date_label_into">To</string>
 
 </resources>

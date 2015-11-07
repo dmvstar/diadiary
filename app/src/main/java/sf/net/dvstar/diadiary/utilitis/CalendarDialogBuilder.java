@@ -35,7 +35,6 @@ import sf.net.dvstar.diadiary.R;
 public class CalendarDialogBuilder {
 
 	public interface OnDateSetListener {
-
         void onDateSet(int Year, int Month, int Day);
     }
 
