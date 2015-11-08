@@ -8,21 +8,25 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-@Table(name = "GlucoseReading")
-public class GlucoseReading extends Model implements Serializable, ActionCommonItem {
+@Table(name = "PressureReading")
+public class PressureReading extends Model implements Serializable, ActionCommonItem {
 
-    public GlucoseReading(){ super(); }
+    public PressureReading(){ super(); }
 
-    public GlucoseReading(float value, Date created, String notes, String comment){
+    public PressureReading(int systole_value, int diastolic_value, Date created, String notes, String comment){
         super();
-        this.value = value;
+        this.systole_value = systole_value;
+        this.diastolic_value = diastolic_value;
         this.created = created;
         this.notes = notes;
         this.comment = comment;
     }
 
-    @Column(name = "value")
-    public float value;
+    @Column(name = "systole_value")
+    public int systole_value;
+
+    @Column(name = "diastolic_value")
+    public int diastolic_value;
 
     @Column(name = "created")
     public Date created;
@@ -45,13 +49,14 @@ public class GlucoseReading extends Model implements Serializable, ActionCommonI
 
     @Override
     public int getActionType() {
-        return ACTION_TYPE_GLUCOSE;
+        return ACTION_TYPE_PRESSURE;
     }
 
     @Override
     public String toString() {
-        return "GlucoseReading{" +
-                "value=" + value +
+        return "PressureReading{" +
+                "systole_value=" + systole_value +
+                ", diastolic_value=" + diastolic_value +
                 ", created=" + created +
                 ", notes='" + notes + '\'' +
                 ", comment='" + comment + '\'' +
@@ -59,7 +64,7 @@ public class GlucoseReading extends Model implements Serializable, ActionCommonI
     }
 
     public String export() {
-        String ret = "GlucoseReading|"+value+"|"+created+"|"+notes+"|"+comment;
+        String ret = "PressureReading|"+systole_value+"|"+diastolic_value+"|"+created+"|"+notes+"|"+comment;
 
         return ret;
     }

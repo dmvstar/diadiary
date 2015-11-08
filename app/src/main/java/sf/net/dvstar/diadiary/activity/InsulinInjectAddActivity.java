@@ -27,7 +27,7 @@ import sf.net.dvstar.diadiary.database.InsulinInjection;
 import sf.net.dvstar.diadiary.database.InsulinItem;
 import sf.net.dvstar.diadiary.insulins.InsulinConstants;
 import sf.net.dvstar.diadiary.insulins.InsulinUtils;
-import sf.net.dvstar.diadiary.insulins.SetDateTime;
+import sf.net.dvstar.diadiary.utilitis.SetDateTime;
 
 
 public class InsulinInjectAddActivity extends AppCompatActivity {

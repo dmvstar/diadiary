@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="sf.net.dvstar.diadiary.activity.DatabaseActivity"
+    tools:showIn="@layout/activity_database">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_db_import"
+            android:id="@+id/bt_import_data"
+            android:layout_gravity="center_horizontal"
+            android:onClick="dbImport" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_db_export"
+            android:id="@+id/bt_export_data"
+            android:layout_gravity="center_horizontal"
+            android:onClick="dbExport" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_db_reinit"
+            android:id="@+id/bt_reinit_data"
+            android:layout_gravity="center_horizontal"
+            android:onClick="dbReinit" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lv_db_info"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+</RelativeLayout>

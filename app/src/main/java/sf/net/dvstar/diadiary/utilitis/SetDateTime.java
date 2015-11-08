@@ -1,4 +1,4 @@
-package sf.net.dvstar.diadiary.insulins;
+package sf.net.dvstar.diadiary.utilitis;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -11,6 +11,8 @@ import android.widget.TimePicker;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import sf.net.dvstar.diadiary.insulins.InsulinUtils;
 
 public class SetDateTime {
 

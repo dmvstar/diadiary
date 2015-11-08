@@ -34,8 +34,15 @@ import sf.net.dvstar.diadiary.R;
 
 public class CalendarDialogBuilder {
 
-	public interface OnDateSetListener {
-        void onDateSet(int Year, int Month, int Day);
+    public static final int DATE_SET_MODE_ONCE = 0;
+    public static final int DATE_SET_MODE_INTO = 1;
+    public static final int DATE_SET_MODE_FROM = 2;
+
+    private int mMode;
+    private String mTitle="";
+
+    public interface OnDateSetListener {
+        void onDateSet(int Year, int Month, int Day, int mode);
     }
 
     private OnDateSetListener dateSetlistener;
@@ -48,16 +55,15 @@ public class CalendarDialogBuilder {
     public int YEAR, MONTH, DAY;
 
     // Constructor.
-    public CalendarDialogBuilder(Context ctx, OnDateSetListener listener) {
-        this.context = ctx;
-        this.dateSetlistener = listener;
-        this.alertBuilder = returnDialog();
+    public CalendarDialogBuilder(Context ctx, OnDateSetListener listener, String title, int mode) {
+        this(ctx, listener, title,  mode, 0);
     }
 
-    public CalendarDialogBuilder(Context ctx, OnDateSetListener listener, long initialDate) {
+    public CalendarDialogBuilder(Context ctx, OnDateSetListener listener, String title, int mode, long initialDate) {
         this.context = ctx;
         this.dateSetlistener = listener;
-        this.initialDate = initialDate;
+        this.mTitle = title;
+        this.mMode = mode;
         this.alertBuilder = returnDialog();
     }
 
@@ -66,6 +72,8 @@ public class CalendarDialogBuilder {
                 (Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout ll= (LinearLayout)inflater.inflate(R.layout.calendar_dialog, null, false);
         CalendarView cv = (CalendarView) ll.getChildAt(0);
+        cv.setFirstDayOfWeek(Calendar.MONDAY);
+
         cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             @Override
@@ -132,7 +140,7 @@ public class CalendarDialogBuilder {
         LinearLayout ll = (LinearLayout) inflater.inflate(R.layout.calendar_dialog, null, false);
 
         // Getting the CalendarView.
-        mCv = (CalendarView) ll.getChildAt(0);
+        mCv = (CalendarView) ll.getChildAt(1);
 
         // Setting the listener.
         mCv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -151,15 +159,16 @@ public class CalendarDialogBuilder {
 
         // Creating the alert dialog that will display our LinearLayout with the calendar view.
         AlertDialog.Builder aDBuilder = new AlertDialog.Builder(context)
+                .setTitle(mTitle)
                 .setView(ll)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        dateSetlistener.onDateSet(YEAR, MONTH, DAY);
+                        dateSetlistener.onDateSet(YEAR, MONTH, DAY, mMode);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        dateSetlistener.onDateSet(0, 0, 0);
+                        dateSetlistener.onDateSet(0, 0, 0, 0);
                     }
                 });
 
@@ -170,6 +179,10 @@ public class CalendarDialogBuilder {
     // This method will be called from the activity.
     public void showCalendar() {
         alertBuilder.show();
+    }
+
+    public void setDate(long startDate) {
+        mCv.setDate(startDate);
     }
 
     public void setStartDate(long startDate) {
@@ -189,7 +202,7 @@ public class CalendarDialogBuilder {
 
         // sets the first day of week according to Calendar.
         // here I set Sunday as the first day of the Calendar
-        mCv.setFirstDayOfWeek(1);
+        mCv.setFirstDayOfWeek(Calendar.MONDAY);
 
         // sets whether to show the week number.
         mCv.setShowWeekNumber(false);

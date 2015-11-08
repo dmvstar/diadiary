@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/calendar_title"
+        android:id="@+id/tv_calendar_title" />
+
     <CalendarView
         android:id="@+id/calendar"
         android:layout_width="match_parent"

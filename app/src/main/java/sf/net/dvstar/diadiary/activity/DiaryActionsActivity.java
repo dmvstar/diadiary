@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,14 +39,16 @@ import sf.net.dvstar.diadiary.database.CommonItem;
 import sf.net.dvstar.diadiary.database.GlucoseReading;
 import sf.net.dvstar.diadiary.database.InsulinInjection;
 import sf.net.dvstar.diadiary.database.InsulinItem;
-import sf.net.dvstar.diadiary.database.InsulinDatabaseInit;
 import sf.net.dvstar.diadiary.adapters.DiaryActionstAdapter;
+import sf.net.dvstar.diadiary.database.PressureReading;
 import sf.net.dvstar.diadiary.insulins.InsulinConstants;
 import sf.net.dvstar.diadiary.insulins.InsulinUtils;
 import sf.net.dvstar.diadiary.utilitis.CalendarDialogBuilder;
+import sf.net.dvstar.diadiary.utilitis.OIFileManager;
 
 
-public class DiaryActionsActivity extends AppCompatActivity implements CalendarDialogBuilder.OnDateSetListener {
+public class DiaryActionsActivity extends AppCompatActivity implements
+        CalendarDialogBuilder.OnDateSetListener, OIFileManager {
 
 
     private static final String TAG = "DiaryActionsActivity";
@@ -62,12 +65,15 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
     private FloatingActionButton fab12;
     private FloatingActionButton fab22;
     private FloatingActionButton fab32;
+    private FloatingActionButton fab33;
     private FloatingActionMenu mFloatingActionMenu;
     private DiaryActionsComparator mDiaryActionsComparator;
     private Date mDiaryActionsDateFrom;
     private Date mDiaryActionsDateInto;
-    private Calendar mCalendarActionsDate;
+    private Calendar mCalendarActionsDateFrom;
+    private Calendar mCalendarActionsDateInto;
     private TextView mTvDiaryActionsDateFrom;
+    private Spinner mSpPreriod;
 
     @Override
     protected void onResume() {
@@ -85,17 +91,19 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
 
         mContext = this;
 
-        mCalendarActionsDate = Calendar.getInstance();
+        mCalendarActionsDateFrom = Calendar.getInstance();
+        mCalendarActionsDateInto = Calendar.getInstance();
 
         mTvDiaryActionsDateFrom = (TextView) findViewById(R.id.tv_diary_actions_date_from);
         mTvDiaryActionsDateInto = (TextView) findViewById(R.id.tv_diary_actions_date_into);
         mTotalInsulunDose = (TextView) findViewById(R.id.tv_injection_total_value);
+        mSpPreriod = (Spinner) findViewById(R.id.sp_actin_period);
 
         Date today = Calendar.getInstance().getTime();
         mTvDiaryActionsDateFrom.setText(InsulinUtils.getDateText(today));
         mTvDiaryActionsDateInto.setText(InsulinUtils.getDateText(today));
         mDiaryActionsDateFrom = InsulinUtils.getDateTimeFrom(null, today);
-        mDiaryActionsDateInto = InsulinUtils.getDateTimeFrom(today, Calendar.DAY_OF_MONTH,1);
+        mDiaryActionsDateInto = InsulinUtils.getDateTimeFrom(today, Calendar.DAY_OF_MONTH, 1);
         mTvDiaryActionsDateInto.setOnClickListener(new ActionsOnDateSetListener());
 
         /*
@@ -113,10 +121,12 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
         fab12 = (FloatingActionButton) findViewById(R.id.fab_inject);
         fab22 = (FloatingActionButton) findViewById(R.id.fab_eating);
         fab32 = (FloatingActionButton) findViewById(R.id.fab_glucose);
+        fab33 = (FloatingActionButton) findViewById(R.id.fab_pressure);
 
         fab12.setOnClickListener(clickListener);
         fab22.setOnClickListener(clickListener);
         fab32.setOnClickListener(clickListener);
+        fab33.setOnClickListener(clickListener);
 
         setListViewContent();
 
@@ -152,9 +162,8 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
             showDiagramActivity();
         }
 
-        if (id == R.id.action_reinitdb) {
-            clearDB();
-            initDB();
+        if (id == R.id.action_database) {
+            showDatabaseActivity();
         }
 
         if (id == R.id.action_about) {
@@ -164,22 +173,18 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
         return super.onOptionsItemSelected(item);
     }
 
+    private void showDatabaseActivity() {
+        Intent intent = new Intent(this, DatabaseActivity.class);
+        //intent.putExtra("key", value); //Optional parameters
+        this.startActivity(intent);
+    }
+
     private void showDiagramActivity() {
         Intent intent = new Intent(this, DiagramActivity.class);
         //intent.putExtra("key", value); //Optional parameters
         this.startActivity(intent);
     }
 
-    private void clearDB() {
-        InsulinDatabaseInit iIsulinInitDatabase = new InsulinDatabaseInit();
-        iIsulinInitDatabase.isCreated();
-        iIsulinInitDatabase.dropDatabase();
-    }
-
-    private void initDB() {
-        InsulinDatabaseInit iIsulinInitDatabase = new InsulinDatabaseInit();
-        iIsulinInitDatabase.initCreate();
-    }
 
     private void showInsulinDescActivity() {
         Intent intent = new Intent(this, InsulinDescActivity.class);
@@ -188,17 +193,55 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
     }
 
     @Override
-    public void onDateSet(int Year, int Month, int Day) {
-        setDateTextField(Year, Month, Day);
+    public void onDateSet(int Year, int Month, int Day, int mode) {
+        setDateTextField(Year, Month, Day, mode);
     }
 
-    public void setDateTextField(int Year, int Month, int Day){
+    public void setDateTextField(int Year, int Month, int Day, int mode) {
         String test = InsulinUtils.getDateText(Year, Month + 1, Day);
-       if(Year>0 && !mTvDiaryActionsDateInto.getText().toString().equals(test)) {
-            mTvDiaryActionsDateInto.setText(test);
-            mDiaryActionsDateFrom = InsulinUtils.getDateTimeFrom(Year, Month, Day);
-            mCalendarActionsDate.set(Year, Month, Day);
-            setListViewContent();
+        boolean changeContent = false;
+        if (Year > 0) {
+            // && !mTvDiaryActionsDateInto.getText().toString().equals(test)
+            switch (mode) {
+
+                case CalendarDialogBuilder.DATE_SET_MODE_ONCE: {
+                    if (!mTvDiaryActionsDateFrom.getText().toString().equals(test)) {
+                        changeContent = true;
+                        mTvDiaryActionsDateFrom.setText(test);
+                        mDiaryActionsDateFrom = InsulinUtils.getDateTimeFrom(Year, Month, Day);
+                        mCalendarActionsDateFrom.set(Year, Month, Day);
+
+                        mTvDiaryActionsDateInto.setText(test);
+                        mDiaryActionsDateInto = InsulinUtils.getDateTimeFrom(Year, Month, Day);
+                        mCalendarActionsDateInto.set(Year, Month, Day);
+                    }
+
+                }
+                break;
+                case CalendarDialogBuilder.DATE_SET_MODE_FROM: {
+                    if (!mTvDiaryActionsDateFrom.getText().toString().equals(test)) {
+                        changeContent = true;
+                        mTvDiaryActionsDateFrom.setText(test);
+                        mDiaryActionsDateFrom = InsulinUtils.getDateTimeFrom(Year, Month, Day);
+                        mCalendarActionsDateFrom.set(Year, Month, Day);
+                    }
+                }
+                break;
+                case CalendarDialogBuilder.DATE_SET_MODE_INTO: {
+                    if (!mTvDiaryActionsDateInto.getText().toString().equals(test)) {
+                        changeContent = true;
+                        mTvDiaryActionsDateInto.setText(test);
+                        mDiaryActionsDateInto = InsulinUtils.getDateTimeFrom(Year, Month, Day);
+                        mCalendarActionsDateInto.set(Year, Month, Day);
+                    }
+                }
+                break;
+
+            }
+
+
+            if (changeContent)
+                setListViewContent();
         }
     }
 
@@ -209,10 +252,10 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
             String test = InsulinUtils.getDateText(year, monthOfYear + 1, dayOfMonth);
 
 
-            if(!mTvDiaryActionsDateInto.getText().toString().equals(test)) {
+            if (!mTvDiaryActionsDateInto.getText().toString().equals(test)) {
                 mTvDiaryActionsDateInto.setText(test);
                 mDiaryActionsDateFrom = InsulinUtils.getDateTimeFrom(year, monthOfYear, dayOfMonth);
-                mCalendarActionsDate.set(year, monthOfYear, dayOfMonth);
+                mCalendarActionsDateFrom.set(year, monthOfYear, dayOfMonth);
                 setListViewContent();
             }
         }
@@ -225,8 +268,8 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
         }
 
         @Override
-        public void onDateSet(int Year, int Month, int Day) {
-            setDateTextField(Year, Month, Day);
+        public void onDateSet(int Year, int Month, int Day, int mode) {
+            setDateTextField(Year, Month, Day, mode);
         }
     }
 
@@ -241,9 +284,9 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
         ArrayList<GlucoseReading> aGlucoseReading;
 
         aInsulinsInjections = getInsulinsInjections();
-        aGlucoseReading     = getGlucodeReading();
+        aGlucoseReading = getGlucodeReading();
 
-        mDiaryActions       = new ArrayList<>();
+        mDiaryActions = new ArrayList<>();
         mDiaryActionsComparator = new DiaryActionsComparator();
 
         for (ListIterator<InsulinInjection> it = aInsulinsInjections.listIterator(); it.hasNext(); ) {
@@ -274,9 +317,9 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
                                     int position, long id) {
 //                Toast.makeText(getBaseContext(), "itemSelect: position = " + position + ", id = "
 //                        + id + ", " + parent.getAdapter().getItem(position), Toast.LENGTH_SHORT).show();
-                if(mDiaryActions.get(position).getActionType()==ActionCommonItem.ACTION_TYPE_INJECT)
+                if (mDiaryActions.get(position).getActionType() == ActionCommonItem.ACTION_TYPE_INJECT)
                     showAddInsulinsInjection(InsulinConstants.MODE_ACTIONS_EDIT_ITEM, view, (InsulinInjection) mDiaryActions.get(position));
-                if(mDiaryActions.get(position).getActionType()==ActionCommonItem.ACTION_TYPE_GLUCOSE)
+                if (mDiaryActions.get(position).getActionType() == ActionCommonItem.ACTION_TYPE_GLUCOSE)
                     showAddGlucoseReading(InsulinConstants.MODE_ACTIONS_EDIT_ITEM, view, (GlucoseReading) mDiaryActions.get(position));
             }
         });
@@ -331,7 +374,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
         calculateTotalInsulinDose();
     }
 
-    public void showDateSelect(View view){
+    public void showDateSelect(View view) {
 
 /*
             LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
@@ -362,13 +405,26 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
             ).show();
 */
 
+        if (mSpPreriod.getSelectedItemPosition() > 2) {
+            CalendarDialogBuilder calendar;
+            calendar = new CalendarDialogBuilder(this, this, "To " + mSpPreriod.getSelectedItem().toString(), CalendarDialogBuilder.DATE_SET_MODE_INTO);
+            //calendar.setStartDate( mCalendarActionsDate.getTime().getTime()  );
+            //calendar.setEndDate( mCalendarActionsDate.getTime().getTime() );
+            calendar.showCalendar();
 
-        CalendarDialogBuilder calendar;
-        calendar = new CalendarDialogBuilder(this, this);
-        //calendar.setStartDate( mCalendarActionsDate.getTime().getTime()  );
-        //calendar.setEndDate( mCalendarActionsDate.getTime().getTime() );
-        calendar.showCalendar();
-
+            CalendarDialogBuilder calendarFrom;
+            calendarFrom = new CalendarDialogBuilder(this, this, "From " + mSpPreriod.getSelectedItem().toString(), CalendarDialogBuilder.DATE_SET_MODE_FROM);
+            //calendar.setStartDate( mCalendarActionsDate.getTime().getTime()  );
+            //calendar.setEndDate( mCalendarActionsDate.getTime().getTime() );
+            calendarFrom.showCalendar();
+        } else {
+            CalendarDialogBuilder calendar;
+            calendar = new CalendarDialogBuilder(this, this, "Date " + mSpPreriod.getSelectedItem().toString(), CalendarDialogBuilder.DATE_SET_MODE_ONCE);
+            //calendar.setStartDate( mCalendarActionsDate.getTime().getTime()  );
+            //calendar.setEndDate( mCalendarActionsDate.getTime().getTime() );
+            calendar.setDate(mCalendarActionsDateFrom.getTimeInMillis());
+            calendar.showCalendar();
+        }
 
 //            CalendarDialogBuilder.showCalendarViewDialog(mContext);
 /*
@@ -383,8 +439,8 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
         int totalDose = 0;
         for (Iterator<ActionCommonItem> iter = mDiaryActions.iterator(); iter.hasNext(); ) {
             ActionCommonItem item = iter.next();
-            if(item instanceof InsulinInjection) {
-                totalDose += Integer.parseInt( ((InsulinInjection)item).dose);
+            if (item instanceof InsulinInjection) {
+                totalDose += Integer.parseInt(((InsulinInjection) item).dose);
             }
         }
         mTotalInsulunDose.setText("" + totalDose + " " + getResources().getString(R.string.insulin_inject_unit));
@@ -424,11 +480,11 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
         return (ArrayList<InsulinItem>) insulins;
     }
 
-    private void showAddAction(int mode, View view, CommonItem item){
-        if(item instanceof InsulinInjection){
+    private void showAddAction(int mode, View view, CommonItem item) {
+        if (item instanceof InsulinInjection) {
             showAddInsulinsInjection(mode, view, (InsulinInjection) item);
         }
-        if(item instanceof GlucoseReading){
+        if (item instanceof GlucoseReading) {
             showAddGlucoseReading(mode, view, (GlucoseReading) item);
         }
     }
@@ -467,6 +523,12 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
         this.startActivity(intent);
     }
 
+    private void showAddPressureReading(int mode, View view, PressureReading item) {
+        Intent intent = new Intent(this, DiaryPressureAddActivity.class);
+        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_INJECT_EDIT_MODE, mode);
+        this.startActivity(intent);
+    }
+
     private void showAboutActivity() {
 
         Intent intent = new Intent(this, AboutActivity.class);
@@ -474,10 +536,10 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
     }
 
     private void showDelAction(int mode, View view, CommonItem item) {
-        if(item instanceof InsulinInjection){
+        if (item instanceof InsulinInjection) {
             showDelInsulinsInjection(mode, view, (InsulinInjection) item);
         }
-        if(item instanceof GlucoseReading){
+        if (item instanceof GlucoseReading) {
             showDelGlucoseReading(mode, view, (GlucoseReading) item);
         }
         setListViewContent();
@@ -512,6 +574,12 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
                     mFloatingActionMenu.close(false);
                     showAddGlucoseReading(InsulinConstants.MODE_ACTIONS_EDIT_ADD, v, null);
                     break;
+                case R.id.fab_pressure:
+                    text = fab33.getLabelText();
+                    mFloatingActionMenu.close(false);
+                    showAddPressureReading(InsulinConstants.MODE_ACTIONS_EDIT_ADD, v, null);
+                    break;
+
             }
 
             Toast.makeText(DiaryActionsActivity.this, text, Toast.LENGTH_SHORT).show();
@@ -522,12 +590,13 @@ public class DiaryActionsActivity extends AppCompatActivity implements CalendarD
     private class DiaryActionsComparator implements Comparator<ActionCommonItem> {
         @Override
         public int compare(ActionCommonItem lhs, ActionCommonItem rhs) {
-            int ret = 0 ;
+            int ret = 0;
             // < 0 lhs < rhs
             // > 0 lhs > rhs
-            Date lds=lhs.getCompareTime();
-            Date rds=rhs.getCompareTime();
-            if(lds.getTime()<rds.getTime()) ret = -1; else ret = 1;
+            Date lds = lhs.getCompareTime();
+            Date rds = rhs.getCompareTime();
+            if (lds.getTime() < rds.getTime()) ret = -1;
+            else ret = 1;
             return ret;
         }
     }

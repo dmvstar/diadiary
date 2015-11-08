@@ -39,5 +39,16 @@
         <item>@string/dialog_when_type_10</item>
     </string-array>
 
+    <string name="dialog_period_list_1">Day</string>
+    <string name="dialog_period_list_2">Week</string>
+    <string name="dialog_period_list_3">Month</string>
+    <string name="dialog_period_list_4">Period</string>
+
+    <string-array name="dialog_period_list" translatable="false">
+        <item>@string/dialog_period_list_1</item>
+        <item>@string/dialog_period_list_2</item>
+        <item>@string/dialog_period_list_3</item>
+        <item>@string/dialog_period_list_4</item>
+    </string-array>
 
 </resources>

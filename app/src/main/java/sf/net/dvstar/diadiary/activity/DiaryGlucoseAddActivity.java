@@ -10,7 +10,6 @@ import android.widget.Spinner;
 
 import com.activeandroid.query.Select;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +18,7 @@ import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.GlucoseReading;
 import sf.net.dvstar.diadiary.insulins.InsulinConstants;
 import sf.net.dvstar.diadiary.insulins.InsulinUtils;
-import sf.net.dvstar.diadiary.insulins.SetDateTime;
+import sf.net.dvstar.diadiary.utilitis.SetDateTime;
 
 public class DiaryGlucoseAddActivity extends AppCompatActivity {
 
