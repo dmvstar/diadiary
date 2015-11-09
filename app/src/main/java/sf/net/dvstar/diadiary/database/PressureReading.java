@@ -11,6 +11,8 @@ import java.util.Date;
 @Table(name = "PressureReading")
 public class PressureReading extends Model implements Serializable, ActionCommonItem {
 
+    public static String TAG = "PressureReading";
+
     public PressureReading(){ super(); }
 
     public PressureReading(int systole_value, int diastolic_value, Date created, String notes, String comment){
@@ -63,9 +65,14 @@ public class PressureReading extends Model implements Serializable, ActionCommon
                 '}';
     }
 
-    public String export() {
-        String ret = "PressureReading|"+systole_value+"|"+diastolic_value+"|"+created+"|"+notes+"|"+comment;
-
+    @Override
+    public String exportItem() {
+        String ret = TAG+"|"+systole_value+"|"+diastolic_value+"|"+created+"|"+notes+"|"+comment;
         return ret;
+    }
+
+    @Override
+    public void importItem(String item) {
+
     }
 }

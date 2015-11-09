@@ -11,9 +11,13 @@ import java.util.Date;
 @Table(name = "GlucoseReading")
 public class GlucoseReading extends Model implements Serializable, ActionCommonItem {
 
-    public GlucoseReading(){ super(); }
+    public static String TAG = "GlucoseReading";
 
-    public GlucoseReading(float value, Date created, String notes, String comment){
+    public GlucoseReading() {
+        super();
+    }
+
+    public GlucoseReading(float value, Date created, String notes, String comment) {
         super();
         this.value = value;
         this.created = created;
@@ -58,9 +62,14 @@ public class GlucoseReading extends Model implements Serializable, ActionCommonI
                 '}';
     }
 
-    public String export() {
-        String ret = "GlucoseReading|"+value+"|"+created+"|"+notes+"|"+comment;
-
+    public String exportItem() {
+        String ret = TAG + "|" + value + "|" + created + "|" + notes + "|" + comment;
         return ret;
     }
+
+    public void importItem(String item) {
+        String[] reservoir = item.split(FIELD_DELIMITER);
+    }
+
+
 }

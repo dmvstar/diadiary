@@ -26,7 +26,6 @@ import sf.net.dvstar.diadiary.insulins.InsulinConstants;
 public class DatabaseProvider {
 
     private static final String TAG = "DatabaseProvider";
-    private static final java.lang.String FIELD_DELIMITER = "|";
     private Context mContext;
 
     public DatabaseProvider(Context aContext) {
@@ -195,10 +194,11 @@ public class DatabaseProvider {
             BufferedReader bir = new BufferedReader(isr);
             String line;
             while ((line = bir.readLine()) != null) {
-
-                String [] reservoir = line.split(FIELD_DELIMITER);
-
-                Toast.makeText(mContext, "Line selected ["+reservoir.length+"]" + line,
+                if(line.startsWith(GlucoseReading.TAG)){
+                    GlucoseReading item = new GlucoseReading();
+                    item.importItem(line);
+                }
+                Toast.makeText(mContext, "Line selected " + line,
                         Toast.LENGTH_LONG).show();
             }
 
@@ -223,10 +223,23 @@ public class DatabaseProvider {
                     .execute();
             for (ListIterator<GlucoseReading> it = aGlucoseReading.listIterator(); it.hasNext(); ) {
                 GlucoseReading item = it.next();
-                String export = item.export();
+                String export = item.exportItem();
                 bow.write(export);
                 bow.newLine();
             }
+
+            List<InsulinInjection> aInsulinInjection;
+            aInsulinInjection = new Select()
+                    .from(InsulinInjection.class)
+                    .orderBy("time")
+                    .execute();
+            for (ListIterator<InsulinInjection> it = aInsulinInjection.listIterator(); it.hasNext(); ) {
+                InsulinInjection item = it.next();
+                String export = item.exportItem();
+                bow.write(export);
+                bow.newLine();
+            }
+
             bow.close();
             osw.close();
             fos.close();

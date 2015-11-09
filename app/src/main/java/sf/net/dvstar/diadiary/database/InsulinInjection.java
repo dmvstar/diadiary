@@ -9,8 +9,11 @@ import java.util.Date;
 
 import sf.net.dvstar.diadiary.insulins.InsulinUtils;
 
+
 @Table(name = "InsulinInjection")
 public class InsulinInjection extends Model implements Serializable, ActionCommonItem {
+
+    public static String TAG = "InsulinInjection";
 
     @Column(name = "insulin", indexGroups = {"main"})
     public InsulinItem insulin;
@@ -83,6 +86,19 @@ public class InsulinInjection extends Model implements Serializable, ActionCommo
     public int getActionType() {
         return ACTION_TYPE_INJECT;
     }
+
+    @Override
+    public String exportItem() {
+        String ret = TAG+"|"+insulin.name+"|"+dose+"|"+time+"|"+"|"+comment+"|"+plan+"|"+color;
+        return ret;
+    }
+
+    @Override
+    public void importItem(String item) {
+
+    }
+
+
 /*
     public InsulinInjection(InsulinItem insulin, String dose, String time, String comment){
         this.insulin = insulin;
