@@ -105,9 +105,10 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
             //if(holder != null)
             {
                 holder.tv_value.setText("" + item.value);
-                holder.tv_time.setText(InsulinUtils.getDateTimeTextRev(item.created));
+                holder.tv_time.setText(InsulinUtils.getDateTimeTextRev(item.time));
                 holder.tv_comment.setText(item.comment);
-                holder.tv_notes.setText(item.notes);
+                String notes = mContext.getResources().getStringArray(R.array.dialog_notes_list)[item.note];
+                holder.tv_notes.setText(notes);
             }
         }
         return rowView;

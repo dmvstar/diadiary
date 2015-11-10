@@ -24,11 +24,23 @@ public class InsulinInjection extends Model implements Serializable, ActionCommo
     @Column(name = "time", indexGroups = {"main"})
     public Date time;
 
+    /**
+     * Dropdown from @arrays/insulin_inject_type
+     */
     @Column(name = "plan", indexGroups = {"main"})
     public int plan;
 
     @Column(name = "date")
     public Date date;
+
+    /**
+     * Dropdown from @arrays/dialog_notes_list
+     */
+    //@Column(name = "notes")
+    //public String notes;
+
+    @Column(name = "note")
+    public int note;
 
     @Column(name = "comment")
     public String comment;
@@ -43,12 +55,13 @@ public class InsulinInjection extends Model implements Serializable, ActionCommo
         super();
     }
 
-    public InsulinInjection(InsulinItem insulin, String dose, Date time, String comment, int plan, int color){
+    public InsulinInjection(InsulinItem insulin, String dose, Date time, int note, String comment, int plan, int color){
         super();
         this.insulin = insulin;
         this.dose = dose;
         this.time = time;
         this.comment = comment;
+        this.note = note;
         this.plan = plan;
         this.color = color;
     }

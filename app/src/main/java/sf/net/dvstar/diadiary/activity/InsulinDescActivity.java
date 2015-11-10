@@ -119,9 +119,9 @@ public class InsulinDescActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, InsulinDescAddActivity.class);
 
-        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_INSULIN_EDIT_MODE,mode);
+        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE,mode);
         if(item != null)
-            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_INSULIN_EDIT_ITEM, item);
+            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_EDIT_ITEM, item);
 
         this.startActivity(intent);
 

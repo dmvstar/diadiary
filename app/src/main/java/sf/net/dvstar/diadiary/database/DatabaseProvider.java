@@ -18,6 +18,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -198,6 +200,10 @@ public class DatabaseProvider {
                     GlucoseReading item = new GlucoseReading();
                     item.importItem(line);
                 }
+                if(line.startsWith(InsulinInjection.TAG)){
+                    InsulinInjection item = new InsulinInjection();
+                    item.importItem(line);
+                }
                 Toast.makeText(mContext, "Line selected " + line,
                         Toast.LENGTH_LONG).show();
             }
@@ -207,8 +213,14 @@ public class DatabaseProvider {
         }
     }
 
+    /**
+     * Export data to file
+     * @param dirPath path to store
+     */
     public void exportData(String dirPath) {
-        String fileExportName = dirPath + "/diadiary_export.dat";
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+        String fileExportName = dirPath + "/diadiary_export-"+sdf.format(date)+".dat";
 
         File fileExport = new File(fileExportName);
         try {

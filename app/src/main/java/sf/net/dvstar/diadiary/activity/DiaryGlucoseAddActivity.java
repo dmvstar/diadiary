@@ -25,13 +25,14 @@ public class DiaryGlucoseAddActivity extends AppCompatActivity {
     private EditText mEtGlucoseValue;
     private EditText mEtGlucoseDate;
     private EditText mEtGlucoseTime;
-    private Spinner mSpGlucoseNotes;
     private EditText mEtGlucoseComment;
     private int mMode;
     private Context mContext;
-    private GlucoseReading mGlucoseReading;
     private Button mBtAdd;
     private List mNotesList;
+    private Spinner mSpNotes;
+
+    private GlucoseReading mGlucoseReading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +40,15 @@ public class DiaryGlucoseAddActivity extends AppCompatActivity {
         setContentView(R.layout.diary_glucose_add);
 
         mContext = this;
-        mNotesList = Arrays.asList(getResources().getStringArray(R.array.dialog_when_list));
-        mMode = getIntent().getExtras().getInt(InsulinConstants.KEY_INTENT_EXTRA_INJECT_EDIT_MODE);
+        mNotesList = Arrays.asList(getResources().getStringArray(R.array.dialog_notes_list));
+        mMode = getIntent().getExtras().getInt(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE);
 
         mEtGlucoseValue = (EditText) findViewById(R.id.et_glucose_value);
         mEtGlucoseDate = (EditText) findViewById(R.id.et_glucose_date);
         mEtGlucoseTime = (EditText) findViewById(R.id.et_glucose_time);
-        mSpGlucoseNotes = (Spinner) findViewById(R.id.sp_glucose_when);
         mEtGlucoseComment = (EditText) findViewById(R.id.et_comment);
         mBtAdd = (Button) findViewById(R.id.bt_add_update);
+        mSpNotes = (Spinner) findViewById(R.id.sp_notes);
 
         mEtGlucoseValue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
@@ -72,11 +73,12 @@ public class DiaryGlucoseAddActivity extends AppCompatActivity {
             long iId = getIntent().getExtras().getLong(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID);
             mGlucoseReading = new Select().from(GlucoseReading.class).where("id = ?", iId).executeSingle();
 
-            int indexNotes = mNotesList.indexOf(mGlucoseReading.notes);
-            if(indexNotes>=0) mSpGlucoseNotes.setSelection(indexNotes);
+//            int indexNotes = mNotesList.indexOf(mGlucoseReading.notes);
+            int indexNotes = mGlucoseReading.note;
+            if(indexNotes>=0) mSpNotes.setSelection(indexNotes);
             mEtGlucoseValue.setText("" + mGlucoseReading.value);
-            mEtGlucoseTime.setText(InsulinUtils.getTimeText(mGlucoseReading.created));
-            mEtGlucoseDate.setText(InsulinUtils.getDateText(mGlucoseReading.created));
+            mEtGlucoseTime.setText(InsulinUtils.getTimeText(mGlucoseReading.time));
+            mEtGlucoseDate.setText(InsulinUtils.getDateText(mGlucoseReading.time));
             mEtGlucoseComment.setText(mGlucoseReading.comment);
         } else {
             Date today = new Date();
@@ -99,17 +101,18 @@ public class DiaryGlucoseAddActivity extends AppCompatActivity {
         String value = mEtGlucoseValue.getText().toString();
         float fvalue = Float.parseFloat(value);
         String date = mEtGlucoseDate.getText().toString();
-        String time = mEtGlucoseTime.getText().toString();
+        String stime = mEtGlucoseTime.getText().toString();
         String comm = mEtGlucoseComment.getText().toString();
-        String note = mSpGlucoseNotes.getSelectedItem().toString();
-        Date created = InsulinUtils.parseDateTimeText(time, date);
+//        String note = mSpNotes.getSelectedItem().toString();
+        int note = mSpNotes.getSelectedItemPosition();
+        Date time = InsulinUtils.parseDateTimeText(stime, date);
 
         mGlucoseReading.value = fvalue;
-        mGlucoseReading.created = created;
-        mGlucoseReading.notes = note;
+        mGlucoseReading.time = time;
+        mGlucoseReading.note = note;
         mGlucoseReading.comment = comm;
 
-        if (created != null && fvalue > 0.0) {
+        if (time != null && fvalue > 0.0) {
             mGlucoseReading.save();
         }
 

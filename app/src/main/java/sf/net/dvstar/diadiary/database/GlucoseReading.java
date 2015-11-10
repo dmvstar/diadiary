@@ -17,22 +17,28 @@ public class GlucoseReading extends Model implements Serializable, ActionCommonI
         super();
     }
 
-    public GlucoseReading(float value, Date created, String notes, String comment) {
+    public GlucoseReading(float value, Date time, int note, String comment) {
         super();
         this.value = value;
-        this.created = created;
-        this.notes = notes;
+        this.time = time;
+        this.note = note;
         this.comment = comment;
     }
 
     @Column(name = "value")
     public float value;
 
-    @Column(name = "created")
-    public Date created;
+    @Column(name = "time")
+    public Date time;
 
-    @Column(name = "notes")
-    public String notes;
+    /**
+     * Dropdown from @arrays/dialog_notes_list
+     */
+    //@Column(name = "notes")
+    //public String notes;
+
+    @Column(name = "note")
+    public int note;
 
     @Column(name = "comment")
     public String comment;
@@ -44,7 +50,7 @@ public class GlucoseReading extends Model implements Serializable, ActionCommonI
 
     @Override
     public Date getCompareTime() {
-        return created;
+        return time;
     }
 
     @Override
@@ -56,14 +62,14 @@ public class GlucoseReading extends Model implements Serializable, ActionCommonI
     public String toString() {
         return "GlucoseReading{" +
                 "value=" + value +
-                ", created=" + created +
-                ", notes='" + notes + '\'' +
+                ", time=" + time +
+                ", note='" + note + '\'' +
                 ", comment='" + comment + '\'' +
                 '}';
     }
 
     public String exportItem() {
-        String ret = TAG + "|" + value + "|" + created + "|" + notes + "|" + comment;
+        String ret = TAG + "|" + value + "|" + time + "|" + note + "|" + comment;
         return ret;
     }
 

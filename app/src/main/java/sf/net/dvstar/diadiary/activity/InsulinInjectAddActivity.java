@@ -44,6 +44,8 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
     private EditText mEtDose;
     private EditText mEtComment;
     private Spinner mSpInjectType;
+    private Spinner mSpNotes;
+
     private InsulinInjection mInjection;
     private TextView mTvLabelModeAdd;
     private long mInjectionId;
@@ -53,7 +55,7 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diary_inject_add);
         mContext = this;
-        mMode = getIntent().getExtras().getInt(InsulinConstants.KEY_INTENT_EXTRA_INJECT_EDIT_MODE);
+        mMode = getIntent().getExtras().getInt(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE);
 
         mBtAdd = (Button) findViewById(R.id.bt_add_update);
 
@@ -65,6 +67,7 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
         mEtComment = (EditText) findViewById(R.id.et_inject_comment);
         mSpInjectType = (Spinner) findViewById(R.id.sp_inject_type);
         mTvLabelModeAdd = (TextView) findViewById(R.id.tv_label_mode_add);
+        mSpNotes = (Spinner) findViewById(R.id.sp_notes);
 
         SetDateTime.SetTime fromTime = new SetDateTime.SetTime(mEtFromTime, this);
         SetDateTime.SetDate fromDate = new SetDateTime.SetDate(mEtFromDate, this);
@@ -121,7 +124,7 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
 
         if (mMode == InsulinConstants.MODE_ACTIONS_EDIT_ITEM) {
 
-            mInjection = (InsulinInjection) getIntent().getExtras().getSerializable(InsulinConstants.KEY_INTENT_EXTRA_INJECT_EDIT_ITEM);
+            mInjection = (InsulinInjection) getIntent().getExtras().getSerializable(InsulinConstants.KEY_INTENT_EXTRA_EDIT_ITEM);
             mInjectionId = getIntent().getExtras().getLong(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID);
 
             mInjection = new Select().from(InsulinInjection.class).where("id = ?", mInjectionId).executeSingle();
@@ -144,15 +147,14 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
             //a.indexOf("2");
 
             int index = aadapter.getPosition( mInjection.insulin );
-
-            //Toast.makeText(getBaseContext(), "mSPFirmList Position = " + index, Toast.LENGTH_SHORT).show();
-
             if (index>=0) mSpInsulins.setSelection(index);
+            //Toast.makeText(getBaseContext(), "mSPFirmList Position = " + index, Toast.LENGTH_SHORT).show();
 
             mEtDose.setText(mInjection.dose);
             mEtFromTime.setText( InsulinUtils.getTimeText(mInjection.time) );
             mEtFromDate.setText( InsulinUtils.getDateText(mInjection.date) );
             mEtComment.setText(mInjection.comment);
+            if (mInjection.note>=0) mSpNotes.setSelection(mInjection.note);
 
             mBtAdd.setText( getResources().getString(R.string.button_insulin_update) );
 
@@ -191,6 +193,7 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
         if(mMode == InsulinConstants.MODE_ACTIONS_EDIT_ADD) {
             mInjection = new InsulinInjection();
         }
+        int note = mSpNotes.getSelectedItemPosition();
 
         mInjection.insulin = insulinItem;
         mInjection.plan = mSpInjectType.getSelectedItemPosition();
@@ -199,6 +202,8 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
         mInjection.dose = mEtDose.getText().toString();
         mInjection.time = InsulinUtils.parseTimeText(mEtFromTime.getText().toString() );
         mInjection.date = InsulinUtils.parseDateText(mEtFromDate.getText().toString());
+        mInjection.note = note;
+
         mInjection.comment = mEtComment.getText().toString();
 
         Log.v(TAG, "!!! " + mInjection.getId() );

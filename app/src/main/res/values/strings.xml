@@ -69,6 +69,7 @@
     <string name="dialog_delete">Delete</string>
     <string name="insulin_inject_unit">unit(s)</string>
     <string name="glucose_add_label_when">When reading</string>
+    <string name="glucose_add_label_notes">When notes</string>
     <string name="action_about">About</string>
     <string name="action_date_label_from">From</string>
     <string name="action_date_label_into">-</string>

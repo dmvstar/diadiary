@@ -133,6 +133,22 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/glucose_add_label_notes"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/accent" />
+
+            <Spinner
+                android:id="@+id/sp_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:entries="@array/dialog_notes_list" />
+
 
             <TextView
                 android:id="@+id/textView6"

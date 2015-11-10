@@ -24,14 +24,9 @@ public interface InsulinConstants {
     int L_DIRECTION_UP = 1;
     int L_DIRECTION_DN = 2;
 
-    String KEY_INTENT_EXTRA_INSULINS = "insulins";
-    String KEY_INTENT_EXTRA_INJECTIONS = "injections";
-
-    String KEY_INTENT_EXTRA_INSULIN_EDIT_MODE = "insulin_edit";
-    String KEY_INTENT_EXTRA_INSULIN_EDIT_ITEM = "insulin_item";
-    String KEY_INTENT_EXTRA_INJECT_EDIT_MODE = "inject_edit";
-    String KEY_INTENT_EXTRA_INJECT_EDIT_ITEM = "inject_item";
-    String  KEY_INTENT_EXTRA_ROW_ID = "row_id";
+    String KEY_INTENT_EXTRA_EDIT_MODE = "edit_item";
+    String KEY_INTENT_EXTRA_EDIT_ITEM = "item_item";
+    String KEY_INTENT_EXTRA_ROW_ID = "row_id";
 
     int MODE_ACTIONS_EDIT_ITEM = 1;
     int MODE_ACTIONS_EDIT_ADD = 2;

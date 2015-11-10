@@ -112,11 +112,11 @@
                 android:textColor="@color/accent" />
 
             <Spinner
-                android:id="@+id/sp_glucose_when"
+                android:id="@+id/sp_notes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:entries="@array/dialog_when_list" />
+                android:entries="@array/dialog_notes_list" />
 
             <TextView
                 android:id="@+id/textView29"

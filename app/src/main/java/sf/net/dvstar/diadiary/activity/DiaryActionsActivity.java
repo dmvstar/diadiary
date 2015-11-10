@@ -282,9 +282,11 @@ public class DiaryActionsActivity extends AppCompatActivity implements
 
         ArrayList<InsulinInjection> aInsulinsInjections;
         ArrayList<GlucoseReading> aGlucoseReading;
+        ArrayList<PressureReading> aPressureReading;
 
         aInsulinsInjections = getInsulinsInjections();
         aGlucoseReading = getGlucodeReading();
+        aPressureReading = getPressureReading();
 
         mDiaryActions = new ArrayList<>();
         mDiaryActionsComparator = new DiaryActionsComparator();
@@ -294,11 +296,15 @@ public class DiaryActionsActivity extends AppCompatActivity implements
             mDiaryActions.add(item);
             //Log.v(TAG, "--------1 " + item);
         }
-
         for (ListIterator<GlucoseReading> it = aGlucoseReading.listIterator(); it.hasNext(); ) {
             GlucoseReading item = it.next();
             mDiaryActions.add(item);
             //Log.v(TAG, "--------2 " + item);
+        }
+        for (ListIterator<PressureReading> it = aPressureReading.listIterator(); it.hasNext(); ) {
+            PressureReading item = it.next();
+            mDiaryActions.add(item);
+            //Log.v(TAG, "--------3 " + item);
         }
 
         Collections.sort(mDiaryActions, mDiaryActionsComparator);
@@ -450,9 +456,9 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         List<GlucoseReading> ret;
         ret = new Select()
                 .from(GlucoseReading.class)
-                .where("created >= ?", mDiaryActionsDateFrom.getTime())
-                .and("created <= ?", mDiaryActionsDateInto.getTime())
-                .orderBy("created")
+                .where("time >= ?", mDiaryActionsDateFrom.getTime())
+                .and("time <= ?", mDiaryActionsDateInto.getTime())
+                .orderBy("time")
                 .execute();
         Log.v(TAG, "++++++++[" + mDiaryActionsDateFrom + "][" + ret.size() + "]" + ret.toString());
         return (ArrayList<GlucoseReading>) ret;
@@ -470,6 +476,19 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         Log.v(TAG, "!!!!!!!![" + mDiaryActionsDateFrom + "][" + ret.size() + "]" + ret.toString());
         return (ArrayList<InsulinInjection>) ret;
     }
+
+    private ArrayList<PressureReading> getPressureReading() {
+        List<PressureReading> ret;
+        ret = new Select()
+                .from(PressureReading.class)
+                .where("time >= ?", mDiaryActionsDateFrom.getTime())
+                .and("time <= ?", mDiaryActionsDateInto.getTime())
+                .orderBy("time")
+                .execute();
+        Log.v(TAG, "!!!!!!!![" + mDiaryActionsDateFrom + "][" + ret.size() + "]" + ret.toString());
+        return (ArrayList<PressureReading>) ret;
+    }
+
 
     private ArrayList<InsulinItem> getInsulinItems() {
         List<InsulinItem> insulins = new Select()
@@ -499,12 +518,12 @@ public class DiaryActionsActivity extends AppCompatActivity implements
     private void showAddInsulinsInjection(int mode, View view, InsulinInjection item) {
 
         Intent intent = new Intent(this, InsulinInjectAddActivity.class);
-        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_INJECT_EDIT_MODE, mode);
+        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE, mode);
 
         if (item != null) {
             long rowId = item.getId();
             intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
-            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_INJECT_EDIT_ITEM, item);
+            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_EDIT_ITEM, item);
         }
 
         this.startActivity(intent);
@@ -514,7 +533,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
     private void showAddGlucoseReading(int mode, View view, GlucoseReading item) {
 
         Intent intent = new Intent(this, DiaryGlucoseAddActivity.class);
-        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_INJECT_EDIT_MODE, mode);
+        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE, mode);
         if (item != null) {
             long rowId = item.getId();
             intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
@@ -525,7 +544,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
 
     private void showAddPressureReading(int mode, View view, PressureReading item) {
         Intent intent = new Intent(this, DiaryPressureAddActivity.class);
-        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_INJECT_EDIT_MODE, mode);
+        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE, mode);
         this.startActivity(intent);
     }
 

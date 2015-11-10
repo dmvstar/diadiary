@@ -15,12 +15,12 @@ public class PressureReading extends Model implements Serializable, ActionCommon
 
     public PressureReading(){ super(); }
 
-    public PressureReading(int systole_value, int diastolic_value, Date created, String notes, String comment){
+    public PressureReading(int systole_value, int diastolic_value, Date time, int note, String comment){
         super();
         this.systole_value = systole_value;
         this.diastolic_value = diastolic_value;
-        this.created = created;
-        this.notes = notes;
+        this.time = time;
+        this.note = note;
         this.comment = comment;
     }
 
@@ -30,11 +30,17 @@ public class PressureReading extends Model implements Serializable, ActionCommon
     @Column(name = "diastolic_value")
     public int diastolic_value;
 
-    @Column(name = "created")
-    public Date created;
+    @Column(name = "time")
+    public Date time;
 
-    @Column(name = "notes")
-    public String notes;
+    /**
+     * Dropdown from @arrays/dialog_notes_list
+     */
+    //@Column(name = "notes")
+    //public String notes;
+
+    @Column(name = "note")
+    public int note;
 
     @Column(name = "comment")
     public String comment;
@@ -46,7 +52,7 @@ public class PressureReading extends Model implements Serializable, ActionCommon
 
     @Override
     public Date getCompareTime() {
-        return created;
+        return time;
     }
 
     @Override
@@ -59,15 +65,15 @@ public class PressureReading extends Model implements Serializable, ActionCommon
         return "PressureReading{" +
                 "systole_value=" + systole_value +
                 ", diastolic_value=" + diastolic_value +
-                ", created=" + created +
-                ", notes='" + notes + '\'' +
+                ", time=" + time +
+                ", note='" + note + '\'' +
                 ", comment='" + comment + '\'' +
                 '}';
     }
 
     @Override
     public String exportItem() {
-        String ret = TAG+"|"+systole_value+"|"+diastolic_value+"|"+created+"|"+notes+"|"+comment;
+        String ret = TAG+"|"+systole_value+"|"+diastolic_value+"|"+time+"|"+note+"|"+comment;
         return ret;
     }
 
