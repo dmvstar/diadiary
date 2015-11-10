@@ -480,8 +480,8 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         List<PressureReading> ret;
         ret = new Select()
                 .from(PressureReading.class)
-                .where("time >= ?", mDiaryActionsDateFrom.getTime())
-                .and("time <= ?", mDiaryActionsDateInto.getTime())
+                //.where("time >= ?", mDiaryActionsDateFrom.getTime())
+                //.and("time <= ?", mDiaryActionsDateInto.getTime())
                 .orderBy("time")
                 .execute();
         Log.v(TAG, "!!!!!!!![" + mDiaryActionsDateFrom + "][" + ret.size() + "]" + ret.toString());
