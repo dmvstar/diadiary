@@ -291,18 +291,15 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         mDiaryActions = new ArrayList<>();
         mDiaryActionsComparator = new DiaryActionsComparator();
 
-        for (ListIterator<InsulinInjection> it = aInsulinsInjections.listIterator(); it.hasNext(); ) {
-            InsulinInjection item = it.next();
+        for (InsulinInjection item : aInsulinsInjections) {
             mDiaryActions.add(item);
             //Log.v(TAG, "--------1 " + item);
         }
-        for (ListIterator<GlucoseReading> it = aGlucoseReading.listIterator(); it.hasNext(); ) {
-            GlucoseReading item = it.next();
+        for (GlucoseReading item : aGlucoseReading) {
             mDiaryActions.add(item);
             //Log.v(TAG, "--------2 " + item);
         }
-        for (ListIterator<PressureReading> it = aPressureReading.listIterator(); it.hasNext(); ) {
-            PressureReading item = it.next();
+        for (PressureReading item : aPressureReading) {
             mDiaryActions.add(item);
             //Log.v(TAG, "--------3 " + item);
         }
@@ -310,8 +307,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         Collections.sort(mDiaryActions, mDiaryActionsComparator);
         //Log.v(TAG, "--------2 "+mDiaryActions);
 
-        for (ListIterator<ActionCommonItem> it = mDiaryActions.listIterator(); it.hasNext(); ) {
-            ActionCommonItem item = it.next();
+        for (ActionCommonItem item : mDiaryActions) {
             Log.v(TAG, "--------4 " + item);
         }
 
@@ -327,6 +323,8 @@ public class DiaryActionsActivity extends AppCompatActivity implements
                     showAddInsulinsInjection(InsulinConstants.MODE_ACTIONS_EDIT_ITEM, view, (InsulinInjection) mDiaryActions.get(position));
                 if (mDiaryActions.get(position).getActionType() == ActionCommonItem.ACTION_TYPE_GLUCOSE)
                     showAddGlucoseReading(InsulinConstants.MODE_ACTIONS_EDIT_ITEM, view, (GlucoseReading) mDiaryActions.get(position));
+                if (mDiaryActions.get(position).getActionType() == ActionCommonItem.ACTION_TYPE_PRESSURE)
+                    showAddPressureReading(InsulinConstants.MODE_ACTIONS_EDIT_ITEM, view, (PressureReading) mDiaryActions.get(position));
             }
         });
 
@@ -442,8 +440,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
 
     private void calculateTotalInsulinDose() {
         int totalDose = 0;
-        for (Iterator<ActionCommonItem> iter = mDiaryActions.iterator(); iter.hasNext(); ) {
-            ActionCommonItem item = iter.next();
+        for (ActionCommonItem item : mDiaryActions) {
             if (item instanceof InsulinInjection) {
                 totalDose += Integer.parseInt(((InsulinInjection) item).dose);
             }
@@ -544,6 +541,10 @@ public class DiaryActionsActivity extends AppCompatActivity implements
     private void showAddPressureReading(int mode, View view, PressureReading item) {
         Intent intent = new Intent(this, DiaryPressureAddActivity.class);
         intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE, mode);
+        if (item != null) {
+            long rowId = item.getId();
+            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
+        }
         this.startActivity(intent);
     }
 
@@ -608,7 +609,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
     private class DiaryActionsComparator implements Comparator<ActionCommonItem> {
         @Override
         public int compare(ActionCommonItem lhs, ActionCommonItem rhs) {
-            int ret = 0;
+            int ret;
             // < 0 lhs < rhs
             // > 0 lhs > rhs
             Date lds = lhs.getCompareTime();

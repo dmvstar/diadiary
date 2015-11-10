@@ -91,19 +91,20 @@ public class DiaryPressureAddActivity extends AppCompatActivity {
         int dias = Integer.parseInt(mEtPressureDiastolicValue.getText().toString());
 
         String date = mEtPressureDate.getText().toString();
-        String time = mEtPressureTime.getText().toString();
+        String stime = mEtPressureTime.getText().toString();
         String comm = mEtComment.getText().toString();
 
         int note = mSpNotes.getSelectedItemPosition();
 
-        Date created = InsulinUtils.parseDateTimeText(time, date);
+        Date time = InsulinUtils.parseDateTimeText(stime, date);
 
+        mPressureReading.time = time;
         mPressureReading.systole_value = syst;
         mPressureReading.diastolic_value = dias;
         mPressureReading.note = note;
         mPressureReading.comment = comm;
 
-        if (created != null && syst > 0 && dias > 0) {
+        if (time != null && syst > 0 && dias > 0) {
             mPressureReading.save();
         }
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/primary_gray">
+    android:background="@color/primary_lgray">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -33,9 +33,9 @@
                 <TextView
                     android:id="@+id/textView"
                     style="@android:style/TextAppearance.Medium"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+
                     android:text="@string/pressure_label_title"
                     android:textStyle="bold" />
 
@@ -45,8 +45,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="right"
                     android:text="120" />
 
+                <TextView
+                    android:id="@+id/tv_divider_pressure"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="/" />
                 <TextView
                     android:id="@+id/tv_systolic_value"
                     style="@android:style/TextAppearance.Medium"
@@ -104,7 +112,17 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:singleLine="true"
-                    android:hint="@string/insulin_inject_comm"
+                    android:hint="@string/action_comment"
+                    android:text="..." />
+
+                <TextView
+                    android:id="@+id/tv_notes"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
+                    android:layout_weight="1"
+                    android:hint="@string/action_notes"
                     android:text="..." />
 
             </LinearLayout>

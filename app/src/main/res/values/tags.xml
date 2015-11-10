@@ -2,4 +2,5 @@
 <resources>
     <item name="ACTION_TYPE_INJECT" type="id"/>
     <item name="ACTION_TYPE_GLUCOSE" type="id"/>
+    <item name="ACTION_TYPE_PRESSURE" type="id"/>
 </resources>

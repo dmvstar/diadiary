@@ -13,6 +13,7 @@ import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.ActionCommonItem;
 import sf.net.dvstar.diadiary.database.GlucoseReading;
 import sf.net.dvstar.diadiary.database.InsulinInjection;
+import sf.net.dvstar.diadiary.database.PressureReading;
 import sf.net.dvstar.diadiary.insulins.InsulinUtils;
 
 
@@ -32,6 +33,14 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
 
     static class ViewHolderGlucose {
         public TextView tv_value;
+        public TextView tv_time;
+        public TextView tv_comment;
+        public TextView tv_notes;
+    }
+
+    static class ViewHolderPressure {
+        public TextView tv_systole_value;
+        public TextView tv_diastolic_value;
         public TextView tv_time;
         public TextView tv_comment;
         public TextView tv_notes;
@@ -84,6 +93,16 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
             viewHolder.tv_notes = (TextView) rowView.findViewById(R.id.tv_notes);
             rowView.setTag(R.id.ACTION_TYPE_GLUCOSE, viewHolder);
         }
+        if (key == ActionCommonItem.ACTION_TYPE_PRESSURE && (rowView == null || rowView.getTag(R.id.ACTION_TYPE_PRESSURE)==null)) {
+            rowView = mLayoutInflater.inflate(R.layout.blood_pressure_item, null);
+            ViewHolderPressure viewHolder = new ViewHolderPressure();
+            viewHolder.tv_diastolic_value = (TextView) rowView.findViewById(R.id.tv_diastolic_value);
+            viewHolder.tv_systole_value = (TextView) rowView.findViewById(R.id.tv_systolic_value);
+            viewHolder.tv_time = (TextView) rowView.findViewById(R.id.tv_time);
+            viewHolder.tv_comment = (TextView) rowView.findViewById(R.id.tv_comment);
+            viewHolder.tv_notes = (TextView) rowView.findViewById(R.id.tv_notes);
+            rowView.setTag(R.id.ACTION_TYPE_PRESSURE, viewHolder);
+        }
 
         // fill data **
         if(key == ActionCommonItem.ACTION_TYPE_INJECT) {
@@ -111,6 +130,20 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
                 holder.tv_notes.setText(notes);
             }
         }
+        if(key == ActionCommonItem.ACTION_TYPE_PRESSURE) {
+            ViewHolderPressure holder = (ViewHolderPressure) rowView.getTag(R.id.ACTION_TYPE_PRESSURE);
+            PressureReading item = (PressureReading) action;
+            //if(holder != null)
+            {
+                holder.tv_diastolic_value.setText("" + item.diastolic_value);
+                holder.tv_systole_value.setText("" + item.systole_value);
+                holder.tv_time.setText(InsulinUtils.getDateTimeTextRev(item.time));
+                holder.tv_comment.setText(item.comment);
+                String notes = mContext.getResources().getStringArray(R.array.dialog_notes_list)[item.note];
+                holder.tv_notes.setText(notes);
+            }
+        }
+
         return rowView;
     }
 

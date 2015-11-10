@@ -36,7 +36,7 @@
     <string name="insulin_inject_dose">Dose:</string>
     <string name="insulin_inject_date">Date:</string>
     <string name="insulin_inject_time">Time:</string>
-    <string name="insulin_inject_comm">Comment:</string>
+
     <string name="insulin_inject_plan">Planned:</string>
 
 
@@ -82,5 +82,9 @@
     <string name="pressure_add_label_systole">Systole</string>
     <string name="pressure_add_label_diastolic">Diastolic</string>
     <string name="menu_event_add_pressure">Add pressure</string>
+
+    <string name="action_notes">Notes</string>
+    <string name="action_comment">Comment:</string>
+    <string name="glucoce_label_unit">mmol/L</string>
 
 </resources>
