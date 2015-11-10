@@ -2,11 +2,17 @@
 <resources>
     <string name="app_name">DiaDiary</string>
     <string name="app_desc">Дневник Диабетика (insulin, glucose и другое)</string>
-    <string name="action_about">About</string>
+    <string name="action_about">Про...</string>
     <string name="menu_event_add_action">Добавить действие</string>
     <string name="menu_event_add_eating">Прием пищи</string>
     <string name="menu_event_add_glucose">Уровень глюкозы</string>
     <string name="menu_event_add_inject">Инсулин</string>
     <string name="diary_action_label">Список действий</string>
     <string name="action_date_label">За дату</string>
+    <string name="menu_event_add_pressure">Кровяное давление</string>
+    <string name="pressure_label_title">Давление:</string>
+    <string name="planned_additionals">Дополнительно</string>
+    <string name="planned_regular">Постоянно</string>
+    <string name="pressure_add_label_systole">Верхнее</string>
+    <string name="pressure_add_label_diastolic">Нижнее</string>
 </resources>
