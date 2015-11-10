@@ -335,7 +335,6 @@ public class DiaryActionsActivity extends AppCompatActivity implements
                                        int position, long id) {
 //                Toast.makeText(getBaseContext(),"itemSelect: position = " + position + ", id = "
 //                        + id+" "+parent.getSelectedItem(), Toast.LENGTH_SHORT).show();
-
             }
 
             public void onNothingSelected(AdapterView<?> parent) {

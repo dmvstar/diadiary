@@ -11,7 +11,6 @@
         android:text="@string/pressure_add_title"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -52,6 +51,7 @@
                     android:text="@string/pressure_label_unit"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/textView33"
                 android:layout_width="match_parent"
@@ -142,7 +142,7 @@
                 android:textColor="@color/accent" />
 
             <Spinner
-                android:id="@+id/sp_note"
+                android:id="@+id/sp_notes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
