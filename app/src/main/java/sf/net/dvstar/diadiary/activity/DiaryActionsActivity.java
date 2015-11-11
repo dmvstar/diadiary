@@ -197,11 +197,11 @@ public class DiaryActionsActivity extends AppCompatActivity implements
 
     @Override
     public void onDateSet(int Year, int Month, int Day, int mode) {
-        setDateTextField(Year, Month, Day, mode);
+        setDateTextField(Year, Month+1, Day, mode);
     }
 
     public void setDateTextField(int Year, int Month, int Day, int mode) {
-        String test = InsulinUtils.getDateText(Year, Month + 1, Day);
+        String test = InsulinUtils.getDateText(Year, Month, Day);
         boolean changeContent = false;
         if (Year > 0) {
             // && !mTvDiaryActionsDateInto.getText().toString().equals(test)
@@ -212,11 +212,11 @@ public class DiaryActionsActivity extends AppCompatActivity implements
                         changeContent = true;
                         mTvDiaryActionsDateFrom.setText(test);
                         mDiaryActionsDateFrom = InsulinUtils.getDateTimeFrom(Year, Month, Day);
-                        mCalendarActionsDateFrom.set(Year, Month, Day);
+                        mCalendarActionsDateFrom.set(Year, Month-1, Day);
 
                         mTvDiaryActionsDateInto.setText(test);
-                        mDiaryActionsDateInto = InsulinUtils.getDateTimeFrom(Year, Month, Day);
-                        mCalendarActionsDateInto.set(Year, Month, Day);
+                        mDiaryActionsDateInto = InsulinUtils.getDateTimeFrom(Year, Month, Day+1);
+                        mCalendarActionsDateInto.set(Year, Month-1, Day+1);
                     }
 
                 }
@@ -252,7 +252,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
 
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            String test = InsulinUtils.getDateText(year, monthOfYear + 1, dayOfMonth);
+            String test = InsulinUtils.getDateText(year, monthOfYear + 1, dayOfMonth + 1);
 
 
             if (!mTvDiaryActionsDateInto.getText().toString().equals(test)) {
@@ -483,7 +483,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         ret = new Select()
                 .from(InsulinInjection.class)
                 .where("plan = ?", InsulinInjection.INJECTION_PLAN_REGULAR)
-                .or("date >= ?", mDiaryActionsDateFrom.getTime())
+                .or("date >= ? and date < ?", mDiaryActionsDateFrom.getTime(), mDiaryActionsDateInto.getTime())
                 .orderBy("time")
                 .execute();
 
@@ -495,8 +495,8 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         List<PressureReading> ret;
         ret = new Select()
                 .from(PressureReading.class)
-                //.where("time >= ?", mDiaryActionsDateFrom.getTime())
-                //.and("time <= ?", mDiaryActionsDateInto.getTime())
+                .where("time >= ?", mDiaryActionsDateFrom.getTime())
+                .and("time <= ?", mDiaryActionsDateInto.getTime())
                 .orderBy("time")
                 .execute();
         Log.v(TAG, "!!!!!!!![" + mDiaryActionsDateFrom + "][" + ret.size() + "]" + ret.toString());

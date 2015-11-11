@@ -100,16 +100,18 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:hint="@string/action_comment"
-            android:text="..." />
+            android:text="..."
+            android:lines="1" />
         <TextView
             android:id="@+id/tv_planned"
             style="@android:style/TextAppearance.Medium"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:hint="@string/insulin_inject_plan"
             android:text="..."
-            android:textAlignment="textEnd" />
+            android:textAlignment="textEnd"
+            android:lines="1" />
     </LinearLayout>
 
 
