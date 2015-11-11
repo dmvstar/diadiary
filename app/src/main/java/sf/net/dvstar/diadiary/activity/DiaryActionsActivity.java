@@ -60,6 +60,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
     private ListView mLvDiaryActions;
     private Context mContext;
     private TextView mTotalInsulunDose;
+    private TextView mAverageGlucose;
 
     private FloatingActionMenu menu;
     private FloatingActionButton fab12;
@@ -97,6 +98,8 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         mTvDiaryActionsDateFrom = (TextView) findViewById(R.id.tv_diary_actions_date_from);
         mTvDiaryActionsDateInto = (TextView) findViewById(R.id.tv_diary_actions_date_into);
         mTotalInsulunDose = (TextView) findViewById(R.id.tv_injection_total_value);
+        mAverageGlucose = (TextView) findViewById(R.id.tv_average_glucose_value);
+
         mSpPreriod = (Spinner) findViewById(R.id.sp_actin_period);
 
         Date today = Calendar.getInstance().getTime();
@@ -375,6 +378,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         mLvDiaryActions.setAdapter(adapter);
 
         calculateTotalInsulinDose();
+        calculateAverageGlucode();
     }
 
     public void showDateSelect(View view) {
@@ -447,6 +451,20 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         }
         mTotalInsulunDose.setText("" + totalDose + " " + getResources().getString(R.string.insulin_inject_unit));
     }
+
+    private void calculateAverageGlucode() {
+        float totalDose = 0;
+        int count = 0;
+        for (ActionCommonItem item : mDiaryActions) {
+            if (item instanceof GlucoseReading) {
+                totalDose += ((GlucoseReading) item).value;
+                count += 1;
+            }
+        }
+        if(count>0) totalDose = totalDose/count;
+        mAverageGlucose.setText("" + totalDose + " " + getResources().getString(R.string.glucoce_label_unit));
+    }
+
 
     public ArrayList<GlucoseReading> getGlucodeReading() {
         List<GlucoseReading> ret;

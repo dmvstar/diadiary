@@ -86,5 +86,7 @@
     <string name="action_notes">Notes</string>
     <string name="action_comment">Comment:</string>
     <string name="glucoce_label_unit">mmol/L</string>
+    <string name="average_glucose_label">Average glucose:</string>
+    <string name="tv_average_glucose_value">0.0</string>
 
 </resources>
