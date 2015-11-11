@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:text="@string/app_desc"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textColor="@color/accent" />
 
         <ImageView
             android:id="@+id/imageView"
