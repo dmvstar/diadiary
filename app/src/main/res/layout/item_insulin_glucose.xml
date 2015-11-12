@@ -82,7 +82,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:text="8:00"
-                    android:textAlignment="textEnd" />
+                    android:gravity="right" />
             </LinearLayout>
 
             <LinearLayout

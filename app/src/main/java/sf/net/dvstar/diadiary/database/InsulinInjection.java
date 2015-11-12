@@ -102,13 +102,19 @@ public class InsulinInjection extends Model implements Serializable, ActionCommo
 
     @Override
     public String exportItem() {
-        String ret = TAG+"|"+insulin.name+"|"+dose+"|"+time+"|"+"|"+comment+"|"+plan+"|"+color;
+        String ret = TAG+"|"+insulin.name+"|"+dose+"|"+time+"|"+comment+"|"+plan+"|"+color+ "|";
         return ret;
     }
 
     @Override
     public void importItem(String item) {
-
+        String[] items = item.split(FIELD_DELIMITER, -1);
+        String insulin_name = items[1];
+        dose=items[2];
+        time= InsulinUtils.getDateFromString(items[3]);
+        comment=items[4];
+        plan=Integer.parseInt(items[5]);
+        color=Integer.parseInt(items[6]);
     }
 
 

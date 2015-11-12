@@ -7,6 +7,8 @@ import com.activeandroid.annotation.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+
 
 @Table(name = "PressureReading")
 public class PressureReading extends Model implements Serializable, ActionCommonItem {
@@ -73,12 +75,17 @@ public class PressureReading extends Model implements Serializable, ActionCommon
 
     @Override
     public String exportItem() {
-        String ret = TAG+"|"+systole_value+"|"+diastolic_value+"|"+time+"|"+note+"|"+comment;
+        String ret = TAG+"|"+systole_value+"|"+diastolic_value+"|"+time+"|"+note+"|"+comment+ "|";
         return ret;
     }
 
     @Override
     public void importItem(String item) {
-
+        String[] items = item.split(FIELD_DELIMITER, -1);
+        systole_value=Integer.parseInt(items[1]);
+        diastolic_value=Integer.parseInt(items[2]);
+        time= InsulinUtils.getDateFromString(items[3]);
+        note=Integer.parseInt(items[4]);
+        comment=items[5];
     }
 }

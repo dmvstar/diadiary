@@ -204,6 +204,10 @@ public class DatabaseProvider {
                     InsulinInjection item = new InsulinInjection();
                     item.importItem(line);
                 }
+                if(line.startsWith(PressureReading.TAG)){
+                    PressureReading item = new PressureReading();
+                    item.importItem(line);
+                }
                 Toast.makeText(mContext, "Line selected " + line,
                         Toast.LENGTH_LONG).show();
             }
@@ -231,7 +235,7 @@ public class DatabaseProvider {
             List<GlucoseReading> aGlucoseReading;
             aGlucoseReading = new Select()
                     .from(GlucoseReading.class)
-                    .orderBy("created")
+                    .orderBy("time")
                     .execute();
             for (ListIterator<GlucoseReading> it = aGlucoseReading.listIterator(); it.hasNext(); ) {
                 GlucoseReading item = it.next();
@@ -247,6 +251,18 @@ public class DatabaseProvider {
                     .execute();
             for (ListIterator<InsulinInjection> it = aInsulinInjection.listIterator(); it.hasNext(); ) {
                 InsulinInjection item = it.next();
+                String export = item.exportItem();
+                bow.write(export);
+                bow.newLine();
+            }
+
+            List<PressureReading> aPressureReading;
+            aPressureReading = new Select()
+                    .from(PressureReading.class)
+                    .orderBy("time")
+                    .execute();
+            for (ListIterator<PressureReading> it = aPressureReading.listIterator(); it.hasNext(); ) {
+                PressureReading item = it.next();
                 String export = item.exportItem();
                 bow.write(export);
                 bow.newLine();

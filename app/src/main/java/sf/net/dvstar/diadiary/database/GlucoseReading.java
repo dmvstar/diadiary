@@ -7,6 +7,8 @@ import com.activeandroid.annotation.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+
 
 @Table(name = "GlucoseReading")
 public class GlucoseReading extends Model implements Serializable, ActionCommonItem {
@@ -69,12 +71,16 @@ public class GlucoseReading extends Model implements Serializable, ActionCommonI
     }
 
     public String exportItem() {
-        String ret = TAG + "|" + value + "|" + time + "|" + note + "|" + comment;
+        String ret = TAG + "|" + value + "|" + time + "|" + note + "|" + comment + "|";
         return ret;
     }
 
     public void importItem(String item) {
-        String[] reservoir = item.split(FIELD_DELIMITER);
+        String[] items = item.split(FIELD_DELIMITER, -1);
+        value=Float.parseFloat(items[1]);
+        time= InsulinUtils.getDateFromString(items[2]);
+        note=Integer.parseInt(items[3]);
+        comment=items[4];
     }
 
 

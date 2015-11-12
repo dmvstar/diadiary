@@ -49,7 +49,7 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
 
     public DiaryActionstAdapter(Activity context, List<ActionCommonItem> actions) {
         //super(context, android.R.layout.simple_list_item_1, insulins);
-        super(context, R.layout.insulin_inject_item, actions);
+        super(context, R.layout.item_insulin_inject, actions);
         this.mContext   = context;
         this.mActionss  = actions;
         this.mLayoutInflater = mContext.getLayoutInflater();
@@ -74,7 +74,7 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
         int key = action.getActionType();
         // reuse views
         if (key == ActionCommonItem.ACTION_TYPE_INJECT && (rowView == null || rowView.getTag(R.id.ACTION_TYPE_INJECT)==null)) {
-            rowView = mLayoutInflater.inflate(R.layout.insulin_inject_item, null);
+            rowView = mLayoutInflater.inflate(R.layout.item_insulin_inject, null);
             // configure view holder
             ViewHolderInject viewHolder = new ViewHolderInject();
             viewHolder.tv_insulin = (TextView) rowView.findViewById(R.id.tv_insulin);
@@ -85,7 +85,7 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
             rowView.setTag(R.id.ACTION_TYPE_INJECT, viewHolder);
         }
         if (key == ActionCommonItem.ACTION_TYPE_GLUCOSE && (rowView == null || rowView.getTag(R.id.ACTION_TYPE_GLUCOSE)==null)) {
-            rowView = mLayoutInflater.inflate(R.layout.insulin_glucose_item, null);
+            rowView = mLayoutInflater.inflate(R.layout.item_insulin_glucose, null);
             ViewHolderGlucose viewHolder = new ViewHolderGlucose();
             viewHolder.tv_value = (TextView) rowView.findViewById(R.id.tv_value);
             viewHolder.tv_time = (TextView) rowView.findViewById(R.id.tv_time);
@@ -94,7 +94,7 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
             rowView.setTag(R.id.ACTION_TYPE_GLUCOSE, viewHolder);
         }
         if (key == ActionCommonItem.ACTION_TYPE_PRESSURE && (rowView == null || rowView.getTag(R.id.ACTION_TYPE_PRESSURE)==null)) {
-            rowView = mLayoutInflater.inflate(R.layout.blood_pressure_item, null);
+            rowView = mLayoutInflater.inflate(R.layout.item_blood_pressure, null);
             ViewHolderPressure viewHolder = new ViewHolderPressure();
             viewHolder.tv_diastolic_value = (TextView) rowView.findViewById(R.id.tv_diastolic_value);
             viewHolder.tv_systole_value = (TextView) rowView.findViewById(R.id.tv_systolic_value);

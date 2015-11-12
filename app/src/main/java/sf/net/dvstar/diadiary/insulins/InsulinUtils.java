@@ -217,6 +217,17 @@ public class InsulinUtils {
 
         return ret;
     }
+
+    public static Date getDateFromString(String date) {
+        SimpleDateFormat sf = new SimpleDateFormat("EEE MMM dd HH:mm:ss ZZZZZ yyyy");
+        sf.setLenient(true);
+        Date ret = new Date();
+        try {
+            ret = sf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return ret;    }
 }
 
 
