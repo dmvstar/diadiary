@@ -50,6 +50,16 @@ public class InsulinOrigin extends Model implements Serializable, CommonItem {
         return "["+code+"] "+name;
     }
 
+    @Override
+    public String exportItem() {
+        return null;
+    }
+
+    @Override
+    public void importItem(String item) {
+
+    }
+
     /*
     @Override
     public int getActionType() {

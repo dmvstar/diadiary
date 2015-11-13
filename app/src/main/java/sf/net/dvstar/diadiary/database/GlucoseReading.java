@@ -77,10 +77,12 @@ public class GlucoseReading extends Model implements Serializable, ActionCommonI
 
     public void importItem(String item) {
         String[] items = item.split(FIELD_DELIMITER, -1);
-        value=Float.parseFloat(items[1]);
-        time= InsulinUtils.getDateFromString(items[2]);
-        note=Integer.parseInt(items[3]);
-        comment=items[4];
+        int index = 0;
+        if(items[index].equals(TAG)) index++;
+        value=Float.parseFloat(items[index++]);
+        time= InsulinUtils.getDateFromString(items[index++]);
+        note=Integer.parseInt(items[index++]);
+        comment=items[index++];
     }
 
 

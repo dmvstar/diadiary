@@ -18,7 +18,8 @@
 
     <string name="action_database">Database</string>
     <string name="action_db_reinit">Reinit DB</string>
-    <string name="action_db_import">Import data</string>
+    <string name="action_db_import_prod">Import products</string>
+    <string name="action_db_import_data">Import data</string>
     <string name="action_db_export">Export data</string>
 
     <string name="insulin_desc_name">Insulin name:</string>

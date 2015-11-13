@@ -19,10 +19,18 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/action_db_import"
+            android:text="@string/action_db_import_prod"
+            android:id="@+id/bt_import_prod"
+            android:layout_gravity="center_horizontal"
+            android:onClick="dbImportProd" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_db_import_data"
             android:id="@+id/bt_import_data"
             android:layout_gravity="center_horizontal"
-            android:onClick="dbImport" />
+            android:onClick="dbImportData" />
 
         <Button
             android:layout_width="match_parent"
@@ -38,7 +46,8 @@
             android:text="@string/action_db_reinit"
             android:id="@+id/bt_reinit_data"
             android:layout_gravity="center_horizontal"
-            android:onClick="dbReinit" />
+            android:onClick="dbReinit"
+            android:background="@color/a200_orange" />
 
         <ListView
             android:layout_width="match_parent"

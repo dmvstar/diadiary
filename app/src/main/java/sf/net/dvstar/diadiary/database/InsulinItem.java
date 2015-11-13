@@ -6,9 +6,6 @@ import com.activeandroid.annotation.Table;
 
 import java.io.Serializable;
 
-/**
- * Created by sdv on 18.10.15.
- */
 @Table(name = "InsulinItem")
 public class InsulinItem extends Model implements Serializable, CommonItem {
 
@@ -136,6 +133,16 @@ public class InsulinItem extends Model implements Serializable, CommonItem {
     @Override
     public String getListText() {
         return "["+name+"] "+name;
+    }
+
+    @Override
+    public String exportItem() {
+        return null;
+    }
+
+    @Override
+    public void importItem(String item) {
+
     }
 
     @Override

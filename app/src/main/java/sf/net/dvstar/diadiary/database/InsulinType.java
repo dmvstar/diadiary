@@ -55,6 +55,16 @@ public class InsulinType extends Model implements Serializable, CommonItem {
         return "["+code+"] "+description +" ("+durations.getListText()+")";
     }
 
+    @Override
+    public String exportItem() {
+        return null;
+    }
+
+    @Override
+    public void importItem(String item) {
+
+    }
+
     /*
     @Override
     public int getActionType() {

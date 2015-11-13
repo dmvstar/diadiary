@@ -1,0 +1,2 @@
+prodgroups
+idGroup|Name|sortInd

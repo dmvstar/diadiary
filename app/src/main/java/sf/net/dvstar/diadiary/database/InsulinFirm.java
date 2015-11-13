@@ -47,6 +47,16 @@ public class InsulinFirm extends Model implements Serializable, CommonItem {
     }
 
     @Override
+    public String exportItem() {
+        return null;
+    }
+
+    @Override
+    public void importItem(String item) {
+
+    }
+
+    @Override
     public boolean equals(Object m){
         if(this.code.equals(((InsulinFirm)m).code))
             return true;

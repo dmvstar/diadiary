@@ -208,8 +208,8 @@ public class DatabaseProvider {
                     PressureReading item = new PressureReading();
                     item.importItem(line);
                 }
-                Toast.makeText(mContext, "Line selected " + line,
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(mContext, "Line selected " + line,
+//                        Toast.LENGTH_LONG).show();
             }
 
         } catch (IOException e) {

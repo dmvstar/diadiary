@@ -9,12 +9,7 @@ public interface ActionCommonItem extends CommonItem {
     int ACTION_TYPE_INSULIN = 3;
     int ACTION_TYPE_PRESSURE = 4;
 
-    String FIELD_DELIMITER = "\\|";
-
     Date   getCompareTime();
     int getActionType();
-
-    public String exportItem();
-    public void importItem(String item);
 
 }

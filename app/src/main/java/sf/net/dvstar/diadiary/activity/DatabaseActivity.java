@@ -39,7 +39,11 @@ public class DatabaseActivity extends AppCompatActivity implements OIFileManager
         iIsulinInitDatabase.initCreate();
     }
 
-    public void dbImport(View v) {
+    public void dbImportProd(View v) {
+
+    }
+
+    public void dbImportData(View v) {
 
         Intent intent = new Intent(ACTION_PICK_FILE);
 

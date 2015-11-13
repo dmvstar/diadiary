@@ -46,4 +46,14 @@ public class InsulinDuration extends Model implements Serializable, CommonItem {
         return "["+code+"] "+description ;
     }
 
+    @Override
+    public String exportItem() {
+        return null;
+    }
+
+    @Override
+    public void importItem(String item) {
+
+    }
+
 }
