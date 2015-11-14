@@ -1,6 +1,7 @@
 package sf.net.dvstar.diadiary.database;
 
 import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
 import java.io.Serializable;
@@ -18,17 +19,48 @@ public class ProductItem extends Model implements Serializable, CommonItem {
             2|Глюкозы таблетки австрийские|0.0|0.899999976158142|96.4000015258789|96|100.0|0|1|0
     */
     //5|Сахар|0.0|0.0|99.8000030517578|65|100.0|0|1|0
+    @Column(name = "prodId", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
     int prodId;
+
+    @Column(name = "name")
     String name;
+
+    @Column(name = "fats")
     float fats;
+
+    @Column(name = "carb")
     float carb;
+
+    @Column(name = "prot")
     float prot;
+
+    @Column(name = "gi")
     int gi;
+
+    @Column(name = "weight")
     float weight;
+
+    @Column(name = "compl")
     int compl;
+
+    @Column(name = "groupId")
     int groupId;
+
+    @Column(name = "usage")
     int usage;
+
+    @Column(name = "locale")
     String locale;
+
+    public ProductItem() {
+        super();
+        this.locale="*";
+    }
+
+    public ProductItem(String locale) {
+        super();
+        this.locale=locale;
+    }
 
     @Override
     public String exportItem() {
@@ -67,5 +99,10 @@ public class ProductItem extends Model implements Serializable, CommonItem {
     @Override
     public String getListText() {
         return name;
+    }
+
+    @Override
+    public String toString(){
+        return "["+groupId+"] "+name;
     }
 }

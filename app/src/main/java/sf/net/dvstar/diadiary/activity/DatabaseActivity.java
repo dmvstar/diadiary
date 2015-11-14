@@ -1,6 +1,8 @@
 package sf.net.dvstar.diadiary.activity;
 
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +16,8 @@ import java.io.FilenameFilter;
 
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.DatabaseProvider;
+import sf.net.dvstar.diadiary.database.ProductGroup;
+import sf.net.dvstar.diadiary.database.ProductItem;
 import sf.net.dvstar.diadiary.utilitis.OIFileManager;
 
 public class DatabaseActivity extends AppCompatActivity implements OIFileManager{
@@ -27,8 +31,28 @@ public class DatabaseActivity extends AppCompatActivity implements OIFileManager
     }
 
     public void dbReinit(View v) {
-        dbClear();
-        dbInit();
+
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        dbClear();
+                        dbInit();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+
     }
 
     private void dbClear() {
@@ -97,13 +121,13 @@ public class DatabaseActivity extends AppCompatActivity implements OIFileManager
                         Toast.makeText(this, "FILE selected " + filePath,
                                 Toast.LENGTH_LONG).show();
 
-                        DatabaseProvider iIsulinInitDatabase = new DatabaseProvider(this);
+                        DatabaseProvider iDatabaseProvider = new DatabaseProvider(this);
                         File f = new File(filePath);
                         String sflist[] = f.list(new FilenameFilter() {
                             @Override
                             public boolean accept(File dir, String filename) {
                                 boolean ret = false;
-                                if (filename.indexOf("prodgroups")>=0) ret = true;
+                                if (filename.indexOf("prodgroups")>=0 || filename.indexOf("proditems")>=0) ret = true;
                                 return ret;
                             }
                         });
@@ -111,13 +135,20 @@ public class DatabaseActivity extends AppCompatActivity implements OIFileManager
                         if(sflist.length>0){
 
                             for (String fsi:sflist){
+                                String mode = "";
+                                String fullPath = filePath+"/"+fsi;
+                                Toast.makeText(this, "FILE selected " + fullPath,
+                                        Toast.LENGTH_LONG).show();
+                                if(fsi.indexOf("prodgroups")>=0) mode = ProductGroup.TAG;
+                                if(fsi.indexOf("proditems")>=0) mode = ProductItem.TAG;
 
-                                iIsulinInitDatabase.importProd(filePath+"/"+fsi);
+                                if(mode.length()>0)
+                                    iDatabaseProvider.importProducts(fullPath,mode);
 
                             }
                         }
 
-                        //iIsulinInitDatabase.importProd(filePath+"proditems.csv");
+                        //iIsulinInitDatabase.importProducts(filePath+"proditems.csv");
                     }
                 }
                 break;

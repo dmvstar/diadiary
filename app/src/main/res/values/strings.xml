@@ -90,5 +90,7 @@
     <string name="average_glucose_label">Average glucose:</string>
     <string name="tv_average_glucose_value">0.0</string>
     <string name="action_products">Products</string>
+    <string name="pressure_add_label_pulse">Pulse</string>
+    <string name="pulse_label_unit">bpm</string>
 
 </resources>

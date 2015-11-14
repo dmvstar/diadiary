@@ -3,6 +3,7 @@ package sf.net.dvstar.diadiary.database;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,16 +18,18 @@ public class ProductGroup extends Model implements Serializable, CommonItem {
 
 
     @Column(name = "groupId", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
-    int groupId;
+    public int groupId;
 
     @Column(name = "name")
-    String name;
+    public String name;
 
     @Column(name = "sortOrder")
-    int sortOrder;
+    public int sortOrder;
 
     @Column(name = "locale")
-    String locale;
+    public String locale;
+
+    private int mSubCount=0;
 
     public ProductGroup() {
         super();
@@ -66,5 +69,12 @@ public class ProductGroup extends Model implements Serializable, CommonItem {
     @Override
     public String getListText() {
         return name;
+    }
+
+    @Override
+    public String toString(){
+
+        mSubCount = new Select().from(ProductItem.class).where("groupId = ?",groupId).execute().size();
+        return name +" ("+mSubCount+") ["+locale+"]";
     }
 }

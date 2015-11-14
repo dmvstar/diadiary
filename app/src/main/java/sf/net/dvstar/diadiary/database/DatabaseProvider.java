@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.activeandroid.ActiveAndroid;
+import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 
 import java.io.BufferedOutputStream;
@@ -190,7 +191,7 @@ public class DatabaseProvider {
         SQLiteDatabase.deleteDatabase(new File(db.getPath()));
     }
 
-    public void importProd(String fileImport) {
+    public void importProducts(String fileImport, String mode) {
         String locale = getLocaleFile(fileImport);
 
         try {
@@ -198,19 +199,37 @@ public class DatabaseProvider {
             Reader isr = new InputStreamReader(fis);
             BufferedReader bir = new BufferedReader(isr);
             String line;
-            while ((line = bir.readLine()) != null) {
-                Log.v(TAG, "importProd "+line);
-                ProductGroup item = new ProductGroup(locale);
-                item.importItem(line);
+
+            if (mode.equals(ProductGroup.TAG)) {
+                new Delete().from(ProductGroup.class).execute();
+                while ((line = bir.readLine()) != null) {
+                    Log.v(TAG, "importProducts " + line);
+                    ProductGroup item = new ProductGroup(locale);
+                    item.importItem(line);
+                    item.save();
+                }
             }
+
+            if (mode.equals(ProductItem.TAG)) {
+                new Delete().from(ProductItem.class).execute();
+                while ((line = bir.readLine()) != null) {
+                    Log.v(TAG, "importProducts " + line);
+                    ProductItem item = new ProductItem(locale);
+                    item.importItem(line);
+                    item.save();
+                }
+            }
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     private String getLocaleFile(String fileImport) {
-        String locale="*";
-        if(fileImport.indexOf("_")>0){
+        String locale = "*";
+        if (fileImport.indexOf("_") > 0) {
             locale = fileImport.substring(fileImport.indexOf("_") + 1, fileImport.indexOf("."));
         }
         return locale;
@@ -223,15 +242,15 @@ public class DatabaseProvider {
             BufferedReader bir = new BufferedReader(isr);
             String line;
             while ((line = bir.readLine()) != null) {
-                if(line.startsWith(GlucoseReading.TAG)){
+                if (line.startsWith(GlucoseReading.TAG)) {
                     GlucoseReading item = new GlucoseReading();
                     item.importItem(line);
                 }
-                if(line.startsWith(InsulinInjection.TAG)){
+                if (line.startsWith(InsulinInjection.TAG)) {
                     InsulinInjection item = new InsulinInjection();
                     item.importItem(line);
                 }
-                if(line.startsWith(PressureReading.TAG)){
+                if (line.startsWith(PressureReading.TAG)) {
                     PressureReading item = new PressureReading();
                     item.importItem(line);
                 }
@@ -246,12 +265,13 @@ public class DatabaseProvider {
 
     /**
      * Export data to file
+     *
      * @param dirPath path to store
      */
     public void exportData(String dirPath) {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
-        String fileExportName = dirPath + "/diadiary_export-"+sdf.format(date)+".dat";
+        String fileExportName = dirPath + "/diadiary_export-" + sdf.format(date) + ".dat";
 
         File fileExport = new File(fileExportName);
         try {

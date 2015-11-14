@@ -29,9 +29,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.ActionCommonItem;
@@ -171,6 +169,10 @@ public class DiaryActionsActivity extends AppCompatActivity implements
 
         if (id == R.id.action_about) {
             showAboutActivity();
+        }
+
+        if(id == R.id.action_products) {
+            showProdGroupActivity();
         }
 
         return super.onOptionsItemSelected(item);
@@ -520,6 +522,11 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         if (item instanceof GlucoseReading) {
             showAddGlucoseReading(mode, view, (GlucoseReading) item);
         }
+    }
+
+    private void showProdGroupActivity() {
+        Intent intent = new Intent(this, ProdGroupActivity.class);
+        this.startActivity(intent);
     }
 
     /**

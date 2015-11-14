@@ -32,6 +32,9 @@ public class PressureReading extends Model implements Serializable, ActionCommon
     @Column(name = "diastolic_value")
     public int diastolic_value;
 
+    @Column(name = "pulse")
+    public int pulse;
+
     @Column(name = "time")
     public Date time;
 
@@ -67,25 +70,28 @@ public class PressureReading extends Model implements Serializable, ActionCommon
         return "PressureReading{" +
                 "systole_value=" + systole_value +
                 ", diastolic_value=" + diastolic_value +
+                ", pulse=" + pulse +
                 ", time=" + time +
-                ", note='" + note + '\'' +
+                ", note=" + note +
                 ", comment='" + comment + '\'' +
                 '}';
     }
 
     @Override
     public String exportItem() {
-        String ret = TAG+"|"+systole_value+"|"+diastolic_value+"|"+time+"|"+note+"|"+comment+ "|";
+        String ret = TAG+"|"+systole_value+"|"+diastolic_value+"|"+pulse+"|"+time+"|"+note+"|"+comment+ "|";
         return ret;
     }
 
     @Override
     public void importItem(String item) {
         String[] items = item.split(FIELD_DELIMITER, -1);
-        systole_value=Integer.parseInt(items[1]);
-        diastolic_value=Integer.parseInt(items[2]);
-        time= InsulinUtils.getDateFromString(items[3]);
-        note=Integer.parseInt(items[4]);
-        comment=items[5];
+        int index = 1;
+        systole_value=Integer.parseInt(items[index++]);
+        diastolic_value=Integer.parseInt(items[index++]);
+        pulse=Integer.parseInt(items[index++]);
+        time= InsulinUtils.getDateFromString(items[index++]);
+        note=Integer.parseInt(items[index++]);
+        comment=items[index++];
     }
 }
