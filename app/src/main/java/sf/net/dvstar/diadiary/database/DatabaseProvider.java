@@ -2,6 +2,7 @@ package sf.net.dvstar.diadiary.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.activeandroid.ActiveAndroid;
@@ -187,6 +188,32 @@ public class DatabaseProvider {
         */
         db.close();
         SQLiteDatabase.deleteDatabase(new File(db.getPath()));
+    }
+
+    public void importProd(String fileImport) {
+        String locale = getLocaleFile(fileImport);
+
+        try {
+            FileInputStream fis = new FileInputStream(fileImport);
+            Reader isr = new InputStreamReader(fis);
+            BufferedReader bir = new BufferedReader(isr);
+            String line;
+            while ((line = bir.readLine()) != null) {
+                Log.v(TAG, "importProd "+line);
+                ProductGroup item = new ProductGroup(locale);
+                item.importItem(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getLocaleFile(String fileImport) {
+        String locale="*";
+        if(fileImport.indexOf("_")>0){
+            locale = fileImport.substring(fileImport.indexOf("_") + 1, fileImport.indexOf("."));
+        }
+        return locale;
     }
 
     public void importData(String fileImport) {

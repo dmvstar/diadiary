@@ -1,6 +1,7 @@
 package sf.net.dvstar.diadiary.database;
 
 import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
 import java.io.Serializable;
@@ -15,15 +16,34 @@ public class ProductGroup extends Model implements Serializable, CommonItem {
     public static String TAG = "ProductGroup";
 
 
+    @Column(name = "groupId", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
     int groupId;
+
+    @Column(name = "name")
     String name;
+
+    @Column(name = "sortOrder")
     int sortOrder;
+
+    @Column(name = "locale")
+    String locale;
+
+    public ProductGroup() {
+        super();
+        this.locale="*";
+    }
+
+    public ProductGroup(String locale) {
+        super();
+        this.locale=locale;
+    }
 
     public String exportItem() {
         String ret = TAG + "|"
                 + groupId + "|"
                 + name + "|"
-                + sortOrder + "|";
+                + sortOrder + "|"
+                + locale + "|";
         return ret;
     }
 

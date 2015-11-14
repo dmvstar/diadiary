@@ -10,6 +10,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_products"
+        android:orderInCategory="100"
+        android:title="@string/action_products"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_insulins"
         android:orderInCategory="100"
         android:title="@string/action_insulins"

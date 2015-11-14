@@ -28,6 +28,7 @@ public class ProductItem extends Model implements Serializable, CommonItem {
     int compl;
     int groupId;
     int usage;
+    String locale;
 
     @Override
     public String exportItem() {
@@ -41,7 +42,8 @@ public class ProductItem extends Model implements Serializable, CommonItem {
                 + weight + "|"
                 + compl + "|"
                 + groupId + "|"
-                + usage + "|";
+                + usage + "|"
+                + locale + "|";
         return ret;
     }
 
