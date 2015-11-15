@@ -5,10 +5,11 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 @Table(name = "InsulinType")
-public class InsulinType extends Model implements Serializable, CommonItem {
+public class InsulinType extends Model implements Serializable, ActionCommonItem {
 
     /*
     id	code	duration	mtype	stype	description
@@ -63,6 +64,16 @@ public class InsulinType extends Model implements Serializable, CommonItem {
     @Override
     public void importItem(String item) {
 
+    }
+
+    @Override
+    public Date getCompareTime() {
+        return null;
+    }
+
+    @Override
+    public int getActionType() {
+        return 0;
     }
 
     /*

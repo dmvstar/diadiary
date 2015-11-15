@@ -13,7 +13,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,6 +61,7 @@
                 android:text="@string/pressure_add_label_diastolic"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/accent" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,6 +93,7 @@
                 android:text="@string/pressure_add_label_pulse"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/accent" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -194,32 +197,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_alignParentBottom="true"
-                android:layout_alignWithParentIfMissing="false">
-
-                <Button
-                    android:id="@+id/bt_add_update"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="add_update"
-                    android:text="@string/button_add" />
-
-                <Button
-                    android:id="@+id/bt_cancel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="cancel"
-                    android:text="@android:string/cancel" />
-            </LinearLayout>
-
-
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignWithParentIfMissing="false"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_add_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="add_update"
+            android:text="@string/button_add" />
+
+        <Button
+            android:id="@+id/bt_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="cancel"
+            android:text="@android:string/cancel" />
+    </LinearLayout>
 
 </LinearLayout>

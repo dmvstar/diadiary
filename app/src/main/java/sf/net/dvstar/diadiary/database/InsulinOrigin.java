@@ -5,12 +5,11 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
 import java.io.Serializable;
+import java.util.Date;
 
-/**
- * Created by sdv on 18.10.15.
- */
+
 @Table(name = "InsulinOrigin")
-public class InsulinOrigin extends Model implements Serializable, CommonItem {
+public class InsulinOrigin extends Model implements Serializable, ActionCommonItem {
     /*
     id	code	name	name_ru
     1	HBIOS	human biosynthetic	человеческий биосинтетический
@@ -58,6 +57,16 @@ public class InsulinOrigin extends Model implements Serializable, CommonItem {
     @Override
     public void importItem(String item) {
 
+    }
+
+    @Override
+    public Date getCompareTime() {
+        return null;
+    }
+
+    @Override
+    public int getActionType() {
+        return 0;
     }
 
     /*

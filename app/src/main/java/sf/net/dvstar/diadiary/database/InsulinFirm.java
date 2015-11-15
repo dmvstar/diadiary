@@ -5,12 +5,11 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
 import java.io.Serializable;
+import java.util.Date;
 
-/**
- * Created by sdv on 04.10.15.
- */
+
 @Table(name = "InsulinFirm")
-public class InsulinFirm extends Model implements Serializable, CommonItem {
+public class InsulinFirm extends Model implements Serializable, ActionCommonItem {
 
     /*
     id	code	name
@@ -58,9 +57,16 @@ public class InsulinFirm extends Model implements Serializable, CommonItem {
 
     @Override
     public boolean equals(Object m){
-        if(this.code.equals(((InsulinFirm)m).code))
-            return true;
-        return false;
+        return this.code.equals(((InsulinFirm) m).code);
     }
 
+    @Override
+    public Date getCompareTime() {
+        return null;
+    }
+
+    @Override
+    public int getActionType() {
+        return 0;
+    }
 }
