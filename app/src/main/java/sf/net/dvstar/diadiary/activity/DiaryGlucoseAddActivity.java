@@ -47,7 +47,7 @@ public class DiaryGlucoseAddActivity extends AppCompatActivity {
         mEtGlucoseDate = (EditText) findViewById(R.id.et_glucose_date);
         mEtGlucoseTime = (EditText) findViewById(R.id.et_glucose_time);
         mEtGlucoseComment = (EditText) findViewById(R.id.et_comment);
-        mBtAdd = (Button) findViewById(R.id.bt_add_update);
+        mBtAdd = (Button) findViewById(R.id.bt_confirm);
         mSpNotes = (Spinner) findViewById(R.id.sp_notes);
 
         mEtGlucoseValue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -92,7 +92,7 @@ public class DiaryGlucoseAddActivity extends AppCompatActivity {
         finish();
     }
 
-    public void add_update(View view) {
+    public void confirm(View view) {
 
         if (mMode == InsulinConstants.MODE_ACTIONS_EDIT_ADD) {
             mGlucoseReading = new GlucoseReading();

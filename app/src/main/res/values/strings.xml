@@ -61,6 +61,8 @@
 
     <string name="common_label_time">Time</string>
     <string name="common_label_date">Date</string>
+    <string name="common_label_comment">Comment</string>
+
     <string name="diary_action_label">Actions list</string>
     <string name="action_graph">Diagram</string>
     <string name="insulin_inject_label_type">Injection type</string>
@@ -92,5 +94,27 @@
     <string name="action_products">Products</string>
     <string name="pressure_add_label_pulse">Pulse</string>
     <string name="pulse_label_unit">bpm</string>
+    <string name="config_setting">Settings</string>
+    <string name="config_user_profile">User profile</string>
+    <string name="activity_settings_title">Settings</string>
+    <string name="user_profile_label">User profile</string>
+    <string name="user_profile_name">User name</string>
+    <string name="user_profile_age">Age</string>
+    <string name="user_profile_sex">Gender</string>
+    <string name="user_profile_diab_type">Diabet type</string>
+    <string name="user_profile_glucose_measure">Glucose measure</string>
+    <string name="user_profile_glucose_range">Preffered range</string>
+    <string name="activity_profile_title">Profile</string>
+    <string name="action_product_group">Product groups</string>
+    <string name="action_product_item">Product items</string>
+    <string name="prod_menu_add_title">Add menu</string>
+    <string name="prod_menu_add_label_group">Select product group</string>
+    <string name="action_product_menu_add">Add menu</string>
+    <string name="activity_menuadd_title">Add menu</string>
+    <string name="menu_add_label_name">Menu name</string>
+    <string name="menu_add_label_product">Product</string>
+    <string name="menu_add_label_groups">Product group</string>
+    <string name="prod_item_add_title">Product add</string>
+    <string name="menu_add_label_weight">Weight</string>
 
 </resources>

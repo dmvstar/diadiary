@@ -51,4 +51,36 @@
         <item>@string/dialog_period_list_4</item>
     </string-array>
 
+    <string name="gender_list_list_1">Male</string>
+    <string name="gender_list_list_2">Female</string>
+
+    <string-array name="gender_list">
+        <item>@string/gender_list_list_1</item>
+        <item>@string/gender_list_list_2</item>
+    </string-array>
+
+    <string name="diab_type_list_1">Type 1 (insulin-dependent)</string>
+    <string name="diab_type_list_2">Type 2 (adult-onset diabetes)</string>
+
+    <string-array name="diab_type_list">
+        <item>@string/diab_type_list_1</item>
+        <item>@string/diab_type_list_2</item>
+    </string-array>
+
+    <string name="glucose_measure_list_1">mmol/L</string>
+    <string name="glucose_measure_list_2">mg/dL</string>
+
+    <string-array name="glucose_measure_list">
+        <item>@string/glucose_measure_list_1</item>
+        <item>@string/glucose_measure_list_2</item>
+    </string-array>
+
+    <string name="glucose_range_list_1">1</string>
+    <string name="glucose_range_list_2">2</string>
+
+    <string-array name="glucose_range_list">
+        <item>@string/glucose_range_list_1</item>
+        <item>@string/glucose_range_list_2</item>
+    </string-array>
+
 </resources>

@@ -20,6 +20,7 @@ import sf.net.dvstar.diadiary.insulins.InsulinConstants;
 public class ProdGroupActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     ListView mProdGroups;
+    private int mMode=0;
 
 
     /*
@@ -36,6 +37,10 @@ public class ProdGroupActivity extends AppCompatActivity implements AdapterView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prod_group);
+
+        if(getIntent().getExtras()!=null) {
+            mMode = getIntent().getExtras().getInt(InsulinConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
+        }
 
         mProdGroups = (ListView) findViewById(R.id.lv_prod_group);
         List<ProductGroup> list = new Select().from(ProductGroup.class).execute();
@@ -58,7 +63,22 @@ public class ProdGroupActivity extends AppCompatActivity implements AdapterView.
             long rowId = item.groupId;
             intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
         }
-        this.startActivity(intent);
 
+        if(mMode==InsulinConstants.MODE_ACTIONS_GET_PRODUCT)
+            this.startActivityForResult(intent, InsulinConstants.MODE_ACTIONS_GET_PRODUCT);
+        else
+           this.startActivity(intent);
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode==RESULT_OK) {
+            String product = data.getExtras().getString(InsulinConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
+            Intent intent = new Intent();
+            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_GET_PRODUCT, product);
+            setResult(RESULT_OK, intent);
+        }
+        finish();
     }
 }

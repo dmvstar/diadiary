@@ -57,7 +57,7 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
         mContext = this;
         mMode = getIntent().getExtras().getInt(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE);
 
-        mBtAdd = (Button) findViewById(R.id.bt_add_update);
+        mBtAdd = (Button) findViewById(R.id.bt_confirm);
 
         mBtColor = (Button) findViewById(R.id.bt_color);
         llColor = (LinearLayout) findViewById(R.id.ll_color);
@@ -185,7 +185,7 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
         finish();
     }
 
-    public void add_update(View view){
+    public void confirm(View view){
 
         ColorDrawable viewColor = (ColorDrawable) llColor.getBackground();
         InsulinItem insulinItem = (InsulinItem) mSpInsulins.getSelectedItem();

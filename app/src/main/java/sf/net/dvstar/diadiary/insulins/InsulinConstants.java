@@ -27,9 +27,12 @@ public interface InsulinConstants {
     String KEY_INTENT_EXTRA_EDIT_MODE = "edit_item";
     String KEY_INTENT_EXTRA_EDIT_ITEM = "item_item";
     String KEY_INTENT_EXTRA_ROW_ID = "row_id";
+    String KEY_INTENT_EXTRA_GET_PRODUCT = "get_product";
 
     int MODE_ACTIONS_EDIT_ITEM = 1;
     int MODE_ACTIONS_EDIT_ADD = 2;
+    int MODE_ACTIONS_GET_PRODUCT = 3;
+
 
     int COLOR_NOVORAPID = Color.parseColor("#FF9900");
     int COLOR_LEVEMIR = Color.parseColor("#00AF8E");

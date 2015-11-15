@@ -52,7 +52,7 @@ public class DiaryPressureAddActivity extends AppCompatActivity {
         mEtPressureDate = (EditText) findViewById(R.id.et_date);
         mEtPressureTime = (EditText) findViewById(R.id.et_time);
         mEtComment = (EditText) findViewById(R.id.et_comment);
-        mBtAdd = (Button) findViewById(R.id.bt_add_update);
+        mBtAdd = (Button) findViewById(R.id.bt_confirm);
         mSpNotes = (Spinner) findViewById(R.id.sp_notes);
 
         SetDateTime.SetTime fromTime = new SetDateTime.SetTime(mEtPressureTime, this);
@@ -81,7 +81,7 @@ public class DiaryPressureAddActivity extends AppCompatActivity {
         finish();
     }
 
-    public void add_update(View view) {
+    public void confirm(View view) {
 
         if (mMode == InsulinConstants.MODE_ACTIONS_EDIT_ADD) {
             mPressureReading = new PressureReading();

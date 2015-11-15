@@ -184,7 +184,7 @@ public class InsulinDescAddActivity extends AppCompatActivity {
         finish();
     }
 
-    public void add_update(View view){
+    public void confirm(View view){
         finish();
     }
 }

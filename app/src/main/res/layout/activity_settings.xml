@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+     >
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/config_user_profile"
+        android:id="@+id/bt_user_profile"
+        android:layout_gravity="center_horizontal"
+        android:onClick="showUserProfile" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/config_setting"
+        android:id="@+id/bt_setting"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>

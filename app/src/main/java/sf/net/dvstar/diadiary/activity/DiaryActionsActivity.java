@@ -147,9 +147,10 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
+        if(id == R.id.action_settings) {
+            showSettingActivity();
         }
+
 /*
         if (id == R.id.action_injections) {
             showActionsActivity();
@@ -172,7 +173,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         }
 
         if(id == R.id.action_products) {
-            showProdGroupActivity();
+            showProdMenuActivity();
         }
 
         return super.onOptionsItemSelected(item);
@@ -524,8 +525,8 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         }
     }
 
-    private void showProdGroupActivity() {
-        Intent intent = new Intent(this, ProdGroupActivity.class);
+    private void showProdMenuActivity() {
+        Intent intent = new Intent(this, ProdMenuActivity.class);
         this.startActivity(intent);
     }
 
@@ -550,6 +551,17 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         this.startActivity(intent);
 
     }
+
+    private void showSettingActivity() {
+        Intent intent = new Intent(this, SettingActivity.class);
+        this.startActivity(intent);
+    }
+
+    private void showMenuActivity() {
+        Intent intent = new Intent(this, ProdMenuActivity.class);
+        this.startActivity(intent);
+    }
+
 
     private void showAddGlucoseReading(int mode, View view, GlucoseReading item) {
 
