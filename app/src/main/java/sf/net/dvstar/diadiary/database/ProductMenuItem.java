@@ -7,34 +7,44 @@ import com.activeandroid.annotation.Table;
 import java.io.Serializable;
 
 
-@Table(name = "ProductMenu")
-public class ProductMenu extends Model implements Serializable, CommonItem {
+@Table(name = "ProductMenuItem")
+public class ProductMenuItem extends Model implements Serializable, CommonItem {
 
-    public static String TAG = "ProductMenu";
+    public static String TAG = "ProductMenuItem";
 
     @Column(name = "name")
     String name;
 
-    @Column(name = "locale")
-    String locale;
+    @Column(name = "menu")
+    ProductMenuDesc menu;
 
-    public ProductMenu() {
-        super();
-        this.locale="*";
-    }
+    @Column(name = "prod")
+    ProductItem prod;
 
-    public ProductMenu(String locale) {
+    @Column(name = "weight")
+    Float weight;
+
+    @Column(name = "fats")
+    float fats;//жиры
+
+    @Column(name = "carb")
+    float carb;//углеводы
+
+    @Column(name = "prot")
+    float prot;// белок
+
+    @Column(name = "gi")
+    int gi;// ГИ гликемический индек
+
+    public ProductMenuItem() {
         super();
-        this.locale=locale;
     }
 
     @Override
     public String exportItem() {
         String ret = TAG + "|"
-
                 + name + "|"
-
-                + locale + "|";
+                +"<"+ menu + ">|";
         return ret;
     }
 
