@@ -43,9 +43,9 @@ public class DiaryPressureAddActivity extends AppCompatActivity {
         setContentView(R.layout.diary_pressure_add);
 
         mContext = this;
-        mNotesList = Arrays.asList(getResources().getStringArray(R.array.dialog_notes_list));
         mMode = getIntent().getExtras().getInt(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE);
 
+        mNotesList = Arrays.asList(getResources().getStringArray(R.array.dialog_notes_list));
         mEtPressureSystoleValue = (EditText) findViewById(R.id.et_pressure_systole_value);
         mEtPressureDiastolicValue = (EditText) findViewById(R.id.et_pressure_diastolic_value);
 

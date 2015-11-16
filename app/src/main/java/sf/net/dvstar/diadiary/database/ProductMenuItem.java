@@ -22,7 +22,7 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
     ProductItem prod;
 
     @Column(name = "weight")
-    Float weight;
+    Float weight;//вес
 
     @Column(name = "fats")
     float fats;//жиры

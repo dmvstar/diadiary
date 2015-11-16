@@ -74,8 +74,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="addProduct"
-            android:text="@string/button_add" />
+            android:text="@string/button_select" />
     </LinearLayout>
+    <Button
+        android:id="@+id/bt_product_sel_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_select_all" />
 
     <ListView
         android:id="@+id/lv_menu_product_list"

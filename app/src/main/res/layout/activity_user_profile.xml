@@ -58,7 +58,8 @@
             <EditText
                 android:id="@+id/et_user_profile_age"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textView30"
@@ -129,15 +130,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <TextView
+                    android:id="@+id/textView42"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/common_label_min"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/accent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/textView43"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/common_label_max"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/accent"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
                 <EditText
                     android:id="@+id/et_glucose_range_min"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number|numberDecimal"
+                    android:layout_weight="1" />
 
                 <EditText
                     android:id="@+id/et_glucose_range_max"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number|numberDecimal"
+                    android:layout_weight="1" />
 
             </LinearLayout>
 

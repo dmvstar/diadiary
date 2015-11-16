@@ -14,22 +14,19 @@ public class UserProfile extends Model implements Serializable, CommonItem {
     public static String TAG = "UserProfile";
 
     @Column(name = "name")
-    String name;
-
-    @Column(name = "age")
-    String age;
+    public String name;
 
     @Column(name = "birth")
-    Date birth;
+    public Date birth;// дата рождения
+
+    @Column(name = "age")
+    public String age;//возраст
 
     @Column(name = "growth")
-    Float growth;
+    Float growth;//рост
 
     @Column(name = "weight")
-    Float weight;
-
-    @Column(name = "locale")
-    String locale;
+    Float weight;//вес
 
     @Column(name = "gender")
     int gender;
@@ -45,6 +42,9 @@ public class UserProfile extends Model implements Serializable, CommonItem {
 
     @Column(name = "prefRangeMax")
     Float prefRangeMax;
+
+    @Column(name = "locale")
+    String locale;
 
     public UserProfile() {
         super();

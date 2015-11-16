@@ -63,6 +63,10 @@
     <string name="common_label_date">Date</string>
     <string name="common_label_comment">Comment</string>
 
+    <string name="common_label_min">Min</string>
+    <string name="common_label_max">Max</string>
+
+
     <string name="diary_action_label">Actions list</string>
     <string name="action_graph">Diagram</string>
     <string name="insulin_inject_label_type">Injection type</string>
@@ -116,5 +120,7 @@
     <string name="menu_add_label_groups">Product group</string>
     <string name="prod_item_add_title">Product add</string>
     <string name="menu_add_label_weight">Weight</string>
+    <string name="button_select">Select</string>
+    <string name="button_select_all">Select from all</string>
 
 </resources>
