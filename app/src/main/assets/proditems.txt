@@ -1,2 +1,0 @@
-proditems
-idProd|name|prot|fats|carb|gi|weight|compl|idGroup|usage

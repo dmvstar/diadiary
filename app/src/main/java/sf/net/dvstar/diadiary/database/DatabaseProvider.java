@@ -191,6 +191,45 @@ public class DatabaseProvider {
         SQLiteDatabase.deleteDatabase(new File(db.getPath()));
     }
 
+    public boolean importProductsFromAssets() throws IOException {
+        boolean ret = false;
+
+        String[] fileList = mContext.getAssets().list("");
+
+        for(String s: fileList) {
+
+            Log.v(TAG,"importProductsFromAssets "+s);
+
+/*
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(
+                        new InputStreamReader(getAssets().open("filename.txt")));
+
+                // do reading, usually loop until end of file reading
+                String mLine;
+                while ((mLine = reader.readLine()) != null) {
+                    //process line
+                    ...
+                }
+            } catch (IOException e) {
+                //log the exception
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        //log the exception
+                    }
+                }
+            }
+*/
+
+        }
+
+        return ret;
+    }
+
     public void importProducts(String fileImport, String mode) {
         String locale = getLocaleFile(fileImport);
 

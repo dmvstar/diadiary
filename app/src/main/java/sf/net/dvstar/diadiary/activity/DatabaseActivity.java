@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.DatabaseProvider;
@@ -68,6 +69,13 @@ public class DatabaseActivity extends AppCompatActivity implements OIFileManager
 
     public void dbImportProd(View v) {
         Intent intent = new Intent(ACTION_PICK_DIRECTORY);
+
+        DatabaseProvider iDatabaseProvider = new DatabaseProvider(this);
+        try {
+            iDatabaseProvider.importProductsFromAssets();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
             startActivityForResult(intent,

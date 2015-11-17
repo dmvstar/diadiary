@@ -21,6 +21,7 @@
     <string name="action_db_import_prod">Import products</string>
     <string name="action_db_import_data">Import data</string>
     <string name="action_db_export">Export data</string>
+    <string name="action_products">Products</string>
 
     <string name="insulin_desc_name">Insulin name:</string>
     <string name="insulin_desc_firm">Firm:</string>
@@ -39,7 +40,6 @@
     <string name="insulin_inject_time">Time:</string>
 
     <string name="insulin_inject_plan">Planned:</string>
-
 
     <string name="title_activity_insulin_desc">InsulinDescActivity</string>
     <string name="action_insulins">Insulins</string>
@@ -95,7 +95,6 @@
     <string name="glucoce_label_unit">mmol/L</string>
     <string name="average_glucose_label">Average glucose:</string>
     <string name="tv_average_glucose_value">0.0</string>
-    <string name="action_products">Products</string>
     <string name="pressure_add_label_pulse">Pulse</string>
     <string name="pulse_label_unit">bpm</string>
     <string name="config_setting">Settings</string>
@@ -111,7 +110,7 @@
     <string name="activity_profile_title">Profile</string>
     <string name="action_product_group">Product groups</string>
     <string name="action_product_item">Product items</string>
-    <string name="prod_menu_add_title">Add menu</string>
+    <string name="prod_menu_add_title">Adding food menu</string>
     <string name="prod_menu_add_label_group">Select product group</string>
     <string name="action_product_menu_add">Add menu</string>
     <string name="activity_menuadd_title">Add menu</string>

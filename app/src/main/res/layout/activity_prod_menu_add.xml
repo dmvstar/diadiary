@@ -69,7 +69,7 @@
             android:textColor="@color/accent" />
 
         <Button
-            android:id="@+id/bt_product_add"
+            android:id="@+id/bt_product_select"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
