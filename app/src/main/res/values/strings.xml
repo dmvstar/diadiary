@@ -121,5 +121,8 @@
     <string name="menu_add_label_weight">Weight</string>
     <string name="button_select">Select</string>
     <string name="button_select_all">Select from all</string>
+    <string name="dialog_import_title">Import products from ...</string>
+    <string name="dialog_import_from_assets">Internal</string>
+    <string name="dialog_import_from_file">File</string>
 
 </resources>

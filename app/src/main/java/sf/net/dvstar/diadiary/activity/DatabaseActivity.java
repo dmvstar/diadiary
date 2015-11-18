@@ -2,6 +2,7 @@ package sf.net.dvstar.diadiary.activity;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -23,9 +24,12 @@ import sf.net.dvstar.diadiary.utilitis.OIFileManager;
 
 public class DatabaseActivity extends AppCompatActivity implements OIFileManager{
 
+    private Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.mContext = this;
         setContentView(R.layout.activity_database);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -67,24 +71,41 @@ public class DatabaseActivity extends AppCompatActivity implements OIFileManager
         iIsulinInitDatabase.initCreate();
     }
 
-    public void dbImportProd(View v) {
+    public void dbImportProd(final View v) {
         Intent intent = new Intent(ACTION_PICK_DIRECTORY);
 
-        DatabaseProvider iDatabaseProvider = new DatabaseProvider(this);
-        try {
-            iDatabaseProvider.importProductsFromAssets();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        DatabaseProvider iDatabaseProvider = new DatabaseProvider(mContext);
+                        try {
+                            iDatabaseProvider.importProductsFromAssets();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        break;
 
-        try {
-            startActivityForResult(intent,
-                    REQUEST_CODE_PICK_PROD);
-        } catch (ActivityNotFoundException e) {
-            // No compatible file manager was found.
-            Toast.makeText(this, R.string.no_filemanager_installed,
-                    Toast.LENGTH_SHORT).show();
-        }
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+
+                        dbImportData(v);
+
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getResources().getString(R.string.dialog_import_title))
+                .setPositiveButton(getResources().getString(R.string.dialog_import_from_assets), dialogClickListener)
+                .setNegativeButton(getResources().getString(R.string.dialog_import_from_file), dialogClickListener).show();
+
+
+
+
     }
 
     public void dbImportData(View v) {

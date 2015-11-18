@@ -1,6 +1,7 @@
 package sf.net.dvstar.diadiary.database;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
@@ -14,8 +15,10 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
@@ -193,12 +196,27 @@ public class DatabaseProvider {
 
     public boolean importProductsFromAssets() throws IOException {
         boolean ret = false;
+        AssetManager assetManager = mContext.getAssets();
+        String[] fileList = assetManager.list("");
 
-        String[] fileList = mContext.getAssets().list("");
+        for(String filename: fileList) {
 
-        for(String s: fileList) {
+            String assets[] = assetManager.list(filename); // if dir - len > 0 if file len = 0
 
-            Log.v(TAG,"importProductsFromAssets "+s);
+            if (filename.indexOf("prodgroups")>=0 || filename.indexOf("proditems")>=0){
+                ret = true;
+                Log.v(TAG,"importProductsFromAssets "+filename);
+
+                String mode="";
+                if(filename.indexOf("prodgroups")>=0) mode = ProductGroup.TAG;
+                if(filename.indexOf("proditems")>=0) mode = ProductItem.TAG;
+
+                Log.v(TAG, "importProductsFromAssets [" + assets.length+"]"+filename);
+
+                String locale = getLocaleFile(filename);
+
+
+                importProducts(assetManager.open(filename),mode,locale);
 
 /*
             BufferedReader reader = null;
@@ -225,16 +243,17 @@ public class DatabaseProvider {
             }
 */
 
+
+
+            }
+
         }
 
         return ret;
     }
 
-    public void importProducts(String fileImport, String mode) {
-        String locale = getLocaleFile(fileImport);
+    public void importProducts(InputStream fis, String mode, String locale) throws IOException {
 
-        try {
-            FileInputStream fis = new FileInputStream(fileImport);
             Reader isr = new InputStreamReader(fis);
             BufferedReader bir = new BufferedReader(isr);
             String line;
@@ -259,11 +278,19 @@ public class DatabaseProvider {
                 }
             }
 
+    }
 
+    public void importProducts(String fileImport, String mode) {
+        String locale = getLocaleFile(fileImport);
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(fileImport);
+            importProducts(fis, mode, locale);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private String getLocaleFile(String fileImport) {
