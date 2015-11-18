@@ -1,14 +1,17 @@
 package sf.net.dvstar.diadiary.activity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import sf.net.dvstar.diadiary.utilitis.OIFileManager;
 
 public class DatabaseActivity extends AppCompatActivity implements OIFileManager{
 
+    private static final String TAG = "DatabaseActivity";
     private Context mContext;
 
     @Override
@@ -71,40 +75,78 @@ public class DatabaseActivity extends AppCompatActivity implements OIFileManager
         iIsulinInitDatabase.initCreate();
     }
 
+    private ProgressDialog mProgressDialog;
     public void dbImportProd(final View v) {
-        Intent intent = new Intent(ACTION_PICK_DIRECTORY);
-
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
                         //Yes button clicked
-                        DatabaseProvider iDatabaseProvider = new DatabaseProvider(mContext);
-                        try {
-                            iDatabaseProvider.importProductsFromAssets();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+
+                            // @TODO Move progree dialog from iDatabaseProvider
+
+                            AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+
+                                @Override
+                                protected void onPreExecute() {
+                                    mProgressDialog = new ProgressDialog(mContext);
+                                    mProgressDialog.setTitle("Processing...");
+                                    mProgressDialog.setMessage("Please wait.");
+                                    mProgressDialog.setCancelable(false);
+                                    mProgressDialog.setIndeterminate(true);
+                                    mProgressDialog.show();
+                                }
+
+                                @Override
+                                protected Void doInBackground(Void... arg0) {
+                                    try {
+                                        //Do something...
+                                        DatabaseProvider iDatabaseProvider = new DatabaseProvider(mContext);
+                                        iDatabaseProvider.importProductsFromAssets();
+                                        //Thread.sleep(5000);
+                                    }
+                                    catch (IOException e) {
+                                        mProgressDialog.dismiss();
+                                        e.printStackTrace();
+                                    }
+                                    return null;
+                                }
+
+                                @Override
+                                protected void onPostExecute(Void result) {
+                                    super.onPostExecute(result);
+                                    Log.v(TAG, "onPostExecute | Ok " + mProgressDialog);
+                                    if (mProgressDialog !=null) {
+                                        mProgressDialog.setIndeterminate(false);
+                                        mProgressDialog.cancel();
+                                        mProgressDialog.dismiss();
+                                    }
+                                }
+
+                            };
+                            task.execute((Void[])null);
+
+
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
                         //No button clicked
-
                         dbImportData(v);
-
+                        break;
+                    case DialogInterface.BUTTON_NEUTRAL:
+                        //No button clicked
                         break;
                 }
             }
         };
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getResources().getString(R.string.dialog_import_title))
-                .setPositiveButton(getResources().getString(R.string.dialog_import_from_assets), dialogClickListener)
-                .setNegativeButton(getResources().getString(R.string.dialog_import_from_file), dialogClickListener).show();
-
-
-
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setMessage(getResources().getString(R.string.dialog_import_title));
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getResources().getString(R.string.dialog_import_from_assets), dialogClickListener);
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getResources().getString(R.string.dialog_import_from_file), dialogClickListener);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getResources().getString(R.string.button_cancel), dialogClickListener);
+        alertDialog.show();
 
     }
 

@@ -1,16 +1,16 @@
 package sf.net.dvstar.diadiary.database;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -196,10 +196,10 @@ public class DatabaseProvider {
 
     public boolean importProductsFromAssets() throws IOException {
         boolean ret = false;
-        AssetManager assetManager = mContext.getAssets();
+        final AssetManager assetManager = mContext.getAssets();
         String[] fileList = assetManager.list("");
 
-        for(String filename: fileList) {
+        for(final String filename: fileList) {
 
             String assets[] = assetManager.list(filename); // if dir - len > 0 if file len = 0
 
@@ -211,44 +211,16 @@ public class DatabaseProvider {
                 if(filename.indexOf("prodgroups")>=0) mode = ProductGroup.TAG;
                 if(filename.indexOf("proditems")>=0) mode = ProductItem.TAG;
 
-                Log.v(TAG, "importProductsFromAssets [" + assets.length+"]"+filename);
+                Log.v(TAG, "importProductsFromAssets [" + assets.length + "]" + filename);
 
-                String locale = getLocaleFile(filename);
+                final String locale = getLocaleFile(filename);
 
+                final String finalMode = mode;
 
-                importProducts(assetManager.open(filename),mode,locale);
-
-/*
-            BufferedReader reader = null;
-            try {
-                reader = new BufferedReader(
-                        new InputStreamReader(getAssets().open("filename.txt")));
-
-                // do reading, usually loop until end of file reading
-                String mLine;
-                while ((mLine = reader.readLine()) != null) {
-                    //process line
-                    ...
-                }
-            } catch (IOException e) {
-                //log the exception
-            } finally {
-                if (reader != null) {
-                    try {
-                        reader.close();
-                    } catch (IOException e) {
-                        //log the exception
-                    }
-                }
-            }
-*/
-
-
+                importProducts(assetManager.open(filename), finalMode, locale);
 
             }
-
         }
-
         return ret;
     }
 
