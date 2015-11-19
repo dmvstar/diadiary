@@ -53,7 +53,7 @@ public class ProductMenuDesc extends Model implements Serializable, CommonItem {
 
     @Override
     public String toString() {
-        return name + "(" + created + '}';
+        return name + " ["+comment+"] (" + created + '}';
     }
 
     @Override

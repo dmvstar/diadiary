@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -20,7 +21,7 @@ import sf.net.dvstar.diadiary.database.ProductMenuDesc;
 import sf.net.dvstar.diadiary.database.ProductMenuItem;
 import sf.net.dvstar.diadiary.insulins.InsulinConstants;
 
-public class ProdMenuAddActivity extends AppCompatActivity {
+public class ProdMenuAddActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private static final String TAG = "ProdMenuAddActivity";
     ListView mProdMenu;
@@ -32,6 +33,11 @@ public class ProdMenuAddActivity extends AppCompatActivity {
     private ProductMenuDesc mProductMenuDesc;
     private EditText mEtName;
     private EditText mEtComment;
+    private View mTvCarb;
+    private View mTvFat;
+    private View mTvProt;
+    private View mTvGI;
+    private View mTvXE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +51,17 @@ public class ProdMenuAddActivity extends AppCompatActivity {
         mEtName = (EditText)findViewById(R.id.et_menu_name);
         mEtComment = (EditText) findViewById(R.id.et_comment);
 
+        mTvCarb = findViewById(R.id.tv_prod_carb);
+        mTvFat = findViewById(R.id.tv_prod_fat);
+        mTvProt = findViewById(R.id.tv_prod_prot);
+        mTvGI = findViewById(R.id.tv_prod_gi);
+        mTvXE = findViewById(R.id.tv_prod_xe);
+
         mProdMenu = (ListView) findViewById(R.id.lv_menu_product_list);
 
         adapter = new ArrayAdapter<ProductItem>(this, android.R.layout.simple_list_item_1, listItems);
         mProdMenu.setAdapter(adapter);
-/*
-        mProdGroups = (ListView) findViewById(R.id.lv_prod_group);
-        List<ProductGroup> list = new Select().from(ProductGroup.class).execute();
-        ArrayAdapter adapter = new ArrayAdapter<ProductGroup>(this,android.R.layout.simple_list_item_1, list);
-        mProdGroups.setAdapter(adapter);
-        mProdGroups.setOnItemClickListener(this);
-*/
+        mProdMenu.setOnItemClickListener(this);
     }
 
     private void showProducItemActivity() {
@@ -112,7 +118,16 @@ public class ProdMenuAddActivity extends AppCompatActivity {
             ProductItem product = (ProductItem) data.getExtras().getSerializable(InsulinConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
             listItems.add(product);
             adapter.notifyDataSetChanged();
+            calculteProducts();
         }
     }
 
+    private void calculteProducts() {
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
 }

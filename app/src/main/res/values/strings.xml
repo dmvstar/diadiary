@@ -21,7 +21,7 @@
     <string name="action_db_import_prod">Import products</string>
     <string name="action_db_import_data">Import data</string>
     <string name="action_db_export">Export data</string>
-    <string name="action_products">Products</string>
+    <string name="action_menus">Menus</string>
 
     <string name="insulin_desc_name">Insulin name:</string>
     <string name="insulin_desc_firm">Firm:</string>
@@ -131,5 +131,6 @@
     <string name="menu_add_label_gi">GI</string>
     <string name="menu_add_label_xe">BE</string>
     <string name="menu_add_hint_prot">Protheine</string>
+    <string name="menu_label">Menu:</string>
 
 </resources>

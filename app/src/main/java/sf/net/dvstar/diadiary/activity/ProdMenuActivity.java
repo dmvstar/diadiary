@@ -16,22 +16,34 @@ import com.activeandroid.query.Select;
 import java.util.List;
 
 import sf.net.dvstar.diadiary.R;
+import sf.net.dvstar.diadiary.adapters.MenuDescAdapter;
 import sf.net.dvstar.diadiary.database.ProductGroup;
 import sf.net.dvstar.diadiary.database.ProductMenuDesc;
 import sf.net.dvstar.diadiary.database.ProductMenuItem;
 
 public class ProdMenuActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    ListView mProdMenu;
     private ListView mMenuItems;
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        fillMenuList();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prod_menu);
         mMenuItems = (ListView) findViewById(R.id.lv_prod_menu);
+        fillMenuList();
+    }
+
+    private void fillMenuList() {
         List<ProductMenuDesc> list = new Select().from(ProductMenuDesc.class).execute();
-        ArrayAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, list);
+        //ArrayAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, list);
+        //ArrayAdapter adapter = new ArrayAdapter<>(this,R.layout.item_menu_detail, list);
+        MenuDescAdapter adapter = new MenuDescAdapter(this, list);
         mMenuItems.setAdapter(adapter);
         mMenuItems.setOnItemClickListener(this);
     }
@@ -84,9 +96,9 @@ public class ProdMenuActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ProductGroup item = (ProductGroup) mProdMenu.getItemAtPosition(position);
+        ProductMenuDesc item = (ProductMenuDesc) mMenuItems.getItemAtPosition(position);
 
-        Toast.makeText(this, item.getListText(),
+        Toast.makeText(this, item.toString(),
                 Toast.LENGTH_SHORT).show();
 /*
         Intent intent = new Intent(this, ProdItemActivity.class);
