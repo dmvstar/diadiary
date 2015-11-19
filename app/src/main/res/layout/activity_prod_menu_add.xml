@@ -14,7 +14,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="3">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,37 +50,169 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/menu_add_label_product"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/accent" />
+
+                <Button
+                    android:id="@+id/bt_product_sel_all"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/button_select_all" />
+
+                <Button
+                    android:id="@+id/bt_product_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="addProduct"
+                    android:text="@string/button_select" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <!--
+                float prot;// Белки
+                float fats;// Жиры
+                float carb;// Углеводы
+                int gi;// ГИ гликемический индек
+                int xe;// Количество ХЕ
+                -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/textView33"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/menu_add_label_prot"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/accent"/>
+                    <TextView
+                        android:id="@+id/textView34"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/menu_add_label_zero"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/primary_dark" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/textView35"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/menu_add_label_fats"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/accent" />
+                    <TextView
+                        android:id="@+id/textView36"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/menu_add_label_zero"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/accent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/textView37"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/menu_add_label_carb"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/accent" />
+                    <TextView
+                        android:id="@+id/textView38"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/menu_add_label_zero"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/accent" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/textView39"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/menu_add_label_gi"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/accent" />
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/menu_add_label_zero"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/accent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/textView41"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/menu_add_label_xe"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/accent" />
+                    <TextView
+                        android:id="@+id/textView42"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/menu_add_label_zero"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/accent" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
+
+
     </ScrollView>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="@string/menu_add_label_product"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/accent" />
-
-        <Button
-            android:id="@+id/bt_product_select"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="addProduct"
-            android:text="@string/button_select" />
-    </LinearLayout>
-    <Button
-        android:id="@+id/bt_product_sel_all"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_select_all" />
 
     <ListView
         android:id="@+id/lv_menu_product_list"
@@ -89,11 +221,11 @@
         android:layout_weight="1"
         android:entries="@array/dialog_period_list" />
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignWithParentIfMissing="false"
         android:orientation="horizontal">
 
         <Button

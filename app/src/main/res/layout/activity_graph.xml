@@ -5,7 +5,7 @@
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context=".activity.DiagramActivity">
 
     <android.support.design.widget.AppBarLayout android:layout_height="wrap_content"
         android:layout_width="match_parent" android:theme="@style/AppTheme.AppBarOverlay">
@@ -31,7 +31,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginEnd="8dp"
-        android:src="@android:drawable/ic_menu_edit"
+        android:src="@android:drawable/ic_menu_add"
         fab:fab_colorNormal="@color/accent"
         fab:fab_colorPressed="@color/accent_pressed"
         fab:fab_colorRipple="@color/ripple"

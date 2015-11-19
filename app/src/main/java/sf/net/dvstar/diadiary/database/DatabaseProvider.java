@@ -196,6 +196,10 @@ public class DatabaseProvider {
 
     public boolean importProductsFromAssets() throws IOException {
         boolean ret = false;
+
+        new Delete().from(ProductItem.class).execute();
+        new Delete().from(ProductGroup.class).execute();
+
         final AssetManager assetManager = mContext.getAssets();
         String[] fileList = assetManager.list("");
 

@@ -33,7 +33,6 @@ public interface InsulinConstants {
     int MODE_ACTIONS_EDIT_ADD = 2;
     int MODE_ACTIONS_GET_PRODUCT = 3;
 
-
     int COLOR_NOVORAPID = Color.parseColor("#FF9900");
     int COLOR_LEVEMIR = Color.parseColor("#00AF8E");
     int COLOR_ACTRAPID = Color.parseColor("#E2CD36");

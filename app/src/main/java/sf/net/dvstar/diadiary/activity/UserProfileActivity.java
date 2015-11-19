@@ -35,8 +35,8 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         mContext = this;
-        mBtAdd = (Button) findViewById(R.id.bt_confirm);
 
+        mBtAdd = (Button) findViewById(R.id.bt_confirm);
         mEtUserName = (EditText)findViewById(R.id.et_user_profile_name);
         mEtUserAge = (EditText) findViewById(R.id.et_user_profile_age);
 

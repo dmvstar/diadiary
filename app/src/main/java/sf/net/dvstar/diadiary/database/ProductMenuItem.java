@@ -12,9 +12,6 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
 
     public static String TAG = "ProductMenuItem";
 
-    @Column(name = "name")
-    String name;
-
     @Column(name = "menu")
     ProductMenuDesc menu;
 
@@ -22,19 +19,22 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
     ProductItem prod;
 
     @Column(name = "weight")
-    Float weight;//вес
-
-    @Column(name = "fats")
-    float fats;//жиры
-
-    @Column(name = "carb")
-    float carb;//углеводы
+    Float weight;// Вес
 
     @Column(name = "prot")
-    float prot;// белок
+    float prot;// Белки
+
+    @Column(name = "fats")
+    float fats;// Жиры
+
+    @Column(name = "carb")
+    float carb;// Углеводы
 
     @Column(name = "gi")
     int gi;// ГИ гликемический индек
+
+    @Column(name = "xe")
+    int xe;// Количество ХЕ
 
     public ProductMenuItem() {
         super();
@@ -43,7 +43,6 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
     @Override
     public String exportItem() {
         String ret = TAG + "|"
-                + name + "|"
                 +"<"+ menu + ">|";
         return ret;
     }
@@ -59,8 +58,7 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
 
     @Override
     public String getListText() {
-        return name;
+        return prod.name + "()";
     }
-
 
 }

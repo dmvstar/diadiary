@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:padding="@dimen/activity_horizontal_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_graph" tools:context=".MainActivity">
+    tools:showIn="@layout/activity_graph"
+    tools:context=".activity.DiagramActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

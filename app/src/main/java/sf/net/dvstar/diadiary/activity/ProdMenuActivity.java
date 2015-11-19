@@ -17,25 +17,23 @@ import java.util.List;
 
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.ProductGroup;
-import sf.net.dvstar.diadiary.insulins.InsulinConstants;
+import sf.net.dvstar.diadiary.database.ProductMenuDesc;
+import sf.net.dvstar.diadiary.database.ProductMenuItem;
 
 public class ProdMenuActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     ListView mProdMenu;
+    private ListView mMenuItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prod_menu);
-
-
-/*
-        mProdGroups = (ListView) findViewById(R.id.lv_prod_group);
-        List<ProductGroup> list = new Select().from(ProductGroup.class).execute();
-        ArrayAdapter adapter = new ArrayAdapter<ProductGroup>(this,android.R.layout.simple_list_item_1, list);
-        mProdGroups.setAdapter(adapter);
-        mProdGroups.setOnItemClickListener(this);
-*/
+        mMenuItems = (ListView) findViewById(R.id.lv_prod_menu);
+        List<ProductMenuDesc> list = new Select().from(ProductMenuDesc.class).execute();
+        ArrayAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, list);
+        mMenuItems.setAdapter(adapter);
+        mMenuItems.setOnItemClickListener(this);
     }
 
     @Override
