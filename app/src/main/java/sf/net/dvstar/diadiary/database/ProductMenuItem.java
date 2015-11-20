@@ -18,6 +18,9 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
     @Column(name = "prod")
     public ProductItem prod;
 
+    @Column(name = "weight")
+    public float weight;
+
     @Column(name = "prot")
     float prot;// Белки
 
@@ -57,5 +60,11 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
     public String getListText() {
         return prod.name + "()";
     }
+
+    @Override
+    public String toString(){
+        return "["+menu.name+"] "+prod.name + "("+weight+")";
+    }
+
 
 }

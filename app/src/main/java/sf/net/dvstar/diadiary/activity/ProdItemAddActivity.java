@@ -19,6 +19,7 @@ import java.util.List;
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.ProductGroup;
 import sf.net.dvstar.diadiary.database.ProductItem;
+import sf.net.dvstar.diadiary.database.ProductMenuItem;
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 
 
@@ -59,11 +60,15 @@ public class ProdItemAddActivity extends AppCompatActivity implements AdapterVie
             Toast.makeText(this, product.getListText(),
                     Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
+
+            ProductMenuItem productMenuItem = new ProductMenuItem();
+            productMenuItem.prod = product;
             if( mProdWeigh.getText().length()>0 )
-                product.weight_brutto = Float.parseFloat( mProdWeigh.getText().toString() );
+                productMenuItem.weight = Float.parseFloat(mProdWeigh.getText().toString());
             else
-                product.weight_brutto = product.weight_netto;
-            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT, product);
+                productMenuItem.weight = product.weight;
+
+            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT, productMenuItem);
             intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_ROW_ID, product.getId());
 
             setResult(RESULT_OK, intent);

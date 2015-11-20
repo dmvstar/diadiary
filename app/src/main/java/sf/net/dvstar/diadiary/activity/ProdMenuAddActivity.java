@@ -31,8 +31,9 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
 
     ListView mProdMenu;
 
-    List<ProductItem> mListProductMenuItem = new ArrayList<>();
-    ArrayAdapter<ProductItem> adapter;
+    List<ProductMenuItem> mListProductMenuItem = new ArrayList<>();
+
+    ArrayAdapter<ProductMenuItem> adapter;
 
     private int mMode;
     private EditText mEtName;
@@ -54,6 +55,9 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
         if (getIntent().getExtras() != null) {
             mMode = getIntent().getExtras().getInt(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE, CommonConstants.MODE_ACTIONS_EDIT_ADD);
             mId = getIntent().getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID, -1);
+            if (mId > 0) {
+                mProductMenuDesc = new Select().from(ProductMenuDesc.class).where("id = ?", mId).executeSingle();
+            }
         }
 
         mEtName = (EditText) findViewById(R.id.et_menu_name);
@@ -69,7 +73,7 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
 
         fillFieldData();
 
-        adapter = new ArrayAdapter<ProductItem>(this, android.R.layout.simple_list_item_1, mListProductMenuItem);
+        adapter = new ArrayAdapter<ProductMenuItem>(this, android.R.layout.simple_list_item_1, mListProductMenuItem);
         mProdMenu.setAdapter(adapter);
         mProdMenu.setOnItemClickListener(this);
 
@@ -109,11 +113,14 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            //ProductItem product = (ProductItem) data.getExtras().getSerializable(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
-            Long productId = data.getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
-            ProductItem product = new Select().from(ProductItem.class).where("id = ?", productId).executeSingle();
+            ProductMenuItem productItem = (ProductMenuItem) data.getExtras().getSerializable(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
+            //Long productId = data.getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
+            //ProductItem product = new Select().from(ProductItem.class).where("id = ?", productId).executeSingle();
 
-            mListProductMenuItem.add(product);
+            productItem.menu = mProductMenuDesc;
+            //productItem.prod = product;
+
+            mListProductMenuItem.add(productItem);
             adapter.notifyDataSetChanged();
             calculteProducts();
         }
@@ -130,13 +137,18 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     public void fillFieldData() {
+
         if (mId > 0) {
-            mProductMenuDesc = new Select().from(ProductMenuDesc.class).where("id = ?", mId).executeSingle();
+            //mProductMenuDesc = new Select().from(ProductMenuDesc.class).where("id = ?", mId).executeSingle();
             mEtName.setText(mProductMenuDesc.name);
             mEtComment.setText(mProductMenuDesc.comment);
 
-            mListProductMenuItem = new Select().from(ProductMenuItem.class).where("menu =?",mProductMenuDesc).execute();
+            mListProductMenuItem = new Select().from(ProductMenuItem.class).where("menu = ?",mProductMenuDesc.getId()).execute();
 
+            Select select = new Select();
+            int count = select.from(ProductMenuItem.class).where("menu = ?", mProductMenuDesc.getId()).execute().size();
+
+            Log.v(TAG,"!!! fillFieldData = "+count);
         }
     }
 
@@ -156,11 +168,8 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
         if (name.length() > 0) {
             mProductMenuDesc.save();
 
-            for (ProductItem itemProductItem : mListProductMenuItem) {
-                ProductMenuItem aProductMenuItem = new ProductMenuItem();
-                aProductMenuItem.menu = mProductMenuDesc;
-                aProductMenuItem.prod = itemProductItem;
-                aProductMenuItem.save();
+            for (ProductMenuItem itemProductItem : mListProductMenuItem) {
+                itemProductItem.save();
             }
 
         }

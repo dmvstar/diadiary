@@ -25,11 +25,8 @@ public class ProductItem extends Model implements Serializable, CommonItem {
     @Column(name = "name")
     public String name;
 
-    @Column(name = "weight_netto")
-    public float weight_netto;
-
-    @Column(name = "weight_brutto")
-    public float weight_brutto;
+    @Column(name = "weight")
+    public float weight;
 
     @Column(name = "fats")
     float fats;
@@ -74,8 +71,7 @@ public class ProductItem extends Model implements Serializable, CommonItem {
                 + carb + "|"
                 + prot + "|"
                 + gi + "|"
-                + weight_netto + "|"
-                + weight_brutto + "|"
+                + weight + "|"
                 + compl + "|"
                 + groupId + "|"
                 + usage + "|"
@@ -94,8 +90,7 @@ public class ProductItem extends Model implements Serializable, CommonItem {
         carb=Float.parseFloat(items[index++]);
         prot=Float.parseFloat(items[index++]);
         gi=Integer.parseInt(items[index++]);
-        weight_netto=Float.parseFloat(items[index++]);
-        weight_brutto=Float.parseFloat(items[index++]);
+        weight=Float.parseFloat(items[index++]);
         compl=Integer.parseInt(items[index++]);
         groupId=Integer.parseInt(items[index++]);
         usage=Integer.parseInt(items[index++]);
