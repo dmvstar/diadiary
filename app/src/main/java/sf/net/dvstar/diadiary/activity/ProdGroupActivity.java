@@ -15,7 +15,8 @@ import java.util.List;
 
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.ProductGroup;
-import sf.net.dvstar.diadiary.insulins.InsulinConstants;
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
+
 
 public class ProdGroupActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -39,7 +40,7 @@ public class ProdGroupActivity extends AppCompatActivity implements AdapterView.
         setContentView(R.layout.activity_prod_group);
 
         if(getIntent().getExtras()!=null) {
-            mMode = getIntent().getExtras().getInt(InsulinConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
+            mMode = getIntent().getExtras().getInt(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
         }
 
         mProdGroups = (ListView) findViewById(R.id.lv_prod_group);
@@ -61,11 +62,11 @@ public class ProdGroupActivity extends AppCompatActivity implements AdapterView.
 
         if (item != null) {
             long rowId = item.groupId;
-            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
+            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
         }
 
-        if(mMode==InsulinConstants.MODE_ACTIONS_GET_PRODUCT)
-            this.startActivityForResult(intent, InsulinConstants.MODE_ACTIONS_GET_PRODUCT);
+        if(mMode==CommonConstants.MODE_ACTIONS_GET_PRODUCT)
+            this.startActivityForResult(intent, CommonConstants.MODE_ACTIONS_GET_PRODUCT);
         else
            this.startActivity(intent);
 
@@ -74,9 +75,9 @@ public class ProdGroupActivity extends AppCompatActivity implements AdapterView.
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode==RESULT_OK) {
-            String product = data.getExtras().getString(InsulinConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
+            String product = data.getExtras().getString(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
             Intent intent = new Intent();
-            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_GET_PRODUCT, product);
+            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT, product);
             setResult(RESULT_OK, intent);
         }
         finish();

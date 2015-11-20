@@ -39,9 +39,10 @@ import sf.net.dvstar.diadiary.database.InsulinInjection;
 import sf.net.dvstar.diadiary.database.InsulinItem;
 import sf.net.dvstar.diadiary.adapters.DiaryActionstAdapter;
 import sf.net.dvstar.diadiary.database.PressureReading;
-import sf.net.dvstar.diadiary.insulins.InsulinConstants;
+
 import sf.net.dvstar.diadiary.insulins.InsulinUtils;
 import sf.net.dvstar.diadiary.utilitis.CalendarDialogBuilder;
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 import sf.net.dvstar.diadiary.utilitis.OIFileManager;
 
 
@@ -112,7 +113,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         fab_menu_action.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showAddInsulinsInjection(InsulinConstants.MODE_ACTIONS_EDIT_ADD, view, null);
+                showAddInsulinsInjection(CommonConstants.MODE_ACTIONS_EDIT_ADD, view, null);
             }
         });
         */
@@ -326,11 +327,11 @@ public class DiaryActionsActivity extends AppCompatActivity implements
 //                Toast.makeText(getBaseContext(), "itemSelect: position = " + position + ", id = "
 //                        + id + ", " + parent.getAdapter().getItem(position), Toast.LENGTH_SHORT).show();
                 if (mDiaryActions.get(position).getActionType() == ActionCommonItem.ACTION_TYPE_INJECT)
-                    showAddInsulinsInjection(InsulinConstants.MODE_ACTIONS_EDIT_ITEM, view, (InsulinInjection) mDiaryActions.get(position));
+                    showAddInsulinsInjection(CommonConstants.MODE_ACTIONS_EDIT_ITEM, view, (InsulinInjection) mDiaryActions.get(position));
                 if (mDiaryActions.get(position).getActionType() == ActionCommonItem.ACTION_TYPE_GLUCOSE)
-                    showAddGlucoseReading(InsulinConstants.MODE_ACTIONS_EDIT_ITEM, view, (GlucoseReading) mDiaryActions.get(position));
+                    showAddGlucoseReading(CommonConstants.MODE_ACTIONS_EDIT_ITEM, view, (GlucoseReading) mDiaryActions.get(position));
                 if (mDiaryActions.get(position).getActionType() == ActionCommonItem.ACTION_TYPE_PRESSURE)
-                    showAddPressureReading(InsulinConstants.MODE_ACTIONS_EDIT_ITEM, view, (PressureReading) mDiaryActions.get(position));
+                    showAddPressureReading(CommonConstants.MODE_ACTIONS_EDIT_ITEM, view, (PressureReading) mDiaryActions.get(position));
             }
         });
 
@@ -364,10 +365,10 @@ public class DiaryActionsActivity extends AppCompatActivity implements
 
                                 if (which == 0) {
                                     // EDIT
-                                    showAddAction(InsulinConstants.MODE_ACTIONS_EDIT_ITEM, view, (CommonItem) parent.getAdapter().getItem(position));
+                                    showAddAction(CommonConstants.MODE_ACTIONS_EDIT_ITEM, view, (CommonItem) parent.getAdapter().getItem(position));
                                 } else {
                                     // DELETE
-                                    showDelAction(InsulinConstants.MODE_ACTIONS_EDIT_ITEM, view, (CommonItem) parent.getAdapter().getItem(position));
+                                    showDelAction(CommonConstants.MODE_ACTIONS_EDIT_ITEM, view, (CommonItem) parent.getAdapter().getItem(position));
                                 }
                             }
                         });
@@ -540,12 +541,12 @@ public class DiaryActionsActivity extends AppCompatActivity implements
     private void showAddInsulinsInjection(int mode, View view, InsulinInjection item) {
 
         Intent intent = new Intent(this, InsulinInjectAddActivity.class);
-        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE, mode);
+        intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE, mode);
 
         if (item != null) {
             long rowId = item.getId();
-            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
-            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_EDIT_ITEM, item);
+            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
+            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_EDIT_ITEM, item);
         }
 
         this.startActivity(intent);
@@ -566,10 +567,10 @@ public class DiaryActionsActivity extends AppCompatActivity implements
     private void showAddGlucoseReading(int mode, View view, GlucoseReading item) {
 
         Intent intent = new Intent(this, DiaryGlucoseAddActivity.class);
-        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE, mode);
+        intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE, mode);
         if (item != null) {
             long rowId = item.getId();
-            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
+            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
         }
 
         this.startActivity(intent);
@@ -577,10 +578,10 @@ public class DiaryActionsActivity extends AppCompatActivity implements
 
     private void showAddPressureReading(int mode, View view, PressureReading item) {
         Intent intent = new Intent(this, DiaryPressureAddActivity.class);
-        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE, mode);
+        intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE, mode);
         if (item != null) {
             long rowId = item.getId();
-            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
+            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
         }
         this.startActivity(intent);
     }
@@ -619,7 +620,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
                 case R.id.fab_inject:
                     text = fab12.getLabelText();
                     mFloatingActionMenu.close(false);
-                    showAddInsulinsInjection(InsulinConstants.MODE_ACTIONS_EDIT_ADD, v, null);
+                    showAddInsulinsInjection(CommonConstants.MODE_ACTIONS_EDIT_ADD, v, null);
                     break;
                 case R.id.fab_eating:
                     text = fab22.getLabelText();
@@ -628,12 +629,12 @@ public class DiaryActionsActivity extends AppCompatActivity implements
                 case R.id.fab_glucose:
                     text = fab32.getLabelText();
                     mFloatingActionMenu.close(false);
-                    showAddGlucoseReading(InsulinConstants.MODE_ACTIONS_EDIT_ADD, v, null);
+                    showAddGlucoseReading(CommonConstants.MODE_ACTIONS_EDIT_ADD, v, null);
                     break;
                 case R.id.fab_pressure:
                     text = fab33.getLabelText();
                     mFloatingActionMenu.close(false);
-                    showAddPressureReading(InsulinConstants.MODE_ACTIONS_EDIT_ADD, v, null);
+                    showAddPressureReading(CommonConstants.MODE_ACTIONS_EDIT_ADD, v, null);
                     break;
 
             }

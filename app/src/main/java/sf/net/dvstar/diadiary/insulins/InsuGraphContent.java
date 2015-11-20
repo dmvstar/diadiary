@@ -10,6 +10,8 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
+
 /**
  * Created by sdv on 07.10.15.
  */
@@ -96,8 +98,8 @@ public class InsuGraphContent {
                 mInsuGraphItemList.add(item);
             }
 
-            plotLineUp = new GraphCoordPair(InsulinConstants.L_DIRECTION_UP, mStartGC, mMaximGC);
-            plotLineDn = new GraphCoordPair(InsulinConstants.L_DIRECTION_DN, mMaximGC, mStopsGC);
+            plotLineUp = new GraphCoordPair(CommonConstants.L_DIRECTION_UP, mStartGC, mMaximGC);
+            plotLineDn = new GraphCoordPair(CommonConstants.L_DIRECTION_DN, mMaximGC, mStopsGC);
 
             calculateInsuGraphAdditons(plotLineUp);
             calculateInsuGraphAdditons(plotLineDn);
@@ -240,7 +242,7 @@ public class InsuGraphContent {
         }
     }
 
-    public static class InsuGraphItem implements InsulinConstants {
+    public static class InsuGraphItem implements CommonConstants {
         public int wMode;
         public double xValue;
         public double yValue;

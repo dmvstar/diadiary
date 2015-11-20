@@ -15,7 +15,8 @@ import java.util.List;
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.ProductGroup;
 import sf.net.dvstar.diadiary.database.ProductItem;
-import sf.net.dvstar.diadiary.insulins.InsulinConstants;
+
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 
 public class ProdItemActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -39,7 +40,7 @@ public class ProdItemActivity extends AppCompatActivity implements AdapterView.O
 
         long iId = -1;
         if(getIntent().getExtras()!=null)
-            iId = getIntent().getExtras().getLong(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID);
+            iId = getIntent().getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
 
         mProdGroups = (ListView) findViewById(R.id.lv_prod_items);
         List<ProductItem> list;
@@ -58,7 +59,7 @@ public class ProdItemActivity extends AppCompatActivity implements AdapterView.O
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String product = mProdGroups.getAdapter().getItem(position).toString();
         Intent intent = new Intent();
-        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_GET_PRODUCT, product);
+        intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT, product);
         setResult(RESULT_OK, intent);
         finish();
     }

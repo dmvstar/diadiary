@@ -4,24 +4,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.activeandroid.query.Select;
 
-import java.util.Date;
-
 import sf.net.dvstar.diadiary.R;
-import sf.net.dvstar.diadiary.database.PressureReading;
-import sf.net.dvstar.diadiary.database.ProductGroup;
 import sf.net.dvstar.diadiary.database.UserProfile;
-import sf.net.dvstar.diadiary.insulins.InsulinConstants;
-import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 
-public class UserProfileActivity extends AppCompatActivity {
+public class UserProfileActivity extends AppCompatActivity implements ActivitySaving {
 
     private Context mContext;
     private int mMode;
@@ -40,15 +32,7 @@ public class UserProfileActivity extends AppCompatActivity {
         mEtUserName = (EditText)findViewById(R.id.et_user_profile_name);
         mEtUserAge = (EditText) findViewById(R.id.et_user_profile_age);
 
-        mUserProfile = new Select().from(UserProfile.class).where("id = 1").executeSingle();
-        if(mUserProfile!=null) mMode = InsulinConstants.MODE_ACTIONS_EDIT_ITEM;
-        else mMode = InsulinConstants.MODE_ACTIONS_EDIT_ADD;
-
-        if (mMode == InsulinConstants.MODE_ACTIONS_EDIT_ITEM) {
-            mBtAdd.setText( getResources().getString(R.string.button_insulin_update) );
-            mEtUserName.setText(mUserProfile.name);
-            mEtUserAge.setText(mUserProfile.age);
-        }
+        fillFieldData();
 
     }
 
@@ -57,8 +41,27 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     public void confirm(View view) {
+        saveFieldData();
+        finish();
+    }
 
-        if (mMode == InsulinConstants.MODE_ACTIONS_EDIT_ADD) {
+
+    @Override
+    public void fillFieldData() {
+        mUserProfile = new Select().from(UserProfile.class).where("id = 1").executeSingle();
+        if(mUserProfile!=null) mMode = CommonConstants.MODE_ACTIONS_EDIT_ITEM;
+        else mMode = CommonConstants.MODE_ACTIONS_EDIT_ADD;
+
+        if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ITEM) {
+            mBtAdd.setText( getResources().getString(R.string.button_insulin_update) );
+            mEtUserName.setText(mUserProfile.name);
+            mEtUserAge.setText(mUserProfile.age);
+        }
+    }
+
+    @Override
+    public void saveFieldData() {
+        if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ADD) {
             mUserProfile = new UserProfile();
         }
 
@@ -71,9 +74,6 @@ public class UserProfileActivity extends AppCompatActivity {
         if (name.length()>0) {
             mUserProfile.save();
         }
-
-        finish();
     }
-
 
 }

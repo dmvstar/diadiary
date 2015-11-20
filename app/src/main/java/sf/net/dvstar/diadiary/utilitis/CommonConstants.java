@@ -1,11 +1,8 @@
-package sf.net.dvstar.diadiary.insulins;
+package sf.net.dvstar.diadiary.utilitis;
 
 import android.graphics.Color;
 
-/**
- * Created by dstarzhynskyi on 09.10.2015.
- */
-public interface InsulinConstants {
+public interface CommonConstants {
 
     // 1-start 2-max 3-end
     int WMODE_NON = 0;

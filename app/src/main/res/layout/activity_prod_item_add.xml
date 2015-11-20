@@ -60,7 +60,7 @@
                 android:textColor="@color/accent" />
 
             <EditText
-                android:id="@+id/et_weight"
+                android:id="@+id/et_prod_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"

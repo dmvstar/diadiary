@@ -16,8 +16,9 @@ import java.util.List;
 
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.PressureReading;
-import sf.net.dvstar.diadiary.insulins.InsulinConstants;
+
 import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 import sf.net.dvstar.diadiary.utilitis.SetDateTime;
 
 public class DiaryPressureAddActivity extends AppCompatActivity {
@@ -43,7 +44,7 @@ public class DiaryPressureAddActivity extends AppCompatActivity {
         setContentView(R.layout.diary_pressure_add);
 
         mContext = this;
-        mMode = getIntent().getExtras().getInt(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE);
+        mMode = getIntent().getExtras().getInt(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE);
 
         mNotesList = Arrays.asList(getResources().getStringArray(R.array.dialog_notes_list));
         mEtPressureSystoleValue = (EditText) findViewById(R.id.et_pressure_systole_value);
@@ -58,9 +59,9 @@ public class DiaryPressureAddActivity extends AppCompatActivity {
         SetDateTime.SetTime fromTime = new SetDateTime.SetTime(mEtPressureTime, this);
         SetDateTime.SetDate fromDate = new SetDateTime.SetDate(mEtPressureDate, this);
 
-        if (mMode == InsulinConstants.MODE_ACTIONS_EDIT_ITEM) {
+        if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ITEM) {
             mBtAdd.setText( getResources().getString(R.string.button_insulin_update) );
-            long iId = getIntent().getExtras().getLong(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID);
+            long iId = getIntent().getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
             mPressureReading = new Select().from(PressureReading.class).where("id = ?", iId).executeSingle();
 
             int indexNotes = mPressureReading.note;
@@ -83,7 +84,7 @@ public class DiaryPressureAddActivity extends AppCompatActivity {
 
     public void confirm(View view) {
 
-        if (mMode == InsulinConstants.MODE_ACTIONS_EDIT_ADD) {
+        if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ADD) {
             mPressureReading = new PressureReading();
         }
 

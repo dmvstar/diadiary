@@ -16,8 +16,9 @@ import java.util.List;
 
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.GlucoseReading;
-import sf.net.dvstar.diadiary.insulins.InsulinConstants;
+
 import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 import sf.net.dvstar.diadiary.utilitis.SetDateTime;
 
 public class DiaryGlucoseAddActivity extends AppCompatActivity {
@@ -41,7 +42,7 @@ public class DiaryGlucoseAddActivity extends AppCompatActivity {
 
         mContext = this;
         mNotesList = Arrays.asList(getResources().getStringArray(R.array.dialog_notes_list));
-        mMode = getIntent().getExtras().getInt(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE);
+        mMode = getIntent().getExtras().getInt(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE);
 
         mEtGlucoseValue = (EditText) findViewById(R.id.et_glucose_value);
         mEtGlucoseDate = (EditText) findViewById(R.id.et_glucose_date);
@@ -68,9 +69,9 @@ public class DiaryGlucoseAddActivity extends AppCompatActivity {
         SetDateTime.SetTime fromTime = new SetDateTime.SetTime(mEtGlucoseTime, this);
         SetDateTime.SetDate fromDate = new SetDateTime.SetDate(mEtGlucoseDate, this);
 
-        if (mMode == InsulinConstants.MODE_ACTIONS_EDIT_ITEM) {
+        if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ITEM) {
             mBtAdd.setText( getResources().getString(R.string.button_insulin_update) );
-            long iId = getIntent().getExtras().getLong(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID);
+            long iId = getIntent().getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
             mGlucoseReading = new Select().from(GlucoseReading.class).where("id = ?", iId).executeSingle();
 
 //            int indexNotes = mNotesList.indexOf(mGlucoseReading.notes);
@@ -94,7 +95,7 @@ public class DiaryGlucoseAddActivity extends AppCompatActivity {
 
     public void confirm(View view) {
 
-        if (mMode == InsulinConstants.MODE_ACTIONS_EDIT_ADD) {
+        if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ADD) {
             mGlucoseReading = new GlucoseReading();
         }
 

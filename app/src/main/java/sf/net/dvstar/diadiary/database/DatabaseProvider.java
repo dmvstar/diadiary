@@ -28,7 +28,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
-import sf.net.dvstar.diadiary.insulins.InsulinConstants;
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 
 public class DatabaseProvider {
 
@@ -139,32 +139,32 @@ public class DatabaseProvider {
             iInsulinFirm = new Select().from(InsulinFirm.class).where("code = 'NOVO'").executeSingle();
             iInsulinType = new Select().from(InsulinType.class).where("code = 'UHS'").executeSingle();
             iInsulinOrigin = new Select().from(InsulinOrigin.class).where("code = 'HBIOS'").executeSingle();
-            iInsulinItem = new InsulinItem("Novorapid", iInsulinType, iInsulinFirm, iInsulinOrigin, 5, "m", 1, "h", 4, "h", InsulinConstants.COLOR_NOVORAPID);
+            iInsulinItem = new InsulinItem("Novorapid", iInsulinType, iInsulinFirm, iInsulinOrigin, 5, "m", 1, "h", 4, "h", CommonConstants.COLOR_NOVORAPID);
             iInsulinItem.save();
 
             iInsulinFirm = new Select().from(InsulinFirm.class).where("code = 'AVENTIS'").executeSingle();
-            iInsulinItem = new InsulinItem("Apidra", iInsulinType, iInsulinFirm, iInsulinOrigin, 5, "m", 1, "h", 4, "h", InsulinConstants.COLOR_APIDRA);
+            iInsulinItem = new InsulinItem("Apidra", iInsulinType, iInsulinFirm, iInsulinOrigin, 5, "m", 1, "h", 4, "h", CommonConstants.COLOR_APIDRA);
             iInsulinItem.save();
 
             iInsulinFirm = new Select().from(InsulinFirm.class).where("code = 'NOVO'").executeSingle();
             iInsulinType = new Select().from(InsulinType.class).where("code = 'SHM'").executeSingle();
-            iInsulinItem = new InsulinItem("Actrapid HM", iInsulinType, iInsulinFirm, iInsulinOrigin, 20, "m", 1, "h", 6, "h", InsulinConstants.COLOR_ACTRAPID);
+            iInsulinItem = new InsulinItem("Actrapid HM", iInsulinType, iInsulinFirm, iInsulinOrigin, 20, "m", 1, "h", 6, "h", CommonConstants.COLOR_ACTRAPID);
             iInsulinItem.save();
 
             iInsulinType = new Select().from(InsulinType.class).where("code = 'MHM'").executeSingle();
-            iInsulinItem = new InsulinItem("Protaphane HM", iInsulinType, iInsulinFirm, iInsulinOrigin, 1, "h", 4, "h", 20, "h", InsulinConstants.COLOR_PROTAFAN);
+            iInsulinItem = new InsulinItem("Protaphane HM", iInsulinType, iInsulinFirm, iInsulinOrigin, 1, "h", 4, "h", 20, "h", CommonConstants.COLOR_PROTAFAN);
             iInsulinItem.save();
 
             iInsulinType = new Select().from(InsulinType.class).where("code = 'MHM'").executeSingle();
-            iInsulinItem = new InsulinItem("Mixtard 30", iInsulinType, iInsulinFirm, iInsulinOrigin, 5, "m", 1, "h", 4, "h", InsulinConstants.COLOR_PROTAFAN);
+            iInsulinItem = new InsulinItem("Mixtard 30", iInsulinType, iInsulinFirm, iInsulinOrigin, 5, "m", 1, "h", 4, "h", CommonConstants.COLOR_PROTAFAN);
             iInsulinItem.save();
 
             iInsulinType = new Select().from(InsulinType.class).where("code = 'MHS'").executeSingle();
-            iInsulinItem = new InsulinItem("Levemir", iInsulinType, iInsulinFirm, iInsulinOrigin, 5, "m", 1, "h", 4, "h", InsulinConstants.COLOR_LEVEMIR);
+            iInsulinItem = new InsulinItem("Levemir", iInsulinType, iInsulinFirm, iInsulinOrigin, 5, "m", 1, "h", 4, "h", CommonConstants.COLOR_LEVEMIR);
             iInsulinItem.save();
 
             iInsulinFirm = new Select().from(InsulinFirm.class).where("code = 'LILLY'").executeSingle();
-            iInsulinItem = new InsulinItem("Lantus", iInsulinType, iInsulinFirm, iInsulinOrigin, 5, "m", 1, "h", 4, "h", InsulinConstants.COLOR_LANTUS);
+            iInsulinItem = new InsulinItem("Lantus", iInsulinType, iInsulinFirm, iInsulinOrigin, 5, "m", 1, "h", 4, "h", CommonConstants.COLOR_LANTUS);
             iInsulinItem.save();
 
         }

@@ -21,6 +21,8 @@ import sf.net.dvstar.diadiary.database.ProductGroup;
 import sf.net.dvstar.diadiary.database.ProductMenuDesc;
 import sf.net.dvstar.diadiary.database.ProductMenuItem;
 
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
+
 public class ProdMenuActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ListView mMenuItems;
@@ -37,6 +39,15 @@ public class ProdMenuActivity extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.activity_prod_menu);
         mMenuItems = (ListView) findViewById(R.id.lv_prod_menu);
         fillMenuList();
+        // https://github.com/Clans/FloatingActionButton
+        com.github.clans.fab.FloatingActionButton fab = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showProducMenuAddActivity();
+            }
+        });
+
     }
 
     private void fillMenuList() {
@@ -78,6 +89,9 @@ public class ProdMenuActivity extends AppCompatActivity implements AdapterView.O
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Show add product dialog
+     */
     private void showProducMenuAddActivity() {
         Intent intent = new Intent(this, ProdMenuAddActivity.class);
         this.startActivity(intent);
@@ -93,21 +107,22 @@ public class ProdMenuActivity extends AppCompatActivity implements AdapterView.O
         this.startActivity(intent);
     }
 
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ProductMenuDesc item = (ProductMenuDesc) mMenuItems.getItemAtPosition(position);
 
         Toast.makeText(this, item.toString(),
                 Toast.LENGTH_SHORT).show();
-/*
-        Intent intent = new Intent(this, ProdItemActivity.class);
+
+        Intent intent = new Intent(this, ProdMenuAddActivity.class);
 
         if (item != null) {
-            long rowId = item.groupId;
-            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
+            long rowId = item.getId();
+            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
+            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE, CommonConstants.MODE_ACTIONS_EDIT_ITEM);
         }
+
         this.startActivity(intent);
-*/
+
     }
 }

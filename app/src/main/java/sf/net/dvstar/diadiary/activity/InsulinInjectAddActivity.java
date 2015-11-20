@@ -25,8 +25,9 @@ import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.adapters.InsulinDescAdapter;
 import sf.net.dvstar.diadiary.database.InsulinInjection;
 import sf.net.dvstar.diadiary.database.InsulinItem;
-import sf.net.dvstar.diadiary.insulins.InsulinConstants;
+
 import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 import sf.net.dvstar.diadiary.utilitis.SetDateTime;
 
 
@@ -55,7 +56,7 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diary_inject_add);
         mContext = this;
-        mMode = getIntent().getExtras().getInt(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE);
+        mMode = getIntent().getExtras().getInt(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE);
 
         mBtAdd = (Button) findViewById(R.id.bt_confirm);
 
@@ -122,10 +123,10 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
             }
         });
 
-        if (mMode == InsulinConstants.MODE_ACTIONS_EDIT_ITEM) {
+        if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ITEM) {
 
-            mInjection = (InsulinInjection) getIntent().getExtras().getSerializable(InsulinConstants.KEY_INTENT_EXTRA_EDIT_ITEM);
-            mInjectionId = getIntent().getExtras().getLong(InsulinConstants.KEY_INTENT_EXTRA_ROW_ID);
+            mInjection = (InsulinInjection) getIntent().getExtras().getSerializable(CommonConstants.KEY_INTENT_EXTRA_EDIT_ITEM);
+            mInjectionId = getIntent().getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
 
             mInjection = new Select().from(InsulinInjection.class).where("id = ?", mInjectionId).executeSingle();
 
@@ -190,7 +191,7 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
         ColorDrawable viewColor = (ColorDrawable) llColor.getBackground();
         InsulinItem insulinItem = (InsulinItem) mSpInsulins.getSelectedItem();
 
-        if(mMode == InsulinConstants.MODE_ACTIONS_EDIT_ADD) {
+        if(mMode == CommonConstants.MODE_ACTIONS_EDIT_ADD) {
             mInjection = new InsulinInjection();
         }
         int note = mSpNotes.getSelectedItemPosition();

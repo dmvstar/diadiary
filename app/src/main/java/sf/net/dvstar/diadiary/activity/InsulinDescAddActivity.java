@@ -24,7 +24,8 @@ import sf.net.dvstar.diadiary.database.InsulinFirm;
 import sf.net.dvstar.diadiary.database.InsulinItem;
 import sf.net.dvstar.diadiary.database.InsulinOrigin;
 import sf.net.dvstar.diadiary.database.InsulinType;
-import sf.net.dvstar.diadiary.insulins.InsulinConstants;
+
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 
 public class InsulinDescAddActivity extends AppCompatActivity {
 
@@ -57,7 +58,7 @@ public class InsulinDescAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insulin_desc_add);
 
-        mMode = getIntent().getExtras().getInt(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE);
+        mMode = getIntent().getExtras().getInt(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE);
 
         btColor = (Button) findViewById(R.id.bt_color);
         btAdd = (Button) findViewById(R.id.bt_insulin_add);
@@ -119,8 +120,8 @@ public class InsulinDescAddActivity extends AppCompatActivity {
         adapterInsulinOriginListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSPInsulinOrigin.setAdapter(adapterInsulinOriginListAdapter);
 
-        if (mMode == InsulinConstants.MODE_ACTIONS_EDIT_ITEM) {
-            mInsulinItem = (InsulinItem) getIntent().getExtras().getSerializable(InsulinConstants.KEY_INTENT_EXTRA_EDIT_ITEM);
+        if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ITEM) {
+            mInsulinItem = (InsulinItem) getIntent().getExtras().getSerializable(CommonConstants.KEY_INTENT_EXTRA_EDIT_ITEM);
             //mEtInsulinName.setEnabled(false);
             mEtInsulinName.setFocusable(false);
             mEtInsulinName.setBackgroundColor(mInsulinItem.color);

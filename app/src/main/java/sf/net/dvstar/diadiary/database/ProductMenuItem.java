@@ -13,13 +13,10 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
     public static String TAG = "ProductMenuItem";
 
     @Column(name = "menu")
-    ProductMenuDesc menu;
+    public ProductMenuDesc menu;
 
     @Column(name = "prod")
-    ProductItem prod;
-
-    @Column(name = "weight")
-    Float weight;// Вес
+    public ProductItem prod;
 
     @Column(name = "prot")
     float prot;// Белки

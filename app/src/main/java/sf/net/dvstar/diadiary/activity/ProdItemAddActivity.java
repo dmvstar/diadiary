@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,7 +19,8 @@ import java.util.List;
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.ProductGroup;
 import sf.net.dvstar.diadiary.database.ProductItem;
-import sf.net.dvstar.diadiary.insulins.InsulinConstants;
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
+
 
 public class ProdItemAddActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -27,6 +29,7 @@ public class ProdItemAddActivity extends AppCompatActivity implements AdapterVie
 
     private Spinner mProdGroup;
     private Spinner mProdItems;
+    private EditText mProdWeigh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +38,10 @@ public class ProdItemAddActivity extends AppCompatActivity implements AdapterVie
 
         mProdGroup = (Spinner) findViewById(R.id.sp_prod_group);
         mProdItems = (Spinner) findViewById(R.id.sp_prod_item);
+        mProdWeigh = (EditText) findViewById(R.id.et_prod_weight);
 
         listProductGroup = new Select().from(ProductGroup.class).execute();
-        adapterProductGroup = new ArrayAdapter<ProductGroup>(this,android.R.layout.simple_list_item_1, listProductGroup);
+        adapterProductGroup = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, listProductGroup);
         mProdGroup.setAdapter(adapterProductGroup);
         mProdGroup.setOnItemSelectedListener(this);
 
@@ -55,7 +59,13 @@ public class ProdItemAddActivity extends AppCompatActivity implements AdapterVie
             Toast.makeText(this, product.getListText(),
                     Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
-            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_GET_PRODUCT, product);
+            if( mProdWeigh.getText().length()>0 )
+                product.weight_brutto = Float.parseFloat( mProdWeigh.getText().toString() );
+            else
+                product.weight_brutto = product.weight_netto;
+            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT, product);
+            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_ROW_ID, product.getId());
+
             setResult(RESULT_OK, intent);
         }
         finish();

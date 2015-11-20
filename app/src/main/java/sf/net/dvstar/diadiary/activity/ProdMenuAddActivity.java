@@ -9,46 +9,54 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.activeandroid.query.Select;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.ProductItem;
 import sf.net.dvstar.diadiary.database.ProductMenuDesc;
 import sf.net.dvstar.diadiary.database.ProductMenuItem;
-import sf.net.dvstar.diadiary.insulins.InsulinConstants;
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 
-public class ProdMenuAddActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+
+public class ProdMenuAddActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, ActivitySaving {
 
     private static final String TAG = "ProdMenuAddActivity";
+    private ProductMenuDesc mProductMenuDesc;
+
     ListView mProdMenu;
 
-    ArrayList<ProductItem> listItems = new ArrayList<>();
+    List<ProductItem> mListProductMenuItem = new ArrayList<>();
     ArrayAdapter<ProductItem> adapter;
 
     private int mMode;
-    private ProductMenuDesc mProductMenuDesc;
     private EditText mEtName;
     private EditText mEtComment;
+
     private View mTvCarb;
     private View mTvFat;
     private View mTvProt;
     private View mTvGI;
     private View mTvXE;
+    private long mId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prod_menu_add);
-        mMode = InsulinConstants.MODE_ACTIONS_EDIT_ADD;
+        mMode = CommonConstants.MODE_ACTIONS_EDIT_ADD;
 
-        if(getIntent().getExtras()!=null)
-            mMode = getIntent().getExtras().getInt(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE,InsulinConstants.MODE_ACTIONS_EDIT_ADD);
+        if (getIntent().getExtras() != null) {
+            mMode = getIntent().getExtras().getInt(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE, CommonConstants.MODE_ACTIONS_EDIT_ADD);
+            mId = getIntent().getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID, -1);
+        }
 
-        mEtName = (EditText)findViewById(R.id.et_menu_name);
+        mEtName = (EditText) findViewById(R.id.et_menu_name);
         mEtComment = (EditText) findViewById(R.id.et_comment);
 
         mTvCarb = findViewById(R.id.tv_prod_carb);
@@ -59,9 +67,12 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
 
         mProdMenu = (ListView) findViewById(R.id.lv_menu_product_list);
 
-        adapter = new ArrayAdapter<ProductItem>(this, android.R.layout.simple_list_item_1, listItems);
+        fillFieldData();
+
+        adapter = new ArrayAdapter<ProductItem>(this, android.R.layout.simple_list_item_1, mListProductMenuItem);
         mProdMenu.setAdapter(adapter);
         mProdMenu.setOnItemClickListener(this);
+
     }
 
     private void showProducItemActivity() {
@@ -71,14 +82,14 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
 
     private void showProductGroupActivity() {
         Intent intent = new Intent(this, ProdGroupActivity.class);
-        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_GET_PRODUCT, InsulinConstants.MODE_ACTIONS_GET_PRODUCT);
-        this.startActivityForResult(intent, InsulinConstants.MODE_ACTIONS_GET_PRODUCT);
+        intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT, CommonConstants.MODE_ACTIONS_GET_PRODUCT);
+        this.startActivityForResult(intent, CommonConstants.MODE_ACTIONS_GET_PRODUCT);
     }
 
     private void showProdItemAddActivity() {
         Intent intent = new Intent(this, ProdItemAddActivity.class);
-        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_GET_PRODUCT, InsulinConstants.MODE_ACTIONS_GET_PRODUCT);
-        this.startActivityForResult(intent, InsulinConstants.MODE_ACTIONS_GET_PRODUCT);
+        intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT, CommonConstants.MODE_ACTIONS_GET_PRODUCT);
+        this.startActivityForResult(intent, CommonConstants.MODE_ACTIONS_GET_PRODUCT);
     }
 
     public void cancel(View view) {
@@ -86,24 +97,7 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
     }
 
     public void confirm(View view) {
-
-        if (mMode == InsulinConstants.MODE_ACTIONS_EDIT_ADD) {
-            mProductMenuDesc = new ProductMenuDesc();
-            mProductMenuDesc.created = new Date();
-        }
-
-        String name = mEtName.getText().toString();
-        String comm = mEtComment.getText().toString();
-
-        mProductMenuDesc.name = name;
-        mProductMenuDesc.comment = comm;
-
-        if (name.length()>0) {
-            mProductMenuDesc.save();
-        }
-
-        int count = new Select().from(ProductMenuDesc.class).count();
-        Log.v(TAG, "Select ProductMenuDesc.class=" +count);
+        saveFieldData();
         finish();
     }
 
@@ -114,9 +108,12 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode==RESULT_OK) {
-            ProductItem product = (ProductItem) data.getExtras().getSerializable(InsulinConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
-            listItems.add(product);
+        if (resultCode == RESULT_OK) {
+            //ProductItem product = (ProductItem) data.getExtras().getSerializable(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
+            Long productId = data.getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
+            ProductItem product = new Select().from(ProductItem.class).where("id = ?", productId).executeSingle();
+
+            mListProductMenuItem.add(product);
             adapter.notifyDataSetChanged();
             calculteProducts();
         }
@@ -130,4 +127,46 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
+
+    @Override
+    public void fillFieldData() {
+        if (mId > 0) {
+            mProductMenuDesc = new Select().from(ProductMenuDesc.class).where("id = ?", mId).executeSingle();
+            mEtName.setText(mProductMenuDesc.name);
+            mEtComment.setText(mProductMenuDesc.comment);
+
+            mListProductMenuItem = new Select().from(ProductMenuItem.class).where("menu =?",mProductMenuDesc).execute();
+
+        }
+    }
+
+    @Override
+    public void saveFieldData() {
+        if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ADD) {
+            mProductMenuDesc = new ProductMenuDesc();
+            mProductMenuDesc.created = new Date();
+        }
+
+        String name = mEtName.getText().toString();
+        String comm = mEtComment.getText().toString();
+
+        mProductMenuDesc.name = name;
+        mProductMenuDesc.comment = comm;
+
+        if (name.length() > 0) {
+            mProductMenuDesc.save();
+
+            for (ProductItem itemProductItem : mListProductMenuItem) {
+                ProductMenuItem aProductMenuItem = new ProductMenuItem();
+                aProductMenuItem.menu = mProductMenuDesc;
+                aProductMenuItem.prod = itemProductItem;
+                aProductMenuItem.save();
+            }
+
+        }
+
+        int count = new Select().from(ProductMenuDesc.class).count();
+        Log.v(TAG, "!!! Select ProductMenuDesc.class=" + count);
+    }
+
 }

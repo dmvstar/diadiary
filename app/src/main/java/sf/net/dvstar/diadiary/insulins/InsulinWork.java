@@ -1,11 +1,9 @@
 package sf.net.dvstar.diadiary.insulins;
 
 
-/**
- * Created by sdv on 11.10.15.
- */
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 
-public class InsulinWork implements InsulinConstants{
+public class InsulinWork implements CommonConstants {
     private InsulinTime[] mInsulinTimes;
     private String mName;
     private String mFirm;

@@ -19,7 +19,8 @@ import java.util.List;
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.adapters.InsulinDescAdapter;
 import sf.net.dvstar.diadiary.database.InsulinItem;
-import sf.net.dvstar.diadiary.insulins.InsulinConstants;
+import sf.net.dvstar.diadiary.utilitis.CommonConstants;
+
 
 public class InsulinDescActivity extends AppCompatActivity {
 
@@ -56,7 +57,7 @@ public class InsulinDescActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 */
-                showAddInsulinsDesc(InsulinConstants.MODE_ACTIONS_EDIT_ADD, view, null);
+                showAddInsulinsDesc(CommonConstants.MODE_ACTIONS_EDIT_ADD, view, null);
             }
         });
     }
@@ -70,7 +71,7 @@ public class InsulinDescActivity extends AppCompatActivity {
                                     int position, long id) {
 //                Toast.makeText(getBaseContext(),"itemSelect: position = " + position + ", id = "
 //                        + id+", "+parent.getAdapter().getItem(position), Toast.LENGTH_SHORT).show();
-                showAddInsulinsDesc(InsulinConstants.MODE_ACTIONS_EDIT_ITEM, view, (InsulinItem) parent.getAdapter().getItem(position));
+                showAddInsulinsDesc(CommonConstants.MODE_ACTIONS_EDIT_ITEM, view, (InsulinItem) parent.getAdapter().getItem(position));
             }
         });
         mLvInsulins.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -119,9 +120,9 @@ public class InsulinDescActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, InsulinDescAddActivity.class);
 
-        intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_EDIT_MODE,mode);
+        intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE,mode);
         if(item != null)
-            intent.putExtra(InsulinConstants.KEY_INTENT_EXTRA_EDIT_ITEM, item);
+            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_EDIT_ITEM, item);
 
         this.startActivity(intent);
 
