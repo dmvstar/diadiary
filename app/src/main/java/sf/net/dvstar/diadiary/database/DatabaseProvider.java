@@ -364,4 +364,8 @@ public class DatabaseProvider {
             e.printStackTrace();
         }
     }
+
+    public void addExamleData() {
+
+    }
 }

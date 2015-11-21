@@ -47,8 +47,10 @@ public class DatabaseActivity extends AppCompatActivity implements OIFileManager
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
                         //Yes button clicked
-                        dbClear();
-                        dbInit();
+
+                        dbReinitFull();
+
+
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
@@ -64,6 +66,64 @@ public class DatabaseActivity extends AppCompatActivity implements OIFileManager
 
     }
 
+    private ProgressDialog mProgressDialog;
+    private void dbReinitFull() {
+
+
+        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected void onPreExecute() {
+                mProgressDialog = new ProgressDialog(mContext);
+                mProgressDialog.setTitle("Processing...");
+                mProgressDialog.setMessage("Please wait.");
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.setIndeterminate(true);
+                mProgressDialog.show();
+            }
+
+            @Override
+            protected Void doInBackground(Void... arg0) {
+                try {
+                    //Do something...
+
+                    DatabaseProvider iDatabaseProvider = new DatabaseProvider(mContext);
+
+                    iDatabaseProvider.isCreated();
+                    iDatabaseProvider.dropDatabase();
+                    iDatabaseProvider.initCreate();
+
+                    iDatabaseProvider.importProductsFromAssets();
+
+                    iDatabaseProvider.addExamleData();
+                    //Thread.sleep(5000);
+                }
+                catch (IOException e) {
+                    mProgressDialog.dismiss();
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                super.onPostExecute(result);
+                Log.v(TAG, "onPostExecute | Ok " + mProgressDialog);
+                if (mProgressDialog !=null) {
+                    mProgressDialog.setIndeterminate(false);
+                    mProgressDialog.cancel();
+                    mProgressDialog.dismiss();
+                }
+            }
+
+        };
+        task.execute((Void[])null);
+
+
+
+
+    }
+
     private void dbClear() {
         DatabaseProvider iIsulinInitDatabase = new DatabaseProvider(this);
         iIsulinInitDatabase.isCreated();
@@ -75,7 +135,7 @@ public class DatabaseActivity extends AppCompatActivity implements OIFileManager
         iIsulinInitDatabase.initCreate();
     }
 
-    private ProgressDialog mProgressDialog;
+
     public void dbImportProd(final View v) {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
