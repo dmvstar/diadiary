@@ -139,6 +139,21 @@ public class InsulinUtils {
         return ret;
     }
 
+    public static Date getDateTimeFrom(int hour, int minute) {
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(Calendar.DAY_OF_MONTH, 0 );
+        calendar.set(Calendar.MONTH, 0);
+        calendar.set(Calendar.YEAR, 0);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        Date ret = calendar.getTime();
+        return ret;
+    }
+
     public static Date getDateTimeFrom(int year, int monthOfYear, int dayOfMonth) {
         Calendar calendar = Calendar.getInstance();
 

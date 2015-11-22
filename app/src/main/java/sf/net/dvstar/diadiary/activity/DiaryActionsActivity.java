@@ -450,7 +450,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         int totalDose = 0;
         for (ActionCommonItem item : mDiaryActions) {
             if (item instanceof InsulinInjection) {
-                totalDose += Integer.parseInt(((InsulinInjection) item).dose);
+                totalDose += ((InsulinInjection)item).dose;
             }
         }
         mTotalInsulunDose.setText("" + totalDose + " " + getResources().getString(R.string.insulin_inject_unit));

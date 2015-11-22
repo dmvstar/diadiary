@@ -58,6 +58,9 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
             if (mId > 0) {
                 mProductMenuDesc = new Select().from(ProductMenuDesc.class).where("id = ?", mId).executeSingle();
             }
+//            else {
+//                mProductMenuDesc = new ProductMenuDesc();
+//            }
         }
 
         mEtName = (EditText) findViewById(R.id.et_menu_name);
@@ -106,6 +109,7 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
     }
 
     public void addProduct(View view) {
+        saveFieldData();
         showProdItemAddActivity();
         //showProductGroupActivity();
     }
@@ -114,13 +118,14 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             ProductMenuItem productItem = (ProductMenuItem) data.getExtras().getSerializable(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
-            //Long productId = data.getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
-            //ProductItem product = new Select().from(ProductItem.class).where("id = ?", productId).executeSingle();
+            Long productId = data.getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
+            ProductItem product = new Select().from(ProductItem.class).where("id = ?", productId).executeSingle();
 
             productItem.menu = mProductMenuDesc;
-            //productItem.prod = product;
+            productItem.prod = product;
 
             mListProductMenuItem.add(productItem);
+
             adapter.notifyDataSetChanged();
             calculteProducts();
         }
@@ -154,7 +159,7 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     public void saveFieldData() {
-        if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ADD) {
+        if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ADD && mProductMenuDesc == null) {
             mProductMenuDesc = new ProductMenuDesc();
             mProductMenuDesc.created = new Date();
         }

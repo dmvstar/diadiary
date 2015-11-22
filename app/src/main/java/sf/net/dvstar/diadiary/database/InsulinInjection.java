@@ -19,7 +19,7 @@ public class InsulinInjection extends Model implements Serializable, ActionCommo
     public InsulinItem insulin;
 
     @Column(name = "dose", indexGroups = {"main"})
-    public String dose;
+    public int dose;
 
     @Column(name = "time", indexGroups = {"main"})
     public Date time;
@@ -55,7 +55,7 @@ public class InsulinInjection extends Model implements Serializable, ActionCommo
         super();
     }
 
-    public InsulinInjection(InsulinItem insulin, String dose, Date time, int note, String comment, int plan, int color){
+    public InsulinInjection(InsulinItem insulin, int dose, Date time, int note, String comment, int plan, int color){
         super();
         this.insulin = insulin;
         this.dose = dose;
@@ -109,12 +109,14 @@ public class InsulinInjection extends Model implements Serializable, ActionCommo
     @Override
     public void importItem(String item) {
         String[] items = item.split(FIELD_DELIMITER, -1);
-        String insulin_name = items[1];
-        dose=items[2];
-        time= InsulinUtils.getDateFromString(items[3]);
-        comment=items[4];
-        plan=Integer.parseInt(items[5]);
-        color=Integer.parseInt(items[6]);
+        int index = 0;
+        if(items[index].equals(TAG)) index++;
+        String insulin_name = items[index++];
+        dose=Integer.parseInt(items[index++]);
+        time= InsulinUtils.getDateFromString(items[index++]);
+        comment=items[index++];
+        plan=Integer.parseInt(items[index++]);
+        color=Integer.parseInt(items[index++]);
     }
 
 

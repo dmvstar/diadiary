@@ -70,7 +70,7 @@ public class DatabaseActivity extends AppCompatActivity implements OIFileManager
     private void dbReinitFull() {
 
 
-        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+        AsyncTask<Void, String, Void> task = new AsyncTask<Void, String, Void>() {
 
             @Override
             protected void onPreExecute() {
@@ -91,11 +91,19 @@ public class DatabaseActivity extends AppCompatActivity implements OIFileManager
 
                     iDatabaseProvider.isCreated();
                     iDatabaseProvider.dropDatabase();
+
+                    publishProgress("Create initial data ...");
+
                     iDatabaseProvider.initCreate();
+
+                    publishProgress("Load product data ...");
 
                     iDatabaseProvider.importProductsFromAssets();
 
+                    publishProgress("Add example data ...");
+
                     iDatabaseProvider.addExamleData();
+
                     //Thread.sleep(5000);
                 }
                 catch (IOException e) {
@@ -104,6 +112,12 @@ public class DatabaseActivity extends AppCompatActivity implements OIFileManager
                 }
                 return null;
             }
+
+            @Override
+            protected void onProgressUpdate(String... progress) {
+                mProgressDialog.setMessage("Please wait. " + progress[0]);
+            }
+
 
             @Override
             protected void onPostExecute(Void result) {

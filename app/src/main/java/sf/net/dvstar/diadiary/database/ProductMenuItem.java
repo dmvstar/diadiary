@@ -21,6 +21,7 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
     @Column(name = "weight")
     public float weight;
 
+    /* ????
     @Column(name = "prot")
     float prot;// Белки
 
@@ -32,6 +33,7 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
 
     @Column(name = "gi")
     int gi;// ГИ гликемический индек
+    */
 
     @Column(name = "xe")
     int xe;// Количество ХЕ
@@ -52,8 +54,6 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
         String[] items = item.split(FIELD_DELIMITER, -1);
         int index = 0;
         if(items[index].equals(TAG)) index++;
-
-
     }
 
     @Override
@@ -63,7 +63,7 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
 
     @Override
     public String toString(){
-        return "["+menu.name+"] "+prod.name + "("+weight+")";
+        return "["+menu.name+"] "+prod.name + "("+weight+")["+prod.prot+"-"+prod.fats+"-"+prod.carb+"-"+prod.gi+"-"+xe+"]";
     }
 
 

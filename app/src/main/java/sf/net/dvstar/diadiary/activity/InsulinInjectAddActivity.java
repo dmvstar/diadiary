@@ -200,7 +200,7 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
         mInjection.plan = mSpInjectType.getSelectedItemPosition();
         mInjection.color = viewColor.getColor();
 
-        mInjection.dose = mEtDose.getText().toString();
+        mInjection.dose = Integer.parseInt(mEtDose.getText().toString());
         mInjection.time = InsulinUtils.parseTimeText(mEtFromTime.getText().toString() );
         mInjection.date = InsulinUtils.parseDateText(mEtFromDate.getText().toString());
         mInjection.note = note;
@@ -210,7 +210,7 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
         Log.v(TAG, "!!! " + mInjection.getId() );
         Log.v(TAG, "!!! " + mInjection.toString() );
 
-        if( mInjection.dose.length()>0 && mInjection.time != null ) {
+        if( mInjection.dose>0 && mInjection.time != null ) {
             mInjection.save();
         } else {
             Toast.makeText(getBaseContext(), "Not Enough data (dose, time ...) for store !", Toast.LENGTH_SHORT).show();

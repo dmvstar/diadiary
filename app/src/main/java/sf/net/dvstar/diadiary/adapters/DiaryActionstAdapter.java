@@ -111,7 +111,7 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
             //if(holder != null)
             {
                 holder.tv_insulin.setText(item.insulin.name);
-                holder.tv_dose.setText(item.dose);
+                holder.tv_dose.setText(""+item.dose);
                 holder.tv_time.setText(InsulinUtils.getTimeText(item.time));
                 holder.tv_comment.setText(item.comment);//+" "+InsulinUtils.getDateTimeFrom(item.time, null).toString()
                 holder.tv_planned.setText(getPlannedDescription(item.plan));
