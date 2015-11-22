@@ -1,6 +1,7 @@
 package sf.net.dvstar.diadiary.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.activeandroid.query.Select;
@@ -39,11 +41,11 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
     private EditText mEtName;
     private EditText mEtComment;
 
-    private View mTvCarb;
-    private View mTvFat;
-    private View mTvProt;
-    private View mTvGI;
-    private View mTvXE;
+    private TextView mTvCarb;
+    private TextView mTvFat;
+    private TextView mTvProt;
+    private TextView mTvGI;
+    private TextView mTvXE;
     private long mId;
 
     @Override
@@ -66,11 +68,11 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
         mEtName = (EditText) findViewById(R.id.et_menu_name);
         mEtComment = (EditText) findViewById(R.id.et_comment);
 
-        mTvCarb = findViewById(R.id.tv_prod_carb);
-        mTvFat = findViewById(R.id.tv_prod_fat);
-        mTvProt = findViewById(R.id.tv_prod_prot);
-        mTvGI = findViewById(R.id.tv_prod_gi);
-        mTvXE = findViewById(R.id.tv_prod_xe);
+        mTvCarb = (TextView) findViewById(R.id.tv_prod_carb);
+        mTvFat = (TextView) findViewById(R.id.tv_prod_fat);
+        mTvProt = (TextView) findViewById(R.id.tv_prod_prot);
+        mTvGI = (TextView) findViewById(R.id.tv_prod_gi);
+        mTvXE = (TextView) findViewById(R.id.tv_prod_xe);
 
         mProdMenu = (ListView) findViewById(R.id.lv_menu_product_list);
 
@@ -79,6 +81,8 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
         adapter = new ArrayAdapter<ProductMenuItem>(this, android.R.layout.simple_list_item_1, mListProductMenuItem);
         mProdMenu.setAdapter(adapter);
         mProdMenu.setOnItemClickListener(this);
+
+        calculteProductMenuItems();
 
     }
 
@@ -124,15 +128,45 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
             productItem.menu = mProductMenuDesc;
             productItem.prod = product;
 
-            mListProductMenuItem.add(productItem);
+            calculteProductMenuItem(productItem);
+            calculteProductMenuItems();
 
+            mListProductMenuItem.add(productItem);
             adapter.notifyDataSetChanged();
-            calculteProducts();
         }
     }
 
-    private void calculteProducts() {
+    private void calculteProductMenuItem(ProductMenuItem productItem) {
 
+        float koeff = productItem.weight / productItem.prod.weight;
+        productItem.prot = productItem.prod.prot * koeff;
+        productItem.carb = productItem.prod.carb * koeff;
+        productItem.fats = productItem.prod.fats * koeff;
+        productItem.gi = productItem.prod.gi;
+        productItem.xe = (int) (productItem.carb / 12.0);
+
+
+    }
+
+    private void calculteProductMenuItems() {
+
+        float carb = 0,fats = 0,prot = 0;
+        int xe =0,count=0,gi=0;
+        for (ProductMenuItem item : mListProductMenuItem) {
+            count++;
+            carb += item.carb;
+            fats += item.fats;
+            prot += item.prot;
+            xe += item.xe;
+            gi+= item.gi;
+        }
+        if(count>0) {
+            mTvCarb.setText("" + carb);
+            mTvFat.setText("" + fats);
+            mTvProt.setText("" + prot);
+            mTvGI.setText("" + gi / count);
+            mTvXE.setText("" + xe);
+        }
     }
 
     @Override
@@ -148,12 +182,12 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
             mEtName.setText(mProductMenuDesc.name);
             mEtComment.setText(mProductMenuDesc.comment);
 
-            mListProductMenuItem = new Select().from(ProductMenuItem.class).where("menu = ?",mProductMenuDesc.getId()).execute();
+            mListProductMenuItem = new Select().from(ProductMenuItem.class).where("menu = ?", mProductMenuDesc.getId()).execute();
 
             Select select = new Select();
             int count = select.from(ProductMenuItem.class).where("menu = ?", mProductMenuDesc.getId()).execute().size();
 
-            Log.v(TAG,"!!! fillFieldData = "+count);
+            Log.v(TAG, "!!! fillFieldData = " + count);
         }
     }
 
@@ -183,4 +217,14 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
         Log.v(TAG, "!!! Select ProductMenuDesc.class=" + count);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
 }

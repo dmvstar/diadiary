@@ -59,6 +59,7 @@
         <activity android:name=".activity.UserProfileActivity" android:label="@string/activity_profile_title"/>
         <activity android:name=".activity.ProdMenuAddActivity" android:label="@string/activity_menuadd_title"/>
         <activity android:name=".activity.ProdItemAddActivity"/>
+
     </application>
 
 </manifest>

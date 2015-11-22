@@ -68,7 +68,7 @@ public class ProdItemAddActivity extends AppCompatActivity implements AdapterVie
             else
                 productMenuItem.weight = product.weight;
 
-            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT, productMenuItem);
+             intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT, productMenuItem);
             intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_ROW_ID, product.getId());
 
             setResult(RESULT_OK, intent);

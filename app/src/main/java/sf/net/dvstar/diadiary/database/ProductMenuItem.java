@@ -21,22 +21,20 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
     @Column(name = "weight")
     public float weight;
 
-    /* ????
     @Column(name = "prot")
-    float prot;// Белки
+    public float prot;// Белки
 
     @Column(name = "fats")
-    float fats;// Жиры
+    public float fats;// Жиры
 
     @Column(name = "carb")
-    float carb;// Углеводы
+    public float carb;// Углеводы
 
     @Column(name = "gi")
-    int gi;// ГИ гликемический индек
-    */
+    public int gi;// ГИ гликемический индек
 
     @Column(name = "xe")
-    int xe;// Количество ХЕ
+    public int xe;// Количество ХЕ
 
     public ProductMenuItem() {
         super();
@@ -63,7 +61,7 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
 
     @Override
     public String toString(){
-        return "["+menu.name+"] "+prod.name + "("+weight+")["+prod.prot+"-"+prod.fats+"-"+prod.carb+"-"+prod.gi+"-"+xe+"]";
+        return "["+menu.name+"] "+prod.name + "("+weight+")["+prot+"-"+fats+"-"+carb+"-"+gi+"-"+xe+"]";
     }
 
 
