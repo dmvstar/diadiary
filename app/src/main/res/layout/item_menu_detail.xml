@@ -78,6 +78,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:weightSum="100"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -88,7 +89,7 @@
                     style="@android:style/TextAppearance.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="25"
                     android:text="@string/user_k1_value"
                     android:textStyle="bold" />
 
@@ -97,16 +98,15 @@
                     style="@android:style/TextAppearance.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:text="0.9"
+                    android:layout_weight="25"
+                    android:text="1.09"
                     android:gravity="right" />
                 <TextView
                     android:id="@+id/textView32"
                     style="@android:style/TextAppearance.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="20"
                     android:text="@string/insulin_K1_dose"
                     android:textStyle="bold"
                     android:layout_marginLeft="8sp" />
@@ -116,9 +116,8 @@
                     style="@android:style/TextAppearance.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:text="8:00"
+                    android:layout_weight="30"
+                    android:text="12"
                     android:gravity="right" />
             </LinearLayout>
 
