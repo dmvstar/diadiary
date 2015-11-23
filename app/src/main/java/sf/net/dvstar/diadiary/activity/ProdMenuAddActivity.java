@@ -82,7 +82,9 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
         mProdMenu.setAdapter(adapter);
         mProdMenu.setOnItemClickListener(this);
 
-        calculteProductMenuItems();
+        ProductMenuItem.ProductMenuItemsCalc calc = ProductMenuItem.calculteProductMenuItems(mListProductMenuItem);
+
+        fillProductMenuItems(calc);
 
     }
 
@@ -129,9 +131,12 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
             productItem.prod = product;
 
             calculteProductMenuItem(productItem);
-            calculteProductMenuItems();
-
             mListProductMenuItem.add(productItem);
+
+            ProductMenuItem.ProductMenuItemsCalc calc = ProductMenuItem.calculteProductMenuItems(mListProductMenuItem);
+
+            fillProductMenuItems(calc);
+
             adapter.notifyDataSetChanged();
         }
     }
@@ -145,28 +150,14 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
         productItem.gi = productItem.prod.gi;
         productItem.xe = (int) (productItem.carb / 12.0);
 
-
     }
 
-    private void calculteProductMenuItems() {
-
-        float carb = 0,fats = 0,prot = 0;
-        int xe =0,count=0,gi=0;
-        for (ProductMenuItem item : mListProductMenuItem) {
-            count++;
-            carb += item.carb;
-            fats += item.fats;
-            prot += item.prot;
-            xe += item.xe;
-            gi+= item.gi;
-        }
-        if(count>0) {
-            mTvCarb.setText("" + carb);
-            mTvFat.setText("" + fats);
-            mTvProt.setText("" + prot);
-            mTvGI.setText("" + gi / count);
-            mTvXE.setText("" + xe);
-        }
+    private void fillProductMenuItems(ProductMenuItem.ProductMenuItemsCalc calc) {
+            mTvCarb.setText("" + calc.carb);
+            mTvFat.setText("" + calc.fats);
+            mTvProt.setText("" + calc.prot);
+            mTvGI.setText("" + calc.gi);
+            mTvXE.setText("" + calc.xe);
     }
 
     @Override

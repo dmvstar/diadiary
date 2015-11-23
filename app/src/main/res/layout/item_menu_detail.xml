@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/primary_gray">
+    android:background="@color/primary_brown">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -76,6 +76,53 @@
                     android:text="8:00"
                     android:gravity="right" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/textView31"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/user_k1_value"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_K1"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:text="0.9"
+                    android:gravity="right" />
+                <TextView
+                    android:id="@+id/textView32"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/insulin_K1_dose"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="8sp" />
+
+                <TextView
+                    android:id="@+id/tv_insulin_dose"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:text="8:00"
+                    android:gravity="right" />
+            </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"

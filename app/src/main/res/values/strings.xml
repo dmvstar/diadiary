@@ -132,5 +132,7 @@
     <string name="menu_add_label_xe">BE</string>
     <string name="menu_add_hint_prot">Protheine</string>
     <string name="menu_label">Menu:</string>
+    <string name="user_k1_value">K1 value:</string>
+    <string name="insulin_K1_dose">Insulin:</string>
 
 </resources>

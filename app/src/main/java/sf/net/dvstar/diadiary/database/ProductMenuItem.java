@@ -5,6 +5,7 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 @Table(name = "ProductMenuItem")
@@ -64,5 +65,33 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
         return "["+menu.name+"] "+prod.name + "("+weight+")["+prot+"-"+fats+"-"+carb+"-"+gi+"-"+xe+"]";
     }
 
+
+    public static class ProductMenuItemsCalc {
+        public float carb = 0;
+        public float fats = 0;
+        public float prot = 0;
+        public int xe =0;
+        public int gi=0;
+        public int count=0;
+    }
+
+    public static ProductMenuItemsCalc calculteProductMenuItems(List<ProductMenuItem> mListProductMenuItem){
+        ProductMenuItemsCalc ret = new ProductMenuItemsCalc();
+        ret.count=0;
+
+        for (ProductMenuItem item : mListProductMenuItem) {
+            ret.count++;
+            ret.carb += item.carb;
+            ret.fats += item.fats;
+            ret.prot += item.prot;
+            ret.xe += item.xe;
+            ret.gi+= item.gi;
+        }
+        if(ret.count>0) {
+            ret.gi = ret.gi / ret.count;
+        }
+
+        return ret;
+    }
 
 }

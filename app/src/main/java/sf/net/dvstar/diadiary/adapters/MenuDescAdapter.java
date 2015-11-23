@@ -81,33 +81,23 @@ public class MenuDescAdapter extends ArrayAdapter<ProductMenuDesc> {
         holder.tv_name.setText(item.name);
         holder.tv_comm.setText(item.comment);
 
-        calculteProductMenuItems(holder, item.getId());
+        mListProductMenuItem = new Select().from(ProductMenuItem.class).where("menu = ?", item.getId()).execute();
+
+        ProductMenuItem.ProductMenuItemsCalc calc =
+                ProductMenuItem.calculteProductMenuItems(mListProductMenuItem);
+
+        fillProductMenuItems(holder, calc);
+        holder.tv_comm.setText("("+calc.count+")" + item.comment);
 
         return rowView;
     }
 
-    private void calculteProductMenuItems(ViewHolder holder, long id) {
-
-        mListProductMenuItem = new Select().from(ProductMenuItem.class).where("menu = ?", id).execute();
-
-        float carb = 0,fats = 0,prot = 0;
-        int xe =0,count=0,gi=0;
-        for (ProductMenuItem item : mListProductMenuItem) {
-            count++;
-            carb += item.carb;
-            fats += item.fats;
-            prot += item.prot;
-            xe += item.xe;
-            gi+= item.gi;
-        }
-
-        if(count>0) {
-            holder.tv_carb.setText("" + carb);
-            holder.tv_fats.setText("" + fats);
-            holder.tv_prot.setText("" + prot);
-            holder.tv_gi.setText("" + gi / count);
-            holder.tv_xe.setText("" + xe);
-        }
+    private void fillProductMenuItems(ViewHolder holder, ProductMenuItem.ProductMenuItemsCalc calc) {
+            holder.tv_carb.setText("" + calc.carb);
+            holder.tv_fats.setText("" + calc.fats);
+            holder.tv_prot.setText("" + calc.prot);
+            holder.tv_gi.setText("" + calc.gi);
+            holder.tv_xe.setText("" + calc.xe);
     }
 
 }
