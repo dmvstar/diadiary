@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:bottom="0dp"
+        android:left="0dp"
+        android:right="0dp"
+        android:top="0dp">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="oval">
+            <solid android:color="@color/green" />
+            <size
+                android:width="30dp"
+                android:height="30dp" />
+        </shape>
+    </item>
+
+    <item
+        android:bottom="10dp"
+        android:left="17dp"
+        android:right="17dp"
+        android:top="10dp">
+        <shape>
+            <stroke
+                android:width="0dp"
+                android:color="#ff207d94" />
+            <padding
+                android:bottom="0dp"
+                android:left="0dp"
+                android:right="0dp"
+                android:top="0dp" />
+            <corners android:radius="0dp" />
+            <solid android:color="#ffffffff" />
+        </shape>
+    </item>
+
+    <item
+        android:bottom="17dp"
+        android:left="10dp"
+        android:right="10dp"
+        android:top="17dp">
+        <shape>
+            <stroke
+                android:width="0dp"
+                android:color="#ff207d94" />
+            <padding
+                android:bottom="0dp"
+                android:left="0dp"
+                android:right="0dp"
+                android:top="0dp" />
+            <corners android:radius="0dp" />
+            <solid android:color="#ffffffff" />
+        </shape>
+    </item>
+
+    <item android:top="0dp" android:left="0dp" android:bottom="0dp" android:right="0dp">
+        <shape android:shape="line">
+            <stroke android:width="3dp" android:color="@android:color/white" />
+        </shape>
+    </item>
+
+    <item android:top="0dp" android:left="0dp" android:bottom="0dp" android:right="0dp">
+        <rotate
+            android:fromDegrees="90"
+            android:pivotX="50%"
+            android:pivotY="50%"
+            android:toDegrees="-90">
+            <shape android:shape="line">
+                <padding
+                    android:bottom="0dp"
+                    android:left="0dp"
+                    android:right="0dp"
+                    android:top="0dp" />
+                <stroke android:width="3dp" android:color="@android:color/white" />
+            </shape>
+        </rotate>
+    </item>
+
+</layer-list>

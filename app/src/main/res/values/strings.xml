@@ -134,5 +134,7 @@
     <string name="menu_label">Menu:</string>
     <string name="user_k1_value">K1:</string>
     <string name="insulin_K1_dose">Insulin:</string>
+    <string name="common_label_K1">K1</string>
+    <string name="user_profile_K1_list">K1 list</string>
 
 </resources>
