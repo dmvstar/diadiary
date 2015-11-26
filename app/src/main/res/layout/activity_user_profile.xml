@@ -62,6 +62,23 @@
                 android:inputType="number" />
 
             <TextView
+                android:id="@+id/textView39"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/user_profile_date_of_birth"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/accent" />
+
+            <EditText
+                android:id="@+id/et_user_profile_date_of_birth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date" />
+
+
+
+            <TextView
                 android:id="@+id/textView30"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -172,13 +189,6 @@
                 android:text="@string/user_profile_glucose_range"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/accent" />
-
-            <Spinner
-                android:id="@+id/sp_user_glucose_range"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:entries="@array/glucose_range_list" />
 
             <LinearLayout
                 android:orientation="horizontal"

@@ -70,4 +70,12 @@ public class UserProfile extends Model implements Serializable, CommonItem {
     }
 
 
+    @Override
+    public String toString() {
+        return "UserProfile ["+getId()+"]{" +
+                "name='" + name + '\'' +
+                ", birth=" + birth +
+                ", age='" + age + '\'' +
+                '}';
+    }
 }

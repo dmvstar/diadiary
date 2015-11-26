@@ -1,9 +1,13 @@
 package sf.net.dvstar.diadiary.activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -36,6 +40,7 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
         mEtUserAge = (EditText) findViewById(R.id.et_user_profile_age);
 
         fillFieldData();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
     }
 
@@ -53,7 +58,39 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
 
     @Override
     public void dialogActionYes(int aFrom){
-        Toast.makeText(this, "dialogActionYes "+aFrom,
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Text");
+        alert.setMessage("Enter Text :");
+
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        alert.setView(input);
+
+
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String value = input.getText().toString();
+                if(value.length()>0){
+                    addK1Value(value);
+                }
+                return;
+            }
+        });
+
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });
+        alert.show();
+
+        Toast.makeText(this, "dialogActionYes "+aFrom +" user = "+mUserProfile.toString(),
+                Toast.LENGTH_SHORT).show();
+    }
+
+    private void addK1Value(String value) {
+        Toast.makeText(this, "addK1Value "+value+" user = "+mUserProfile.toString(),
                 Toast.LENGTH_SHORT).show();
     }
 

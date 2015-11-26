@@ -11,7 +11,7 @@
 
     <string name="insulin_label_comment">Comment</string>
     <string name="action_date_label">For date</string>
-    <string name="action_date_text">dd.mm.yyyy</string>
+    <string name="action_date_text" translatable="false">dd.mm.yyyy</string>
     <string name="planned_none">None</string>
     <string name="planned_regular">Regular</string>
     <string name="planned_additionals">Additional</string>
@@ -79,7 +79,7 @@
     <string name="glucose_add_label_notes">When notes</string>
     <string name="action_about">About</string>
     <string name="action_date_label_from">From</string>
-    <string name="action_date_label_into">-</string>
+    <string name="action_date_label_into" translatable="false">-</string>
     <string name="no_filemanager_installed">Not found OI file manager</string>
     <string name="title_activity_database">DatabaseActivity</string>
     <string name="calendar_title">Calendar</string>
@@ -138,5 +138,6 @@
     <string name="user_profile_K1_list">K1 list</string>
     <string name="dialog_add_k1_title">Add K1 value to list, are you shure ?</string>
     <string name="dialog_del_k1_title">Remove current K1 from list, are you shure ?</string>
+    <string name="user_profile_date_of_birth">Date of birth</string>
 
 </resources>
