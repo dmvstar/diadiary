@@ -114,35 +114,34 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/accent" />
 
-                    <Spinner
-                        android:id="@+id/sp_user_profile_k1"
+                    <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:entries="@array/diab_type_list" />
+                        android:layout_height="wrap_content">
 
-                </LinearLayout>
+                        <Spinner
+                            android:id="@+id/sp_user_profile_k1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/diab_type_list"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_vertical" />
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                        <ImageButton
+                            android:id="@+id/bt_minus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/bt_minus"
+                            android:onClick="delK1" />
 
-                    <ImageButton
-                        android:id="@+id/bt_plus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@drawable/bt_plus"
-                        android:layout_gravity="center_vertical" />
+                        <ImageButton
+                            android:id="@+id/bt_plus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/bt_plus"
+                            android:onClick="addK1" />
 
-                    <ImageButton
-                        android:id="@+id/bt_minus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@drawable/bt_minus"
-                        android:layout_gravity="center_vertical" />
+                    </LinearLayout>
 
                 </LinearLayout>
 

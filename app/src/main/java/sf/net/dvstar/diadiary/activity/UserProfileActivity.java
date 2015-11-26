@@ -6,14 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.activeandroid.query.Select;
 
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.UserProfile;
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
+import sf.net.dvstar.diadiary.utilitis.UIInterfaceYesNo;
+import sf.net.dvstar.diadiary.utilitis.UIUtilities;
 
-public class UserProfileActivity extends AppCompatActivity implements ActivitySaving {
+public class UserProfileActivity extends AppCompatActivity implements ActivitySaving, UIInterfaceYesNo {
 
     private Context mContext;
     private int mMode;
@@ -34,6 +37,30 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
 
         fillFieldData();
 
+    }
+
+    public void addK1(View view) {
+        UIUtilities.showYesNoDialog(1, view
+                , getResources().getString(R.string.dialog_add_k1_title)
+                , this);
+    }
+
+    public void delK1(View view) {
+        UIUtilities.showYesNoDialog(2, view
+                , getResources().getString(R.string.dialog_del_k1_title)
+                , this);
+    }
+
+    @Override
+    public void dialogActionYes(int aFrom){
+        Toast.makeText(this, "dialogActionYes "+aFrom,
+                Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void dialogActionNo(int aFrom){
+        Toast.makeText(this, "dialogActionNo "+aFrom,
+                Toast.LENGTH_SHORT).show();
     }
 
     public void cancel(View view) {
