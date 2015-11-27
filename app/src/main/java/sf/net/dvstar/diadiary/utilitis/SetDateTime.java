@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 
 public class SetDateTime {
 
@@ -46,7 +46,7 @@ public class SetDateTime {
                 if (time.length() > 0) {
                     SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
-                    Date dt = InsulinUtils.parseDateText(time);
+                    Date dt = CommonUtils.parseDateText(time);
                     myCalendar.setTime(dt);
                     year = myCalendar.get(Calendar.YEAR);
                     month = myCalendar.get(Calendar.MONTH);
@@ -77,7 +77,7 @@ public class SetDateTime {
                 int minute = myCalendar.get(Calendar.MINUTE);
                 String time = editText.getText().toString();
                 if (time.length() > 0) {
-                    Date dt = InsulinUtils.parseTimeText(time);
+                    Date dt = CommonUtils.parseTimeText(time);
                     myCalendar.setTime(dt);
                     hour = myCalendar.get(Calendar.HOUR_OF_DAY);
                     minute = myCalendar.get(Calendar.MINUTE);

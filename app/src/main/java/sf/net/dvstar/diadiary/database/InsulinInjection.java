@@ -7,7 +7,7 @@ import com.activeandroid.annotation.Table;
 import java.io.Serializable;
 import java.util.Date;
 
-import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 
 
 @Table(name = "InsulinInjection")
@@ -88,9 +88,9 @@ public class InsulinInjection extends Model implements Serializable, ActionCommo
     public Date getCompareTime() {
         Date ret;
         if(plan==INJECTION_PLAN_REGULAR){
-            ret = InsulinUtils.getDateTimeFrom(time, null);
+            ret = CommonUtils.getDateTimeFrom(time, null);
         } else {
-            ret = InsulinUtils.getDateTimeFrom(time, date);
+            ret = CommonUtils.getDateTimeFrom(time, date);
         }
         return ret;
     }
@@ -113,7 +113,7 @@ public class InsulinInjection extends Model implements Serializable, ActionCommo
         if(items[index].equals(TAG)) index++;
         String insulin_name = items[index++];
         dose=Integer.parseInt(items[index++]);
-        time= InsulinUtils.getDateFromString(items[index++]);
+        time= CommonUtils.getDateFromString(items[index++]);
         comment=items[index++];
         plan=Integer.parseInt(items[index++]);
         color=Integer.parseInt(items[index++]);

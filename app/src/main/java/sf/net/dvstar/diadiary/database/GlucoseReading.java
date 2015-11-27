@@ -7,7 +7,7 @@ import com.activeandroid.annotation.Table;
 import java.io.Serializable;
 import java.util.Date;
 
-import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 
 
 @Table(name = "GlucoseReading")
@@ -80,7 +80,7 @@ public class GlucoseReading extends Model implements Serializable, ActionCommonI
         int index = 0;
         if(items[index].equals(TAG)) index++;
         value=Float.parseFloat(items[index++]);
-        time= InsulinUtils.getDateFromString(items[index++]);
+        time= CommonUtils.getDateFromString(items[index++]);
         note=Integer.parseInt(items[index++]);
         comment=items[index++];
     }

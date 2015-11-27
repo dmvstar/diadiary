@@ -8,15 +8,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.activeandroid.Model;
 import com.activeandroid.query.Select;
+
+import java.util.Date;
+import java.util.List;
 
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.UserProfile;
+import sf.net.dvstar.diadiary.database.UserProfileCoeff;
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 import sf.net.dvstar.diadiary.utilitis.UIInterfaceYesNo;
 import sf.net.dvstar.diadiary.utilitis.UIUtilities;
@@ -37,6 +43,9 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
     private Spinner mSpUserProfileDiabType;
     private Spinner mSpUserProfileK1;
     private Spinner mSpUserGlucoseMeasure;
+    private List<UserProfileCoeff> mLsttUserProfileCoeff;
+    private EditText mEtUserGrowth;
+    private EditText mEtUserWeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +55,13 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
         mBtAdd = (Button) findViewById(R.id.bt_confirm);
 
         mEtUserName = (EditText)findViewById(R.id.et_user_profile_name);
-        mEtUserAge = (EditText) findViewById(R.id.et_user_profile_age);
-        mEtUserDateOfBirth = (EditText) findViewById(R.id.et_user_profile_date_of_birth);
-        mEtUserGlucoseRangeMin = (EditText) findViewById(R.id.et_user_glucose_range_min);
-        mEtUserGlucoseRangeMax = (EditText) findViewById(R.id.et_user_glucose_range_max);
+        mEtUserAge    = (EditText) findViewById(R.id.et_user_profile_age);
+        mEtUserGrowth = (EditText) findViewById(R.id.et_user_profile_growth);
+        mEtUserWeight = (EditText) findViewById(R.id.et_user_profile_weight);
+
+        mEtUserDateOfBirth      = (EditText) findViewById(R.id.et_user_profile_date_of_birth);
+        mEtUserGlucoseRangeMin  = (EditText) findViewById(R.id.et_user_glucose_range_min);
+        mEtUserGlucoseRangeMax  = (EditText) findViewById(R.id.et_user_glucose_range_max);
 
         mSpUserGlucoseMeasure = (Spinner) findViewById(R.id.sp_user_glucose_measure);
         mSpUserProfileGender   = (Spinner) findViewById(R.id.sp_user_profile_gender);
@@ -62,9 +74,14 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
     }
 
     public void addK1(View view) {
-        UIUtilities.showYesNoDialog(1, view
+        UIUtilities.showInputDialog(1, this
                 , getResources().getString(R.string.dialog_add_k1_title)
-                , this);
+                , this
+        );
+
+//        UIUtilities.showYesNoDialog(1, view
+//                , getResources().getString(R.string.dialog_add_k1_title)
+//                , this);
     }
 
     public void delK1(View view) {
@@ -76,37 +93,41 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
     @Override
     public void dialogActionYes(int aFrom, String value){
 
-        UIUtilities.showInputDialog(1, this
-                , getResources().getString(R.string.dialog_add_k1_title)
-                , this
-        );
+        if(aFrom==1){
+            addK1Value(value);
+        }
 
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Text");
-        alert.setMessage("Enter Text :");
+//        UIUtilities.showInputDialog(1, this
+//                , getResources().getString(R.string.dialog_add_k1_title)
+//                , this
+//        );
 
-        final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        alert.setView(input);
-
-
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                String value = input.getText().toString();
-                if(value.length()>0){
-                    addK1Value(value);
-                }
-                return;
-            }
-        });
-
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface dialog, int which) {
-                return;
-            }
-        });
-        alert.show();
+//        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+//        alert.setTitle("Text");
+//        alert.setMessage("Enter Text :");
+//
+//        final EditText input = new EditText(this);
+//        input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);
+//        alert.setView(input);
+//
+//
+//        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int whichButton) {
+//                String value = input.getText().toString();
+//                if(value.length()>0){
+//                    addK1Value(value);
+//                }
+//                return;
+//            }
+//        });
+//
+//        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//
+//            public void onClick(DialogInterface dialog, int which) {
+//                return;
+//            }
+//        });
+//        alert.show();
 
         Toast.makeText(this, "dialogActionYes "+aFrom +" user = "+mUserProfile.toString(),
                 Toast.LENGTH_SHORT).show();
@@ -115,6 +136,13 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
     private void addK1Value(String value) {
         Toast.makeText(this, "addK1Value "+value+" user = "+mUserProfile.toString(),
                 Toast.LENGTH_SHORT).show();
+
+        UserProfileCoeff coeff = new UserProfileCoeff();
+        coeff.k1 = Float.parseFloat(value);
+        coeff.created = new Date();
+        coeff.save();
+
+        fillUserProfileCoeff();
     }
 
     @Override
@@ -145,8 +173,19 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
             mEtUserAge.setText(mUserProfile.age);
             //mEtUserDateOfBirth.setText(""+mUserProfile.birth);
             mEtUserGlucoseRangeMin.setText(""+mUserProfile.prefRangeMix);
-            mEtUserGlucoseRangeMax.setText(""+mUserProfile.prefRangeMax);
+            mEtUserGlucoseRangeMax.setText("" + mUserProfile.prefRangeMax);
+
+            mEtUserGrowth.setText("" + mUserProfile.growth);
+            mEtUserWeight.setText("" + mUserProfile.weight);
+
+            fillUserProfileCoeff();
         }
+    }
+
+    private void fillUserProfileCoeff() {
+        mLsttUserProfileCoeff = new Select().from(UserProfileCoeff.class).execute();
+        ArrayAdapter<UserProfileCoeff> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,mLsttUserProfileCoeff);
+        mSpUserProfileK1.setAdapter(adapter);
     }
 
     @Override
@@ -163,6 +202,10 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
 
         mUserProfile.prefRangeMix = Float.parseFloat(mEtUserGlucoseRangeMin.getText().toString());
         mUserProfile.prefRangeMax = Float.parseFloat(mEtUserGlucoseRangeMax.getText().toString());
+
+        mUserProfile.growth = Integer.parseInt(mEtUserGrowth.getText().toString());
+        mUserProfile.weight = Float.parseFloat(mEtUserWeight.getText().toString());
+
 
         if (name.length()>0) {
             mUserProfile.save();

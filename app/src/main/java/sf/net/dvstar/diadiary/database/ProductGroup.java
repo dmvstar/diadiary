@@ -6,9 +6,6 @@ import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
 
 import java.io.Serializable;
-import java.util.Date;
-
-import sf.net.dvstar.diadiary.insulins.InsulinUtils;
 
 
 @Table(name = "ProductGroup")

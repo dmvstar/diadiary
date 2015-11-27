@@ -1,16 +1,13 @@
 package sf.net.dvstar.diadiary.database;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
-import com.github.mikephil.charting.utils.Utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -29,7 +26,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
-import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 
 public class DatabaseProvider {
@@ -374,19 +371,19 @@ public class DatabaseProvider {
         InsulinItem vInsulinItemNovorapid = new Select().from(InsulinItem.class).where("name = ?","Novorapid").executeSingle();
         InsulinItem vInsulinItemLevemir = new Select().from(InsulinItem.class).where("name = ?","Levemir").executeSingle();
 
-        vInsulinInjection = new InsulinInjection(vInsulinItemNovorapid, 8, InsulinUtils.getDateTimeFrom(7,30), 0, "", InsulinInjection.INJECTION_PLAN_REGULAR, CommonConstants.COLOR_NOVORAPID);
+        vInsulinInjection = new InsulinInjection(vInsulinItemNovorapid, 8, CommonUtils.getDateTimeFrom(7, 30), 0, "", InsulinInjection.INJECTION_PLAN_REGULAR, CommonConstants.COLOR_NOVORAPID);
         vInsulinInjection.save();
 
-        vInsulinInjection = new InsulinInjection(vInsulinItemLevemir, 16, InsulinUtils.getDateTimeFrom(7,30), 0, "", InsulinInjection.INJECTION_PLAN_REGULAR, CommonConstants.COLOR_LEVEMIR);
+        vInsulinInjection = new InsulinInjection(vInsulinItemLevemir, 16, CommonUtils.getDateTimeFrom(7, 30), 0, "", InsulinInjection.INJECTION_PLAN_REGULAR, CommonConstants.COLOR_LEVEMIR);
         vInsulinInjection.save();
 
-        vInsulinInjection = new InsulinInjection(vInsulinItemNovorapid, 6, InsulinUtils.getDateTimeFrom(13,0), 0, "", InsulinInjection.INJECTION_PLAN_REGULAR, CommonConstants.COLOR_NOVORAPID);
+        vInsulinInjection = new InsulinInjection(vInsulinItemNovorapid, 6, CommonUtils.getDateTimeFrom(13, 0), 0, "", InsulinInjection.INJECTION_PLAN_REGULAR, CommonConstants.COLOR_NOVORAPID);
         vInsulinInjection.save();
 
-        vInsulinInjection = new InsulinInjection(vInsulinItemNovorapid, 6, InsulinUtils.getDateTimeFrom(19,30), 0, "", InsulinInjection.INJECTION_PLAN_REGULAR, CommonConstants.COLOR_NOVORAPID);
+        vInsulinInjection = new InsulinInjection(vInsulinItemNovorapid, 6, CommonUtils.getDateTimeFrom(19, 30), 0, "", InsulinInjection.INJECTION_PLAN_REGULAR, CommonConstants.COLOR_NOVORAPID);
         vInsulinInjection.save();
 
-        vInsulinInjection = new InsulinInjection(vInsulinItemLevemir, 14, InsulinUtils.getDateTimeFrom(21,30), 0, "", InsulinInjection.INJECTION_PLAN_REGULAR, CommonConstants.COLOR_LEVEMIR);
+        vInsulinInjection = new InsulinInjection(vInsulinItemLevemir, 14, CommonUtils.getDateTimeFrom(21, 30), 0, "", InsulinInjection.INJECTION_PLAN_REGULAR, CommonConstants.COLOR_LEVEMIR);
         vInsulinInjection.save();
     }
 }

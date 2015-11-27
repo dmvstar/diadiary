@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-/**
- * Created by dstarzhynskyi on 09.10.2015.
- */
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
+
+
 public class InsuGraphProvider {
 
     private static final String TAG = "InsuGraphProvider";
@@ -51,7 +51,7 @@ public class InsuGraphProvider {
             if(counter==0) {
                 normalizedXAxisValues = current;
             } else {
-                InsulinUtils.merge(current, normalizedXAxisValues);
+                CommonUtils.merge(current, normalizedXAxisValues);
             }
             counter++;
         }

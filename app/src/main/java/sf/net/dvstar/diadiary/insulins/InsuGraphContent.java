@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 
 /**
  * Created by sdv on 07.10.15.
@@ -53,7 +54,7 @@ public class InsuGraphContent {
 
         double[] bInsulin = mInsulinWork.getDoubleArray();
 
-        mXAsisValues = InsulinUtils.merge(xAxisHours, bInsulin);
+        mXAsisValues = CommonUtils.merge(xAxisHours, bInsulin);
     }
 
     public void calculateInsuGraphItems(){

@@ -40,7 +40,7 @@ import sf.net.dvstar.diadiary.database.InsulinItem;
 import sf.net.dvstar.diadiary.adapters.DiaryActionstAdapter;
 import sf.net.dvstar.diadiary.database.PressureReading;
 
-import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 import sf.net.dvstar.diadiary.utilitis.CalendarDialogBuilder;
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 import sf.net.dvstar.diadiary.utilitis.OIFileManager;
@@ -102,10 +102,10 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         mSpPreriod = (Spinner) findViewById(R.id.sp_actin_period);
 
         Date today = Calendar.getInstance().getTime();
-        mTvDiaryActionsDateFrom.setText(InsulinUtils.getDateText(today));
-        mTvDiaryActionsDateInto.setText(InsulinUtils.getDateText(today));
-        mDiaryActionsDateFrom = InsulinUtils.getDateTimeFrom(null, today);
-        mDiaryActionsDateInto = InsulinUtils.getDateTimeFrom(today, Calendar.DAY_OF_MONTH, 1);
+        mTvDiaryActionsDateFrom.setText(CommonUtils.getDateText(today));
+        mTvDiaryActionsDateInto.setText(CommonUtils.getDateText(today));
+        mDiaryActionsDateFrom = CommonUtils.getDateTimeFrom(null, today);
+        mDiaryActionsDateInto = CommonUtils.getDateTimeFrom(today, Calendar.DAY_OF_MONTH, 1);
         mTvDiaryActionsDateInto.setOnClickListener(new ActionsOnDateSetListener());
 
         /*
@@ -205,7 +205,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
     }
 
     public void setDateTextField(int Year, int Month, int Day, int mode) {
-        String test = InsulinUtils.getDateText(Year, Month, Day);
+        String test = CommonUtils.getDateText(Year, Month, Day);
         boolean changeContent = false;
         if (Year > 0) {
             // && !mTvDiaryActionsDateInto.getText().toString().equals(test)
@@ -215,11 +215,11 @@ public class DiaryActionsActivity extends AppCompatActivity implements
                     if (!mTvDiaryActionsDateFrom.getText().toString().equals(test)) {
                         changeContent = true;
                         mTvDiaryActionsDateFrom.setText(test);
-                        mDiaryActionsDateFrom = InsulinUtils.getDateTimeFrom(Year, Month, Day);
+                        mDiaryActionsDateFrom = CommonUtils.getDateTimeFrom(Year, Month, Day);
                         mCalendarActionsDateFrom.set(Year, Month-1, Day);
 
                         mTvDiaryActionsDateInto.setText(test);
-                        mDiaryActionsDateInto = InsulinUtils.getDateTimeFrom(Year, Month, Day+1);
+                        mDiaryActionsDateInto = CommonUtils.getDateTimeFrom(Year, Month, Day + 1);
                         mCalendarActionsDateInto.set(Year, Month-1, Day+1);
                     }
 
@@ -229,7 +229,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
                     if (!mTvDiaryActionsDateFrom.getText().toString().equals(test)) {
                         changeContent = true;
                         mTvDiaryActionsDateFrom.setText(test);
-                        mDiaryActionsDateFrom = InsulinUtils.getDateTimeFrom(Year, Month, Day);
+                        mDiaryActionsDateFrom = CommonUtils.getDateTimeFrom(Year, Month, Day);
                         mCalendarActionsDateFrom.set(Year, Month, Day);
                     }
                 }
@@ -238,7 +238,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
                     if (!mTvDiaryActionsDateInto.getText().toString().equals(test)) {
                         changeContent = true;
                         mTvDiaryActionsDateInto.setText(test);
-                        mDiaryActionsDateInto = InsulinUtils.getDateTimeFrom(Year, Month, Day);
+                        mDiaryActionsDateInto = CommonUtils.getDateTimeFrom(Year, Month, Day);
                         mCalendarActionsDateInto.set(Year, Month, Day);
                     }
                 }
@@ -256,12 +256,12 @@ public class DiaryActionsActivity extends AppCompatActivity implements
 
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            String test = InsulinUtils.getDateText(year, monthOfYear + 1, dayOfMonth + 1);
+            String test = CommonUtils.getDateText(year, monthOfYear + 1, dayOfMonth + 1);
 
 
             if (!mTvDiaryActionsDateInto.getText().toString().equals(test)) {
                 mTvDiaryActionsDateInto.setText(test);
-                mDiaryActionsDateFrom = InsulinUtils.getDateTimeFrom(year, monthOfYear, dayOfMonth);
+                mDiaryActionsDateFrom = CommonUtils.getDateTimeFrom(year, monthOfYear, dayOfMonth);
                 mCalendarActionsDateFrom.set(year, monthOfYear, dayOfMonth);
                 setListViewContent();
             }

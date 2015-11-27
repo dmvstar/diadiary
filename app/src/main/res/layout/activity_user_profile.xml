@@ -62,7 +62,7 @@
                 android:inputType="date" />
 
             <TextView
-                android:id="@+id/textView29"
+                android:id="@+id/textView50"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -76,6 +76,35 @@
                 android:layout_height="wrap_content"
                 android:inputType="number" />
 
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/user_profile_growth"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/accent" />
+
+            <EditText
+                android:id="@+id/et_user_profile_growth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textView49"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/user_profile_weight"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/accent" />
+
+            <EditText
+                android:id="@+id/et_user_profile_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
 
             <TextView

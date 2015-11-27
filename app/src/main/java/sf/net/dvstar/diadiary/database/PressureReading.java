@@ -7,7 +7,7 @@ import com.activeandroid.annotation.Table;
 import java.io.Serializable;
 import java.util.Date;
 
-import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 
 
 @Table(name = "PressureReading")
@@ -90,7 +90,7 @@ public class PressureReading extends Model implements Serializable, ActionCommon
         systole_value=Integer.parseInt(items[index++]);
         diastolic_value=Integer.parseInt(items[index++]);
         pulse=Integer.parseInt(items[index++]);
-        time= InsulinUtils.getDateFromString(items[index++]);
+        time= CommonUtils.getDateFromString(items[index++]);
         note=Integer.parseInt(items[index++]);
         comment=items[index++];
     }

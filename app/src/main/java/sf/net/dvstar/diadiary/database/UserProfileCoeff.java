@@ -7,17 +7,23 @@ import com.activeandroid.annotation.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
+
 
 @Table(name = "UserProfileCoeff")
 public class UserProfileCoeff extends Model implements Serializable, CommonItem {
 
     public static String TAG = "UserProfileCoeff";
 
+    public UserProfileCoeff(){
+        super();
+    }
+
     @Column(name = "user")
     public UserProfile user;
 
-    @Column(name = "create")
-    public Date create;
+    @Column(name = "created")
+    public Date created;
 
     @Column(name = "k1")
     public float k1;
@@ -47,5 +53,9 @@ public class UserProfileCoeff extends Model implements Serializable, CommonItem 
         return "k1="+k1+",k2="+k2+",k3="+k3;
     }
 
+    @Override
+    public String toString() {
+        return "k1="+k1 +"("+ CommonUtils.getDateText(created) +")";
+    }
 
 }

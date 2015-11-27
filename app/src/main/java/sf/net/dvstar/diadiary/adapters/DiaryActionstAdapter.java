@@ -14,7 +14,7 @@ import sf.net.dvstar.diadiary.database.ActionCommonItem;
 import sf.net.dvstar.diadiary.database.GlucoseReading;
 import sf.net.dvstar.diadiary.database.InsulinInjection;
 import sf.net.dvstar.diadiary.database.PressureReading;
-import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 
 
 public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
@@ -112,8 +112,8 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
             {
                 holder.tv_insulin.setText(item.insulin.name);
                 holder.tv_dose.setText(""+item.dose);
-                holder.tv_time.setText(InsulinUtils.getTimeText(item.time));
-                holder.tv_comment.setText(item.comment);//+" "+InsulinUtils.getDateTimeFrom(item.time, null).toString()
+                holder.tv_time.setText(CommonUtils.getTimeText(item.time));
+                holder.tv_comment.setText(item.comment);//+" "+CommonUtils.getDateTimeFrom(item.time, null).toString()
                 holder.tv_planned.setText(getPlannedDescription(item.plan));
                 rowView.setBackgroundColor(item.color);
             }
@@ -124,7 +124,7 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
             //if(holder != null)
             {
                 holder.tv_value.setText("" + item.value);
-                holder.tv_time.setText(InsulinUtils.getDateTimeTextRev(item.time));
+                holder.tv_time.setText(CommonUtils.getDateTimeTextRev(item.time));
                 holder.tv_comment.setText(item.comment);
                 String notes = mContext.getResources().getStringArray(R.array.dialog_notes_list)[item.note];
                 holder.tv_notes.setText(notes);
@@ -137,7 +137,7 @@ public class DiaryActionstAdapter extends ArrayAdapter<ActionCommonItem> {
             {
                 holder.tv_diastolic_value.setText("" + item.diastolic_value);
                 holder.tv_systole_value.setText("" + item.systole_value);
-                holder.tv_time.setText(InsulinUtils.getDateTimeTextRev(item.time));
+                holder.tv_time.setText(CommonUtils.getDateTimeTextRev(item.time));
                 holder.tv_comment.setText(item.comment);
                 String notes = mContext.getResources().getStringArray(R.array.dialog_notes_list)[item.note];
                 holder.tv_notes.setText(notes);

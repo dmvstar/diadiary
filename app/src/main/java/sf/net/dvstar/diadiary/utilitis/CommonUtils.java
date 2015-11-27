@@ -1,4 +1,4 @@
-package sf.net.dvstar.diadiary.insulins;
+package sf.net.dvstar.diadiary.utilitis;
 
 import android.util.Log;
 
@@ -9,7 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-public class InsulinUtils {
+public class CommonUtils {
 
 
     // hours

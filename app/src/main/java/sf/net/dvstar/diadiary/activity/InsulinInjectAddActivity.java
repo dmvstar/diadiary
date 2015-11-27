@@ -26,7 +26,7 @@ import sf.net.dvstar.diadiary.adapters.InsulinDescAdapter;
 import sf.net.dvstar.diadiary.database.InsulinInjection;
 import sf.net.dvstar.diadiary.database.InsulinItem;
 
-import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 import sf.net.dvstar.diadiary.utilitis.SetDateTime;
 
@@ -152,8 +152,8 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
             //Toast.makeText(getBaseContext(), "mSPFirmList Position = " + index, Toast.LENGTH_SHORT).show();
 
             mEtDose.setText(mInjection.dose);
-            mEtFromTime.setText( InsulinUtils.getTimeText(mInjection.time) );
-            mEtFromDate.setText( InsulinUtils.getDateText(mInjection.date) );
+            mEtFromTime.setText( CommonUtils.getTimeText(mInjection.time) );
+            mEtFromDate.setText( CommonUtils.getDateText(mInjection.date) );
             mEtComment.setText(mInjection.comment);
             if (mInjection.note>=0) mSpNotes.setSelection(mInjection.note);
 
@@ -201,8 +201,8 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
         mInjection.color = viewColor.getColor();
 
         mInjection.dose = Integer.parseInt(mEtDose.getText().toString());
-        mInjection.time = InsulinUtils.parseTimeText(mEtFromTime.getText().toString() );
-        mInjection.date = InsulinUtils.parseDateText(mEtFromDate.getText().toString());
+        mInjection.time = CommonUtils.parseTimeText(mEtFromTime.getText().toString());
+        mInjection.date = CommonUtils.parseDateText(mEtFromDate.getText().toString());
         mInjection.note = note;
 
         mInjection.comment = mEtComment.getText().toString();

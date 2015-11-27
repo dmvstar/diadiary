@@ -17,7 +17,7 @@ import java.util.List;
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.GlucoseReading;
 
-import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 import sf.net.dvstar.diadiary.utilitis.SetDateTime;
 
@@ -78,13 +78,13 @@ public class DiaryGlucoseAddActivity extends AppCompatActivity {
             int indexNotes = mGlucoseReading.note;
             if(indexNotes>=0) mSpNotes.setSelection(indexNotes);
             mEtGlucoseValue.setText("" + mGlucoseReading.value);
-            mEtGlucoseTime.setText(InsulinUtils.getTimeText(mGlucoseReading.time));
-            mEtGlucoseDate.setText(InsulinUtils.getDateText(mGlucoseReading.time));
+            mEtGlucoseTime.setText(CommonUtils.getTimeText(mGlucoseReading.time));
+            mEtGlucoseDate.setText(CommonUtils.getDateText(mGlucoseReading.time));
             mEtGlucoseComment.setText(mGlucoseReading.comment);
         } else {
             Date today = new Date();
-            mEtGlucoseTime.setText(InsulinUtils.getTimeText(today));
-            mEtGlucoseDate.setText(InsulinUtils.getDateText(today));
+            mEtGlucoseTime.setText(CommonUtils.getTimeText(today));
+            mEtGlucoseDate.setText(CommonUtils.getDateText(today));
 
         }
     }
@@ -106,7 +106,7 @@ public class DiaryGlucoseAddActivity extends AppCompatActivity {
         String comm = mEtGlucoseComment.getText().toString();
 //        String note = mSpNotes.getSelectedItem().toString();
         int note = mSpNotes.getSelectedItemPosition();
-        Date time = InsulinUtils.parseDateTimeText(stime, date);
+        Date time = CommonUtils.parseDateTimeText(stime, date);
 
         mGlucoseReading.value = fvalue;
         mGlucoseReading.time = time;

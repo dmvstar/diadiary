@@ -17,7 +17,7 @@ import java.util.List;
 import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.PressureReading;
 
-import sf.net.dvstar.diadiary.insulins.InsulinUtils;
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 import sf.net.dvstar.diadiary.utilitis.SetDateTime;
 
@@ -68,13 +68,13 @@ public class DiaryPressureAddActivity extends AppCompatActivity {
             if(indexNotes>=0) mSpNotes.setSelection(indexNotes);
             mEtPressureSystoleValue.setText("" + mPressureReading.systole_value);
             mEtPressureDiastolicValue.setText("" + mPressureReading.diastolic_value);
-            mEtPressureTime.setText(InsulinUtils.getTimeText(mPressureReading.time));
-            mEtPressureDate.setText(InsulinUtils.getDateText(mPressureReading.time));
+            mEtPressureTime.setText(CommonUtils.getTimeText(mPressureReading.time));
+            mEtPressureDate.setText(CommonUtils.getDateText(mPressureReading.time));
             mEtComment.setText(mPressureReading.comment);
         } else {
             Date today = new Date();
-            mEtPressureTime.setText(InsulinUtils.getTimeText(today));
-            mEtPressureDate.setText(InsulinUtils.getDateText(today));
+            mEtPressureTime.setText(CommonUtils.getTimeText(today));
+            mEtPressureDate.setText(CommonUtils.getDateText(today));
         }
     }
 
@@ -97,7 +97,7 @@ public class DiaryPressureAddActivity extends AppCompatActivity {
 
         int note = mSpNotes.getSelectedItemPosition();
 
-        Date time = InsulinUtils.parseDateTimeText(stime, date);
+        Date time = CommonUtils.parseDateTimeText(stime, date);
 
         mPressureReading.time = time;
         mPressureReading.systole_value = syst;

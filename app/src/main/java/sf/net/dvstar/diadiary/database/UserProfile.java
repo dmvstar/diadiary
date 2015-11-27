@@ -23,7 +23,7 @@ public class UserProfile extends Model implements Serializable, CommonItem {
     public String age;//возраст
 
     @Column(name = "growth")
-    public Float growth;//рост
+    public int growth;//рост
 
     @Column(name = "weight")
     public Float weight;//вес
