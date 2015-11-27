@@ -102,7 +102,7 @@
     <string name="activity_settings_title">Settings</string>
     <string name="user_profile_label">User profile</string>
     <string name="user_profile_name">User name</string>
-    <string name="user_profile_age">Age</string>
+    <string name="user_profile_age">Full years</string>
     <string name="user_profile_sex">Gender</string>
     <string name="user_profile_diab_type">Diabet type</string>
     <string name="user_profile_glucose_measure">Glucose measure</string>

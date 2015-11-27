@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.activeandroid.query.Select;
@@ -28,16 +29,32 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
     private UserProfile mUserProfile;
     private EditText mEtUserName;
     private EditText mEtUserAge;
+    private EditText mEtUserDateOfBirth;
+    private EditText mEtUserGlucoseRangeMin;
+    private EditText mEtUserGlucoseRangeMax;
+
+    private Spinner mSpUserProfileGender;
+    private Spinner mSpUserProfileDiabType;
+    private Spinner mSpUserProfileK1;
+    private Spinner mSpUserGlucoseMeasure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         mContext = this;
-
         mBtAdd = (Button) findViewById(R.id.bt_confirm);
+
         mEtUserName = (EditText)findViewById(R.id.et_user_profile_name);
         mEtUserAge = (EditText) findViewById(R.id.et_user_profile_age);
+        mEtUserDateOfBirth = (EditText) findViewById(R.id.et_user_profile_date_of_birth);
+        mEtUserGlucoseRangeMin = (EditText) findViewById(R.id.et_user_glucose_range_min);
+        mEtUserGlucoseRangeMax = (EditText) findViewById(R.id.et_user_glucose_range_max);
+
+        mSpUserGlucoseMeasure = (Spinner) findViewById(R.id.sp_user_glucose_measure);
+        mSpUserProfileGender   = (Spinner) findViewById(R.id.sp_user_profile_gender);
+        mSpUserProfileDiabType   = (Spinner) findViewById(R.id.sp_user_profile_diab_type);
+        mSpUserProfileK1   = (Spinner) findViewById(R.id.sp_user_profile_k1);
 
         fillFieldData();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -57,7 +74,13 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
     }
 
     @Override
-    public void dialogActionYes(int aFrom){
+    public void dialogActionYes(int aFrom, String value){
+
+        UIUtilities.showInputDialog(1, this
+                , getResources().getString(R.string.dialog_add_k1_title)
+                , this
+        );
+
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Text");
         alert.setMessage("Enter Text :");
@@ -120,6 +143,9 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
             mBtAdd.setText( getResources().getString(R.string.button_insulin_update) );
             mEtUserName.setText(mUserProfile.name);
             mEtUserAge.setText(mUserProfile.age);
+            //mEtUserDateOfBirth.setText(""+mUserProfile.birth);
+            mEtUserGlucoseRangeMin.setText(""+mUserProfile.prefRangeMix);
+            mEtUserGlucoseRangeMax.setText(""+mUserProfile.prefRangeMax);
         }
     }
 
@@ -134,6 +160,9 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
 
         mUserProfile.name = name;
         mUserProfile.age = age;
+
+        mUserProfile.prefRangeMix = Float.parseFloat(mEtUserGlucoseRangeMin.getText().toString());
+        mUserProfile.prefRangeMax = Float.parseFloat(mEtUserGlucoseRangeMax.getText().toString());
 
         if (name.length()>0) {
             mUserProfile.save();

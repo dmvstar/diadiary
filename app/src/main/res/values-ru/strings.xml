@@ -26,7 +26,7 @@
     <string name="menu_add_label_carb">Углеводы</string>
     <string name="menu_add_hint_prot">Белки</string>
     <string name="menu_add_label_xe">ХЕ</string>
-    <string name="user_profile_age">Возраст</string>
+    <string name="user_profile_age">Полных лет</string>
     <string name="user_profile_diab_type">Тип диабета</string>
     <string name="user_profile_glucose_measure">Глюкоза в</string>
     <string name="user_profile_glucose_range">Диапазон</string>
@@ -41,4 +41,5 @@
     <string name="pressure_add_title">Добавить результат давления</string>
     <string name="pressure_label_unit">ммРс</string>
     <string name="prod_item_add_title">Добавить продукт</string>
+    <string name="user_profile_date_of_birth">Дата рождения</string>
 </resources>

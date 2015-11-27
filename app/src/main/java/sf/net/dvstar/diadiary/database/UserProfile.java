@@ -23,28 +23,28 @@ public class UserProfile extends Model implements Serializable, CommonItem {
     public String age;//возраст
 
     @Column(name = "growth")
-    Float growth;//рост
+    public Float growth;//рост
 
     @Column(name = "weight")
-    Float weight;//вес
+    public Float weight;//вес
 
     @Column(name = "gender")
-    int gender;
+    public int gender;
 
     @Column(name = "diabetType")
-    int diabetType;
+    public int diabetType;
 
     @Column(name = "glucoseMeasure")
-    String glucoseMeasure;
+    public String glucoseMeasure;
 
     @Column(name = "prefRangeMix")
-    Float prefRangeMix;
+    public Float prefRangeMix;
 
     @Column(name = "prefRangeMax")
-    Float prefRangeMax;
+    public Float prefRangeMax;
 
     @Column(name = "locale")
-    String locale;
+    public String locale;
 
     public UserProfile() {
         super();
