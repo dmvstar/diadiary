@@ -136,7 +136,7 @@
     <string name="insulin_K1_dose">Insulin:</string>
     <string name="common_label_K1">K1</string>
     <string name="user_profile_K1_list">K1 list</string>
-    <string name="dialog_add_k1_title">Add K1 value to list, are you shure ?</string>
+    <string name="dialog_add_k1_title">Add K1 value to list</string>
     <string name="dialog_del_k1_title">Remove current K1 from list, are you shure ?</string>
     <string name="user_profile_date_of_birth">Date of birth</string>
     <string name="user_profile_weight">Weight</string>

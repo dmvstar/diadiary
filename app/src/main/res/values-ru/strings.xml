@@ -17,7 +17,7 @@
     <string name="pressure_add_label_diastolic">Нижнее</string>
     <string name="diab_type_list_1">Тип 1 (инсулинозависимый)</string>
     <string name="diab_type_list_2">Тип 2 (возрастной)</string>
-    <string name="dialog_add_k1_title">Добавить значение К1, точно ? </string>
+    <string name="dialog_add_k1_title">Добавить значение К1</string>
     <string name="dialog_del_k1_title">Удалить текущее значение К1, точно ?</string>
     <string name="dialog_delete">Удалить</string>
     <string name="dialog_edit">Редактировать</string>

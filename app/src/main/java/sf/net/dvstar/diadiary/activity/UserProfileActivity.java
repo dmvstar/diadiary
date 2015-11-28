@@ -1,11 +1,8 @@
 package sf.net.dvstar.diadiary.activity;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -14,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.activeandroid.Model;
 import com.activeandroid.query.Select;
 
 import java.util.Date;
@@ -28,6 +24,9 @@ import sf.net.dvstar.diadiary.utilitis.UIInterfaceYesNo;
 import sf.net.dvstar.diadiary.utilitis.UIUtilities;
 
 public class UserProfileActivity extends AppCompatActivity implements ActivitySaving, UIInterfaceYesNo {
+
+    private static final int DIALOG_SHOW_INPUT_K1 = 1;
+    private static final int DIALOG_SHOW_DEL_K1 = 2;
 
     private Context mContext;
     private int mMode;
@@ -74,7 +73,7 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
     }
 
     public void addK1(View view) {
-        UIUtilities.showInputDialog(1, this
+        UIUtilities.showInputDialog(DIALOG_SHOW_INPUT_K1, this
                 , getResources().getString(R.string.dialog_add_k1_title)
                 , this
         );
@@ -85,16 +84,20 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
     }
 
     public void delK1(View view) {
-        UIUtilities.showYesNoDialog(2, view
-                , getResources().getString(R.string.dialog_del_k1_title)
+        UIUtilities.showYesNoDialog(DIALOG_SHOW_DEL_K1, view
+                , getResources().getString(R.string.dialog_del_k1_title)  + " ("+mSpUserProfileK1.getSelectedItem()+")"
                 , this);
     }
 
     @Override
     public void dialogActionYes(int aFrom, String value){
 
-        if(aFrom==1){
+        if(aFrom== DIALOG_SHOW_INPUT_K1){
             addK1Value(value);
+        }
+
+        if(aFrom== DIALOG_SHOW_DEL_K1){
+            delK1Value();
         }
 
 //        UIUtilities.showInputDialog(1, this
@@ -131,6 +134,12 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
 
         Toast.makeText(this, "dialogActionYes "+aFrom +" user = "+mUserProfile.toString(),
                 Toast.LENGTH_SHORT).show();
+    }
+
+    private void delK1Value() {
+        UserProfileCoeff coeff = (UserProfileCoeff) mSpUserProfileK1.getSelectedItem();
+        coeff.delete();
+        fillUserProfileCoeff();
     }
 
     private void addK1Value(String value) {
