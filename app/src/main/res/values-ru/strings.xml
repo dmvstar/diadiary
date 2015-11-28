@@ -17,13 +17,13 @@
     <string name="pressure_add_label_diastolic">Нижнее</string>
     <string name="diab_type_list_1">Тип 1 (инсулинозависимый)</string>
     <string name="diab_type_list_2">Тип 2 (возрастной)</string>
-    <string name="dialog_add_k1_title">Добавить значение К1</string>
+    <string name="dialog_add_k1_title">Введите значение</string>
     <string name="dialog_del_k1_title">Удалить текущее значение К1, точно ?</string>
     <string name="dialog_delete">Удалить</string>
     <string name="dialog_edit">Редактировать</string>
     <string name="menu_add_label_gi">ГИ</string>
     <string name="menu_add_label_fats">Жиры</string>
-    <string name="menu_add_label_carb">Углеводы</string>
+    <string name="menu_add_label_carb">Угл-ды</string>
     <string name="menu_add_hint_prot">Белки</string>
     <string name="menu_add_label_xe">ХЕ</string>
     <string name="user_profile_age">Полных лет</string>
@@ -42,4 +42,16 @@
     <string name="pressure_label_unit">ммРс</string>
     <string name="prod_item_add_title">Добавить продукт</string>
     <string name="user_profile_date_of_birth">Дата рождения</string>
+    <string name="dialog_add_k1_message">Добавить значение К1</string>
+    <string name="button_add">Добавить</string>
+    <string name="button_cancel">Отмена</string>
+    <string name="button_insulin_update">Обновить</string>
+    <string name="button_select">Выбор</string>
+    <string name="button_select_all">Все</string>
+    <string name="calendar_title">Календарь</string>
+    <string name="common_label_min">Мин</string>
+    <string name="common_label_max">Мак</string>
+    <string name="config_user_profile">Профайл</string>
+    <string name="user_profile_weight">Вес</string>
+    <string name="user_profile_growth">Рост</string>
 </resources>

@@ -30,7 +30,7 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
 
     private Context mContext;
     private int mMode;
-    private Button mBtAdd;
+    private Button mBtConfirm;
     private UserProfile mUserProfile;
     private EditText mEtUserName;
     private EditText mEtUserAge;
@@ -51,7 +51,7 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         mContext = this;
-        mBtAdd = (Button) findViewById(R.id.bt_confirm);
+        mBtConfirm = (Button) findViewById(R.id.bt_confirm);
 
         mEtUserName = (EditText)findViewById(R.id.et_user_profile_name);
         mEtUserAge    = (EditText) findViewById(R.id.et_user_profile_age);
@@ -75,6 +75,7 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
     public void addK1(View view) {
         UIUtilities.showInputDialog(DIALOG_SHOW_INPUT_K1, this
                 , getResources().getString(R.string.dialog_add_k1_title)
+                , getResources().getString(R.string.dialog_add_k1_message)
                 , this
         );
 
@@ -177,7 +178,7 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
         else mMode = CommonConstants.MODE_ACTIONS_EDIT_ADD;
 
         if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ITEM) {
-            mBtAdd.setText( getResources().getString(R.string.button_insulin_update) );
+            mBtConfirm.setText(getResources().getString(R.string.button_insulin_update));
             mEtUserName.setText(mUserProfile.name);
             mEtUserAge.setText(mUserProfile.age);
             //mEtUserDateOfBirth.setText(""+mUserProfile.birth);

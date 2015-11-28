@@ -32,7 +32,7 @@ public class DiaryPressureAddActivity extends AppCompatActivity {
     private int mMode;
     private Context mContext;
 
-    private Button mBtAdd;
+    private Button mBtConfirm;
     private List mNotesList;
 
     private PressureReading mPressureReading;
@@ -53,14 +53,14 @@ public class DiaryPressureAddActivity extends AppCompatActivity {
         mEtPressureDate = (EditText) findViewById(R.id.et_date);
         mEtPressureTime = (EditText) findViewById(R.id.et_time);
         mEtComment = (EditText) findViewById(R.id.et_comment);
-        mBtAdd = (Button) findViewById(R.id.bt_confirm);
+        mBtConfirm = (Button) findViewById(R.id.bt_confirm);
         mSpNotes = (Spinner) findViewById(R.id.sp_notes);
 
         SetDateTime.SetTime fromTime = new SetDateTime.SetTime(mEtPressureTime, this);
         SetDateTime.SetDate fromDate = new SetDateTime.SetDate(mEtPressureDate, this);
 
         if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ITEM) {
-            mBtAdd.setText( getResources().getString(R.string.button_insulin_update) );
+            mBtConfirm.setText(getResources().getString(R.string.button_insulin_update));
             long iId = getIntent().getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
             mPressureReading = new Select().from(PressureReading.class).where("id = ?", iId).executeSingle();
 

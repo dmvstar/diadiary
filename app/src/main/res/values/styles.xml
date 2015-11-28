@@ -2,7 +2,9 @@
 
     <!-- Base application theme. -->
     <!--style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar"-->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!--style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar"-->
+    <style name="AppTheme" parent="Theme.AppCompat">
+    <!--style name="AppTheme" parent="android:Theme.Holo"-->
     <!--style name="AppTheme" parent="ThemeOverlay.AppCompat.Dark"-->
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primary</item>
@@ -10,10 +12,10 @@
         <item name="colorAccent">@color/accent</item>
 
         <!--item name="android:background">@color/colorBackground</item-->
-
+<!--
         <item name="android:windowBackground">@color/colorWindowBackground</item>
         <item name="android:colorBackground">@color/colorBackground</item>
-
+-->
     </style>
 
     <style name="AppTheme.NoActionBar">

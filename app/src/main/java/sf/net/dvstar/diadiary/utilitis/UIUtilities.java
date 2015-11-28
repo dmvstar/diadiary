@@ -36,7 +36,7 @@ public class UIUtilities {
 
     }
 
-    public static void showInputDialog(final int aFrom, Context aContext, String aMessage, final UIInterfaceYesNo aYesNo) {
+    public static void showInputDialog(final int aFrom, Context aContext, String aTitle, String aMessage, final UIInterfaceYesNo aYesNo) {
         final EditText input = new EditText(aContext);
 
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -60,7 +60,7 @@ public class UIUtilities {
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(aContext);
-        builder.setTitle("Text");
+        builder.setTitle(aTitle);
         builder.setMessage(aMessage);
 
         input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);

@@ -6,13 +6,17 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.activeandroid.Model;
 import com.activeandroid.query.Select;
 
 import java.util.ArrayList;
@@ -23,6 +27,7 @@ import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.ProductItem;
 import sf.net.dvstar.diadiary.database.ProductMenuDesc;
 import sf.net.dvstar.diadiary.database.ProductMenuItem;
+import sf.net.dvstar.diadiary.database.UserProfileCoeff;
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 
 
@@ -47,6 +52,9 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
     private TextView mTvGI;
     private TextView mTvXE;
     private long mId;
+    private List<UserProfileCoeff> mLsttUserProfileCoeff;
+    private Spinner mSpUserProfileK1;
+    private Button mBtConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +75,7 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
 
         mEtName = (EditText) findViewById(R.id.et_menu_name);
         mEtComment = (EditText) findViewById(R.id.et_comment);
+        mBtConfirm = (Button) findViewById(R.id.bt_confirm);
 
         mTvCarb = (TextView) findViewById(R.id.tv_prod_carb);
         mTvFat = (TextView) findViewById(R.id.tv_prod_fat);
@@ -81,12 +90,24 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
         adapter = new ArrayAdapter<ProductMenuItem>(this, android.R.layout.simple_list_item_1, mListProductMenuItem);
         mProdMenu.setAdapter(adapter);
         mProdMenu.setOnItemClickListener(this);
+        mSpUserProfileK1   = (Spinner) findViewById(R.id.sp_user_profile_k1);
 
         ProductMenuItem.ProductMenuItemsCalc calc = ProductMenuItem.calculteProductMenuItems(mListProductMenuItem);
 
         fillProductMenuItems(calc);
+        fillUserProfileCoeff();
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
     }
+
+    private void fillUserProfileCoeff() {
+        mLsttUserProfileCoeff = new Select().from(UserProfileCoeff.class).execute();
+        ArrayAdapter<UserProfileCoeff> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,mLsttUserProfileCoeff);
+        mSpUserProfileK1.setAdapter(adapter);
+    }
+
+
 
     private void showProducItemActivity() {
         Intent intent = new Intent(this, ProdItemActivity.class);
@@ -167,6 +188,10 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     public void fillFieldData() {
+
+        if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ITEM) {
+            mBtConfirm.setText(getResources().getString(R.string.button_insulin_update));
+        }
 
         if (mId > 0) {
             //mProductMenuDesc = new Select().from(ProductMenuDesc.class).where("id = ?", mId).executeSingle();
