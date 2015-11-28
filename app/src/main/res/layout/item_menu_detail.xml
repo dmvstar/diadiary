@@ -32,7 +32,7 @@
 
                 <TextView
                     android:id="@+id/textView"
-                    style="@android:style/TextAppearance.Medium"
+                    style="@style/TextAppearance.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
 
@@ -41,7 +41,7 @@
 
                 <TextView
                     android:id="@+id/tv_name"
-                    style="@android:style/TextAppearance.Medium"
+                    style="@style/TextAppearance.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -59,7 +59,7 @@
 
                 <TextView
                     android:id="@+id/textView3"
-                    style="@android:style/TextAppearance.Medium"
+                    style="@style/TextAppearance.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -68,7 +68,7 @@
 
                 <TextView
                     android:id="@+id/tv_time"
-                    style="@android:style/TextAppearance.Medium"
+                    style="@style/TextAppearance.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -86,7 +86,7 @@
 
                 <TextView
                     android:id="@+id/textView31"
-                    style="@android:style/TextAppearance.Medium"
+                    style="@style/TextAppearance.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="25"
@@ -95,7 +95,7 @@
 
                 <TextView
                     android:id="@+id/tv_K1"
-                    style="@android:style/TextAppearance.Medium"
+                    style="@style/TextAppearance.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="25"
@@ -103,7 +103,7 @@
                     android:gravity="right" />
                 <TextView
                     android:id="@+id/textView32"
-                    style="@android:style/TextAppearance.Medium"
+                    style="@style/TextAppearance.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="20"
@@ -113,7 +113,7 @@
 
                 <TextView
                     android:id="@+id/tv_insulin_dose"
-                    style="@android:style/TextAppearance.Medium"
+                    style="@style/TextAppearance.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
@@ -254,7 +254,7 @@
 
                 <TextView
                     android:id="@+id/tv_comment"
-                    style="@android:style/TextAppearance.Medium"
+                    style="@style/TextAppearance.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
