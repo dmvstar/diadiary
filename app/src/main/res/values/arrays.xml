@@ -75,8 +75,8 @@
         <item>@string/glucose_measure_list_2</item>
     </string-array>
 
-    <string name="glucose_range_list_1">1</string>
-    <string name="glucose_range_list_2">2</string>
+    <string name="glucose_range_list_1" translatable="false">1</string>
+    <string name="glucose_range_list_2" translatable="false">2</string>
 
     <string-array name="glucose_range_list">
         <item>@string/glucose_range_list_1</item>

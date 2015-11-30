@@ -12,7 +12,7 @@
     <string name="insulin_label_comment">Comment</string>
     <string name="action_date_label">For date</string>
     <string name="action_date_text" translatable="false">dd.mm.yyyy</string>
-    <string name="planned_none">None</string>
+    <string name="planned_none" translatable="false">None</string>
     <string name="planned_regular">Regular</string>
     <string name="planned_additionals">Additional</string>
 
@@ -71,7 +71,7 @@
     <string name="action_graph">Diagram</string>
     <string name="insulin_inject_label_type">Injection type</string>
     <string name="injection_total_label">Total dose:</string>
-    <string name="tv_injection_total_value">0</string>
+    <string name="tv_injection_total_value" translatable="false">0</string>
     <string name="dialog_edit">Edit</string>
     <string name="dialog_delete">Delete</string>
     <string name="insulin_inject_unit">unit(s)</string>
@@ -94,7 +94,7 @@
     <string name="action_comment">Comment:</string>
     <string name="glucoce_label_unit">mmol/L</string>
     <string name="average_glucose_label">Average glucose:</string>
-    <string name="tv_average_glucose_value">0.0</string>
+    <string name="tv_average_glucose_value" translatable="false">0.0</string>
     <string name="pressure_add_label_pulse">Pulse</string>
     <string name="pulse_label_unit">bpm</string>
     <string name="config_setting">Settings</string>
@@ -127,7 +127,7 @@
     <string name="menu_add_label_prot">Prot</string>
     <string name="menu_add_label_fats">Fat</string>
     <string name="menu_add_label_carb">Carb</string>
-    <string name="menu_add_label_zero">0</string>
+    <string name="menu_add_label_zero" translatable="false">0</string>
     <string name="menu_add_label_gi">GI</string>
     <string name="menu_add_label_xe">BE</string>
     <string name="menu_add_hint_prot">Protheine</string>
@@ -142,5 +142,6 @@
     <string name="user_profile_date_of_birth">Date of birth</string>
     <string name="user_profile_weight">Weight</string>
     <string name="user_profile_growth">Growth</string>
+    <string name="activity_products_title">Products</string>
 
 </resources>

@@ -54,7 +54,7 @@
         <!-- android:theme="@style/AppTheme.NoActionBar" -->
 
         <activity android:name=".activity.ProdGroupActivity"/>
-        <activity android:name=".activity.ProdItemActivity"/>
+        <activity android:name=".activity.ProdItemActivity" android:label="@string/activity_products_title"/>
         <activity android:name=".activity.SettingActivity" android:label="@string/activity_settings_title"/>
         <activity android:name=".activity.UserProfileActivity" android:label="@string/activity_profile_title"/>
         <activity android:name=".activity.ProdMenuAddActivity" android:label="@string/activity_menuadd_title"/>
