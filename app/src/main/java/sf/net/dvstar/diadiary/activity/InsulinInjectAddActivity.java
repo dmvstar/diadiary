@@ -151,7 +151,7 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
             if (index>=0) mSpInsulins.setSelection(index);
             //Toast.makeText(getBaseContext(), "mSPFirmList Position = " + index, Toast.LENGTH_SHORT).show();
 
-            mEtDose.setText(mInjection.dose);
+            mEtDose.setText(""+mInjection.dose);
             mEtFromTime.setText( CommonUtils.getTimeText(mInjection.time) );
             mEtFromDate.setText( CommonUtils.getDateText(mInjection.date) );
             mEtComment.setText(mInjection.comment);
