@@ -1,7 +1,6 @@
 package sf.net.dvstar.diadiary.activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,8 +15,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.activeandroid.Model;
 import com.activeandroid.query.Select;
+import com.github.mikephil.charting.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,9 +28,12 @@ import sf.net.dvstar.diadiary.database.ProductMenuDesc;
 import sf.net.dvstar.diadiary.database.ProductMenuItem;
 import sf.net.dvstar.diadiary.database.UserProfileCoeff;
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
+import sf.net.dvstar.diadiary.utilitis.UIInterfaceYesNo;
+import sf.net.dvstar.diadiary.utilitis.UIUtilities;
 
 
-public class ProdMenuAddActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, ActivitySaving {
+public class ProdMenuAddActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, ActivitySaving, UIInterfaceYesNo {
 
     private static final String TAG = "ProdMenuAddActivity";
     private ProductMenuDesc mProductMenuDesc;
@@ -107,23 +109,21 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
         mSpUserProfileK1.setAdapter(adapter);
     }
 
-
-
     private void showProducItemActivity() {
         Intent intent = new Intent(this, ProdItemActivity.class);
-        this.startActivity(intent);
+        this.startActivityForResult(intent, CommonConstants.MODE_ACTIONS_GET_PRODUCT_ONE);
     }
 
     private void showProductGroupActivity() {
         Intent intent = new Intent(this, ProdGroupActivity.class);
-        intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT, CommonConstants.MODE_ACTIONS_GET_PRODUCT);
-        this.startActivityForResult(intent, CommonConstants.MODE_ACTIONS_GET_PRODUCT);
+        intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT, CommonConstants.MODE_ACTIONS_GET_PRODUCT_ITEM);
+        this.startActivityForResult(intent, CommonConstants.MODE_ACTIONS_GET_PRODUCT_ITEM);
     }
 
     private void showProdItemAddActivity() {
         Intent intent = new Intent(this, ProdItemAddActivity.class);
-        intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT, CommonConstants.MODE_ACTIONS_GET_PRODUCT);
-        this.startActivityForResult(intent, CommonConstants.MODE_ACTIONS_GET_PRODUCT);
+        intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT, CommonConstants.MODE_ACTIONS_GET_PRODUCT_ITEM);
+        this.startActivityForResult(intent, CommonConstants.MODE_ACTIONS_GET_PRODUCT_ITEM);
     }
 
     public void cancel(View view) {
@@ -135,30 +135,53 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
         finish();
     }
 
-    public void addProduct(View view) {
+    public void addProductFromOne(View view) {
         saveFieldData();
         showProdItemAddActivity();
         //showProductGroupActivity();
     }
 
+    public void addProductFromAll(View view) {
+        saveFieldData();
+        showProducItemActivity();
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            ProductMenuItem productItem = (ProductMenuItem) data.getExtras().getSerializable(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
-            Long productId = data.getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
-            ProductItem product = new Select().from(ProductItem.class).where("id = ?", productId).executeSingle();
+            if(requestCode == CommonConstants.MODE_ACTIONS_GET_PRODUCT_ITEM) {
+                ProductMenuItem productItem = (ProductMenuItem) data.getExtras().getSerializable(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
+                Long productId = data.getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
+                ProductItem product = new Select().from(ProductItem.class).where("id = ?", productId).executeSingle();
 
-            productItem.menu = mProductMenuDesc;
-            productItem.prod = product;
+                productItem.menu = mProductMenuDesc;
+                productItem.prod = product;
 
-            calculteProductMenuItem(productItem);
-            mListProductMenuItem.add(productItem);
+                calculteProductMenuItem(productItem);
+                mListProductMenuItem.add(productItem);
 
-            ProductMenuItem.ProductMenuItemsCalc calc = ProductMenuItem.calculteProductMenuItems(mListProductMenuItem);
+                ProductMenuItem.ProductMenuItemsCalc calc = ProductMenuItem.calculteProductMenuItems(mListProductMenuItem);
 
-            fillProductMenuItems(calc);
+                fillProductMenuItems(calc);
 
-            adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
+            }
+
+            if(requestCode == CommonConstants.MODE_ACTIONS_GET_PRODUCT_ONE) {
+
+                Long productId = data.getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
+                ProductItem product = new Select().from(ProductItem.class).where("id = ?", productId).executeSingle();
+                Toast.makeText(this, product.getListText(),
+                        Toast.LENGTH_SHORT).show();
+
+                UIUtilities.showInputDialog(1, this
+                        , getResources().getString(R.string.dialog_add_weight_title)
+                        , getResources().getString(R.string.dialog_add_weight_message)
+                        , this
+                );
+            }
+
+
         }
     }
 
@@ -242,5 +265,15 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onStop() {
         super.onStop();
+    }
+
+    @Override
+    public void dialogActionYes(int aFrom, String value) {
+
+    }
+
+    @Override
+    public void dialogActionNo(int aFrom) {
+
     }
 }

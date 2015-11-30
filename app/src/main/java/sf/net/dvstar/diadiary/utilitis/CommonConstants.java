@@ -28,7 +28,8 @@ public interface CommonConstants {
 
     int MODE_ACTIONS_EDIT_ITEM = 1;
     int MODE_ACTIONS_EDIT_ADD = 2;
-    int MODE_ACTIONS_GET_PRODUCT = 3;
+    int MODE_ACTIONS_GET_PRODUCT_ITEM = 3;
+    int MODE_ACTIONS_GET_PRODUCT_ONE = 4;
 
     int COLOR_NOVORAPID = Color.parseColor("#FF9900");
     int COLOR_LEVEMIR = Color.parseColor("#00AF8E");

@@ -65,8 +65,8 @@ public class ProdGroupActivity extends AppCompatActivity implements AdapterView.
             intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
         }
 
-        if(mMode==CommonConstants.MODE_ACTIONS_GET_PRODUCT)
-            this.startActivityForResult(intent, CommonConstants.MODE_ACTIONS_GET_PRODUCT);
+        if(mMode==CommonConstants.MODE_ACTIONS_GET_PRODUCT_ITEM)
+            this.startActivityForResult(intent, CommonConstants.MODE_ACTIONS_GET_PRODUCT_ITEM);
         else
            this.startActivity(intent);
 

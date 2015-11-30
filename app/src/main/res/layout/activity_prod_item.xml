@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/bt_find"
             android:src="@android:drawable/ic_menu_search"
-            android:layout_weight="6" />
+            android:layout_weight="6"
+            android:onClick="findClick" />
 
 
     </LinearLayout>

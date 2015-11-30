@@ -147,5 +147,7 @@
     <string name="user_profile_weight">Weight</string>
     <string name="user_profile_growth">Growth</string>
     <string name="activity_products_title">Products</string>
+    <string name="dialog_add_weight_title">Enter weight</string>
+    <string name="dialog_add_weight_message">Enter weight of product</string>
 
 </resources>
