@@ -219,7 +219,7 @@ public class DatabaseActivity extends AppCompatActivity implements OIFileManager
         alertDialog.setMessage(getResources().getString(R.string.dialog_import_title));
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getResources().getString(R.string.dialog_import_from_assets), dialogClickListener);
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getResources().getString(R.string.dialog_import_from_file), dialogClickListener);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getResources().getString(R.string.button_cancel), dialogClickListener);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getResources().getString(R.string.label_mode_cancel), dialogClickListener);
         alertDialog.show();
 
     }

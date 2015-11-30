@@ -157,7 +157,7 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
             mEtComment.setText(mInjection.comment);
             if (mInjection.note>=0) mSpNotes.setSelection(mInjection.note);
 
-            mBtAdd.setText( getResources().getString(R.string.button_insulin_update) );
+            mBtAdd.setText( getResources().getString(R.string.label_mode_update) );
 
             mTvLabelModeAdd.setText( getResources().getString(R.string.label_mode_edit) );
 

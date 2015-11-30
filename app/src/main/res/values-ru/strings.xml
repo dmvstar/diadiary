@@ -43,11 +43,10 @@
     <string name="prod_item_add_title">Добавить продукт</string>
     <string name="user_profile_date_of_birth">Дата рождения</string>
     <string name="dialog_add_k1_message">Добавить значение К1</string>
-    <string name="button_add">Добавить</string>
-    <string name="button_cancel">Отмена</string>
-    <string name="button_insulin_update">Обновить</string>
+
     <string name="button_select">Выбор</string>
     <string name="button_select_all">Все</string>
+
     <string name="calendar_title">Календарь</string>
     <string name="common_label_min">Мин</string>
     <string name="common_label_max">Мак</string>
@@ -77,10 +76,10 @@
     <string name="glucose_label_title">Значение:</string>
     <string name="glucose_add_label_when">Когда измерено</string>
     <string name="glucose_add_label_notes">Примечание</string>
-    <string name="glucose_add_label_measure" translatable="false"></string>
+    <string name="glucose_add_label_measure" translatable="false">ммоль/Л</string>
     <string name="glucose_measure_list_1">ммоль/Л</string>
     <string name="injection_total_label">Доза инсулина:</string>
-    <string name="insulin_K1_dose"></string>
+    <string name="insulin_K1_dose">Инсулины:</string>
     <string name="insulin_desc_label_max">макс:</string>
     <string name="menu_add_label_groups">Группы продуктов</string>
     <string name="menu_add_label_prot">Белки</string>
@@ -102,5 +101,25 @@
     <string name="action_product_group">Группы продуктов</string>
     <string name="action_date_label_from">С</string>
     <string name="insulin_desc_label_min">мин:</string>
-    <string name="insulin_inject_unit">единиц(ы)</string>
+    <string name="insulin_inject_unit">един.</string>
+    <string name="action_notes">Примечания</string>
+    <string name="action_menus">Меню (еда)</string>
+    <string name="action_insulins">Инсулины</string>
+    <string name="action_injections">Инъекции</string>
+    <string name="action_graph">Диаграмма</string>
+    <string name="action_db_reinit">Пересоздать БД</string>
+    <string name="action_db_export">Экспорт данных</string>
+    <string name="action_db_import_data">Импорт данных</string>
+    <string name="action_db_import_prod">Импорт продуктов</string>
+    <string name="insulin_desc_firm">Фирма:</string>
+    <string name="insulin_desc_ends">Конец:</string>
+    <string name="insulin_desc_max">Максимум:</string>
+    <string name="insulin_desc_name">Название:</string>
+    <string name="insulin_desc_origin"></string>
+    <string name="insulin_desc_start">Начало:</string>
+    <string name="insulin_desc_type">Тип:</string>
+    <string name="insulin_desc_work">Продолжит:</string>
+    <string name="insulin_inject_date">Дата:</string>
+    <string name="insulin_inject_dose">Доза:</string>
+    <string name="insulin_inject_time">Время:</string>
 </resources>

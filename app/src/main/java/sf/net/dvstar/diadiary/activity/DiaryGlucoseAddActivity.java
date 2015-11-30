@@ -70,7 +70,7 @@ public class DiaryGlucoseAddActivity extends AppCompatActivity {
         SetDateTime.SetDate fromDate = new SetDateTime.SetDate(mEtGlucoseDate, this);
 
         if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ITEM) {
-            mBtAdd.setText( getResources().getString(R.string.button_insulin_update) );
+            mBtAdd.setText( getResources().getString(R.string.label_mode_update) );
             long iId = getIntent().getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
             mGlucoseReading = new Select().from(GlucoseReading.class).where("id = ?", iId).executeSingle();
 

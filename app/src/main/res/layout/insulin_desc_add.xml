@@ -308,7 +308,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="confirm"
-                        android:text="@string/button_add" />
+                        android:text="@string/label_mode_add" />
 
                     <Button
                         android:id="@+id/bt_insulin_cancel"
@@ -316,7 +316,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="cancel"
-                        android:text="@string/button_cancel" />
+                        android:text="@string/label_mode_cancel" />
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>

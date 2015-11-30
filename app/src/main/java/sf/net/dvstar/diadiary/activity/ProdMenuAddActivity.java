@@ -190,7 +190,7 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
     public void fillFieldData() {
 
         if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ITEM) {
-            mBtConfirm.setText(getResources().getString(R.string.button_insulin_update));
+            mBtConfirm.setText(getResources().getString(R.string.label_mode_update));
         }
 
         if (mId > 0) {

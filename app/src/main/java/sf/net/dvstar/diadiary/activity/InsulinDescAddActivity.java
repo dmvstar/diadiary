@@ -148,7 +148,7 @@ public class InsulinDescAddActivity extends AppCompatActivity {
             mEtEndMin.setText(""+mInsulinItem.ends_min);
             mEtEndMax.setText(""+mInsulinItem.ends_max);
 
-            btAdd.setText( getResources().getString(R.string.button_insulin_update) );
+            btAdd.setText( getResources().getString(R.string.label_mode_update) );
 
             mSPSttMeasure.setSelection(getMeasureIndex(mInsulinItem.start_measure));
             mSPMaxMeasure.setSelection(getMeasureIndex(mInsulinItem.work_measure));

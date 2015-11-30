@@ -178,7 +178,7 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
         else mMode = CommonConstants.MODE_ACTIONS_EDIT_ADD;
 
         if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ITEM) {
-            mBtConfirm.setText(getResources().getString(R.string.button_insulin_update));
+            mBtConfirm.setText(getResources().getString(R.string.label_mode_update));
             mEtUserName.setText(mUserProfile.name);
             mEtUserAge.setText(mUserProfile.age);
             //mEtUserDateOfBirth.setText(""+mUserProfile.birth);

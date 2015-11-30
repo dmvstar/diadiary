@@ -60,7 +60,7 @@ public class DiaryPressureAddActivity extends AppCompatActivity {
         SetDateTime.SetDate fromDate = new SetDateTime.SetDate(mEtPressureDate, this);
 
         if (mMode == CommonConstants.MODE_ACTIONS_EDIT_ITEM) {
-            mBtConfirm.setText(getResources().getString(R.string.button_insulin_update));
+            mBtConfirm.setText(getResources().getString(R.string.label_mode_update));
             long iId = getIntent().getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
             mPressureReading = new Select().from(PressureReading.class).where("id = ?", iId).executeSingle();
 

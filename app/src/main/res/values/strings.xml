@@ -1,27 +1,26 @@
 <resources>
     <string name="app_name">DiaDiary</string>
     <string name="app_desc">Diabetic Diary (insulin, glucose etc)</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_insulin">Insulins</string>
-    <string name="button_add">Add</string>
-    <string name="button_cancel">Cancel</string>
-    <string name="button_insulin_color">Select color</string>
-    <string name="insulin_label_insulin">Insulin</string>
-    <string name="insulin_label_dose">Dose injection</string>
 
-    <string name="insulin_label_comment">Comment</string>
+    <string name="action_settings">Settings</string>
     <string name="action_date_label">For date</string>
     <string name="action_date_text" translatable="false">dd.mm.yyyy</string>
-    <string name="planned_none" translatable="false">None</string>
-    <string name="planned_regular">Regular</string>
-    <string name="planned_additionals">Additional</string>
-
     <string name="action_database">Database</string>
     <string name="action_db_reinit">Reinit DB</string>
     <string name="action_db_import_prod">Import products</string>
     <string name="action_db_import_data">Import data</string>
     <string name="action_db_export">Export data</string>
     <string name="action_menus">Menus</string>
+
+    <string name="button_insulin_color">Select color</string>
+
+    <string name="insulin_label_insulin">Insulin</string>
+    <string name="insulin_label_dose">Dose injection</string>
+    <string name="insulin_label_comment">Comment</string>
+
+    <string name="planned_none" translatable="false">None</string>
+    <string name="planned_regular">Regular</string>
+    <string name="planned_additionals">Additional</string>
 
     <string name="insulin_desc_name">Insulin name:</string>
     <string name="insulin_desc_firm">Firm:</string>
@@ -32,7 +31,8 @@
     <string name="insulin_desc_ends">Ends:</string>
     <string name="insulin_desc_label_min">min:</string>
     <string name="insulin_desc_label_max">max:</string>
-    <string name="button_insulin_update">Update</string>
+
+    <string name="button_update">Update</string>
 
     <string name="insulin_inject_insu">Insulin:</string>
     <string name="insulin_inject_dose">Dose:</string>
@@ -46,8 +46,12 @@
     <string name="action_injections">Injections</string>
     <string name="injection_label">Injections</string>
     <string name="insulin_desc_max">Maximum:</string>
+
+    <string name="label_mode_update">Update</string>
     <string name="label_mode_add">Add</string>
     <string name="label_mode_edit">Edit</string>
+    <string name="label_mode_cancel">Cancel</string>
+
     <string name="insulin_label">Insulins</string>
     <string name="menu_event_add_inject">Add inject</string>
     <string name="menu_event_add_eating">Add eating</string>
@@ -57,7 +61,7 @@
     <string name="glucose_add_label_concentration">Concentration</string>
     <string name="glucose_add_title">Add glucose reading result</string>
     <string name="glucose_add_label_comment">Comment</string>
-    <string name="glucose_add_label_measure" translatable="false">mmol/L</string>
+    <string name="glucose_add_label_measure">mmol/L</string>
 
     <string name="common_label_time">Time</string>
     <string name="common_label_date">Date</string>
