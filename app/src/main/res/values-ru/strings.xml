@@ -69,7 +69,7 @@
     <string name="glucoce_label_unit">ммоль/Л</string>
     <string name="glucose_add_label_comment">Комментарий</string>
     <string name="glucose_add_label_concentration">Значение</string>
-    <string name="dialog_period_list_1"></string>
+
     <string name="glucose_measure_list_2">мг/дЛ</string>
     <string name="injection_label">Инъекция</string>
     <string name="glucose_add_title">Добавить значение сахара</string>
@@ -88,7 +88,7 @@
     <string name="common_label_K1">К1</string>
     <string name="common_label_comment">Комментарий</string>
     <string name="common_label_date">Дата</string>
-    <string name="average_glucose_label">Границы сахара</string>
+    <string name="average_glucose_label">Сахар среднее:</string>
     <string name="action_comment">Комментарий:</string>
     <string name="action_database">Управление данными</string>
     <string name="activity_settings_title">Настройки</string>
@@ -115,11 +115,15 @@
     <string name="insulin_desc_ends">Конец:</string>
     <string name="insulin_desc_max">Максимум:</string>
     <string name="insulin_desc_name">Название:</string>
-    <string name="insulin_desc_origin"></string>
+
     <string name="insulin_desc_start">Начало:</string>
     <string name="insulin_desc_type">Тип:</string>
     <string name="insulin_desc_work">Продолжит:</string>
     <string name="insulin_inject_date">Дата:</string>
     <string name="insulin_inject_dose">Доза:</string>
     <string name="insulin_inject_time">Время:</string>
+    <string name="button_update">Обновить</string>
+
+
+    <string name="dialog_period_list_1">День</string>
 </resources>

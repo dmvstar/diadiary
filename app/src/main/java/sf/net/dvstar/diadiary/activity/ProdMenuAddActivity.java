@@ -57,6 +57,7 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
     private List<UserProfileCoeff> mLsttUserProfileCoeff;
     private Spinner mSpUserProfileK1;
     private Button mBtConfirm;
+    private Intent mActivityResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,30 +150,19 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
+
+            mActivityResult = data;
+
             if(requestCode == CommonConstants.MODE_ACTIONS_GET_PRODUCT_ITEM) {
+
                 ProductMenuItem productItem = (ProductMenuItem) data.getExtras().getSerializable(CommonConstants.KEY_INTENT_EXTRA_GET_PRODUCT);
-                Long productId = data.getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
-                ProductItem product = new Select().from(ProductItem.class).where("id = ?", productId).executeSingle();
 
-                productItem.menu = mProductMenuDesc;
-                productItem.prod = product;
+                addProductItemToList(data, productItem);
 
-                calculteProductMenuItem(productItem);
-                mListProductMenuItem.add(productItem);
 
-                ProductMenuItem.ProductMenuItemsCalc calc = ProductMenuItem.calculteProductMenuItems(mListProductMenuItem);
-
-                fillProductMenuItems(calc);
-
-                adapter.notifyDataSetChanged();
             }
 
             if(requestCode == CommonConstants.MODE_ACTIONS_GET_PRODUCT_ONE) {
-
-                Long productId = data.getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
-                ProductItem product = new Select().from(ProductItem.class).where("id = ?", productId).executeSingle();
-                Toast.makeText(this, product.getListText(),
-                        Toast.LENGTH_SHORT).show();
 
                 UIUtilities.showInputDialog(1, this
                         , getResources().getString(R.string.dialog_add_weight_title)
@@ -270,6 +260,35 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void dialogActionYes(int aFrom, String value) {
 
+        if(mActivityResult != null) {
+
+            ProductMenuItem productItem = new ProductMenuItem();
+            productItem.weight = Float.parseFloat( value );
+            addProductItemToList(mActivityResult, productItem);
+
+        }
+
+    }
+
+    private void addProductItemToList(Intent mActivityResult, ProductMenuItem aProductItem) {
+
+        Long productId = mActivityResult.getExtras().getLong(CommonConstants.KEY_INTENT_EXTRA_ROW_ID);
+        ProductItem product = new Select().from(ProductItem.class).where("id = ?", productId).executeSingle();
+
+        Toast.makeText(this, product.getListText(),
+                Toast.LENGTH_SHORT).show();
+
+        aProductItem.menu = mProductMenuDesc;
+        aProductItem.prod = product;
+
+        calculteProductMenuItem(aProductItem);
+        mListProductMenuItem.add(aProductItem);
+
+        ProductMenuItem.ProductMenuItemsCalc calc = ProductMenuItem.calculteProductMenuItems(mListProductMenuItem);
+
+        fillProductMenuItems(calc);
+
+        adapter.notifyDataSetChanged();
     }
 
     @Override
