@@ -9,6 +9,7 @@
     <color name="primary">#5C8AC8</color>
     <color name="primary_gray">#adadad</color>
     <color name="primary_brown">#f9d1af</color>
+    <color name="primary_lbrown">#e6c29f</color>
     <color name="primary_lgray">#adad00</color>
     <color name="primary_dark">#0072BB</color>
     <color name="ripple">#F06292</color>#0072BB

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sf.net.dvstar.diadiary.R;
+import sf.net.dvstar.diadiary.adapters.ProductFilterAdapter;
 import sf.net.dvstar.diadiary.database.ProductItem;
 
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
@@ -58,7 +59,8 @@ public class ProdItemActivity extends AppCompatActivity implements AdapterView.O
         else
             mProductItemList = new Select().from(ProductItem.class).execute();
 
-        ArrayAdapter adapter = new ArrayAdapter<ProductItem>(this,android.R.layout.simple_list_item_1, mProductItemList);
+        //ArrayAdapter adapter = new ArrayAdapter<ProductItem>(this,android.R.layout.simple_list_item_1, mProductItemList);
+        ProductFilterAdapter adapter = new ProductFilterAdapter(this,android.R.layout.simple_list_item_1, mProductItemList);
         mProductItems.setAdapter(adapter);
         mProductItems.setOnItemClickListener(this);
 
@@ -81,24 +83,22 @@ public class ProdItemActivity extends AppCompatActivity implements AdapterView.O
         String sFind = mEtFind.getText().toString();
         List<ProductItem> list;
         if(sFind.length()>1) {
-
+            ((ArrayAdapter)mProductItems.getAdapter()).getFilter().filter(sFind);
+            /*
             list = getLikeFilter(sFind);
-
             ArrayAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, list);
             mProductItems.setAdapter(adapter);
             mProductItems.setOnItemClickListener(this);
-//            mProductItems.notify();
+            */
         }
     }
 
     List<ProductItem> getLikeFilter(String aFind){
         List<ProductItem> sList = new ArrayList<>();
         for(ProductItem item:   mProductItemList){
-
             if(item.name.toLowerCase().contains(aFind.toLowerCase())) {
                 sList.add(item);
             }
-
         }
         return  sList;
     }

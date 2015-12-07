@@ -149,5 +149,7 @@
     <string name="activity_products_title">Products</string>
     <string name="dialog_add_weight_title">Enter weight</string>
     <string name="dialog_add_weight_message">Enter weight of product</string>
+    <string name="item_product_label">Product</string>
+    <string name="item_product_menu">Menu</string>
 
 </resources>
