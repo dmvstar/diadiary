@@ -60,7 +60,8 @@ public class ProdItemActivity extends AppCompatActivity implements AdapterView.O
             mProductItemList = new Select().from(ProductItem.class).execute();
 
         //ArrayAdapter adapter = new ArrayAdapter<ProductItem>(this,android.R.layout.simple_list_item_1, mProductItemList);
-        ProductFilterAdapter adapter = new ProductFilterAdapter(this,android.R.layout.simple_list_item_1, mProductItemList);
+        //ProductFilterAdapter adapter = new ProductFilterAdapter(this,android.R.layout.simple_list_item_1, mProductItemList);
+        ProductFilterAdapter adapter = new ProductFilterAdapter(this,R.layout.item_product_detail, mProductItemList);
         mProductItems.setAdapter(adapter);
         mProductItems.setOnItemClickListener(this);
 

@@ -45,7 +45,7 @@ public class ProductItem extends Model implements Serializable, CommonItem {
     int compl;
 
     @Column(name = "groupId")
-    int groupId;
+    public int groupId;
 
     @Column(name = "usage")
     int usage;

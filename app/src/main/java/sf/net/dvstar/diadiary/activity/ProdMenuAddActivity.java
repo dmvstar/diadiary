@@ -42,7 +42,7 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
 
     List<ProductMenuItem> mListProductMenuItem = new ArrayList<>();
 
-    ArrayAdapter<ProductMenuItem> adapter;
+    ArrayAdapter<ProductMenuItem> mProductMenuItemAdapter;
 
     private int mMode;
     private EditText mEtName;
@@ -90,8 +90,8 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
 
         fillFieldData();
 
-        adapter = new ArrayAdapter<ProductMenuItem>(this, android.R.layout.simple_list_item_1, mListProductMenuItem);
-        mProdMenu.setAdapter(adapter);
+        mProductMenuItemAdapter = new ArrayAdapter<ProductMenuItem>(this, android.R.layout.simple_list_item_1, mListProductMenuItem);
+        mProdMenu.setAdapter(mProductMenuItemAdapter);
         mProdMenu.setOnItemClickListener(this);
         mSpUserProfileK1   = (Spinner) findViewById(R.id.sp_user_profile_k1);
 
@@ -196,7 +196,12 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        ProductMenuItem prod = mListProductMenuItem.get(position);
+        prod.delete();
+        mListProductMenuItem.remove(position);
+        ProductMenuItem.ProductMenuItemsCalc calc = ProductMenuItem.calculteProductMenuItems(mListProductMenuItem);
+        fillProductMenuItems(calc);
+        mProductMenuItemAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -288,7 +293,7 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
 
         fillProductMenuItems(calc);
 
-        adapter.notifyDataSetChanged();
+        mProductMenuItemAdapter.notifyDataSetChanged();
     }
 
     @Override

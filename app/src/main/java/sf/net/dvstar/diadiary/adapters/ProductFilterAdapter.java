@@ -1,13 +1,22 @@
 package sf.net.dvstar.diadiary.adapters;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
+import android.widget.TextView;
+
+import com.activeandroid.query.Select;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import sf.net.dvstar.diadiary.R;
+import sf.net.dvstar.diadiary.database.ProductGroup;
 import sf.net.dvstar.diadiary.database.ProductItem;
 
 public class ProductFilterAdapter extends ArrayAdapter<ProductItem> {
@@ -32,6 +41,42 @@ public class ProductFilterAdapter extends ArrayAdapter<ProductItem> {
 //        }
 //
 //    }
+
+    static class ProductHolder
+    {
+        TextView tvName;
+        TextView tvMenu;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View row = convertView;
+        ProductHolder holder = null;
+
+        if(row == null)
+        {
+            LayoutInflater inflater = ((Activity)mContext).getLayoutInflater();
+            row = inflater.inflate(mLayoutResourceId, parent, false);
+
+            holder = new ProductHolder();
+            holder.tvName = (TextView)row.findViewById(R.id.item_product_label);
+            holder.tvMenu = (TextView)row.findViewById(R.id.item_product_menu);
+
+            row.setTag(holder);
+        }
+        else
+        {
+            holder = (ProductHolder)row.getTag();
+        }
+
+        ProductItem product = mDataOriginal.get(position);
+
+        holder.tvName.setText(product.name);
+        ProductGroup group = new Select().from(ProductGroup.class).where("groupId = ?", product.groupId).executeSingle();
+        holder.tvMenu.setText(group.name);
+
+        return row;
+    }
 
     @Override
     public int getCount() {
