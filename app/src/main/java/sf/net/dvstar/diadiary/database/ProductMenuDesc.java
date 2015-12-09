@@ -33,6 +33,9 @@ public class ProductMenuDesc extends Model implements Serializable, CommonItem {
     @Column(name = "created")
     public Date created;
 
+    @Column(name = "k1")
+    public float k1;
+
     public ProductMenuDesc() {
         super();
     }

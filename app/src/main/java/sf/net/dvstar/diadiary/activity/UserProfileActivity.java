@@ -144,13 +144,14 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
     }
 
     private void addK1Value(String value) {
-        Toast.makeText(this, "addK1Value "+value+" user = "+mUserProfile.toString(),
-                Toast.LENGTH_SHORT).show();
+        saveFieldData();
 
         UserProfileCoeff coeff = new UserProfileCoeff();
         coeff.k1 = Float.parseFloat(value);
         coeff.created = new Date();
         coeff.save();
+        Toast.makeText(this, "addK1Value "+value+" user = "+mUserProfile.toString(),
+                Toast.LENGTH_SHORT).show();
 
         fillUserProfileCoeff();
     }

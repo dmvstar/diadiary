@@ -36,6 +36,8 @@ public class MenuDescAdapter extends ArrayAdapter<ProductMenuDesc> {
         public TextView tv_xe;
         public TextView tv_gi;
 
+        public TextView tv_k1;
+        public TextView tv_insulin_dose;
     }
 
     public MenuDescAdapter(Activity context, List<ProductMenuDesc> menus) {
@@ -71,6 +73,9 @@ public class MenuDescAdapter extends ArrayAdapter<ProductMenuDesc> {
             viewHolder.tv_xe = (TextView) rowView.findViewById(R.id.tv_prod_xe);
             viewHolder.tv_gi = (TextView) rowView.findViewById(R.id.tv_prod_gi);
 
+            viewHolder.tv_k1 = (TextView) rowView.findViewById(R.id.tv_K1);
+            viewHolder.tv_insulin_dose = (TextView) rowView.findViewById(R.id.tv_insulin_dose);
+
             rowView.setTag(viewHolder);
         }
 
@@ -81,11 +86,15 @@ public class MenuDescAdapter extends ArrayAdapter<ProductMenuDesc> {
 
         holder.tv_name.setText(item.name);
         holder.tv_comm.setText(item.comment);
+        holder.tv_k1.setText( CommonUtils.getFloatString2Decimal(item.k1));
+
 
         mListProductMenuItem = new Select().from(ProductMenuItem.class).where("menu = ?", item.getId()).execute();
 
         ProductMenuItem.ProductMenuItemsCalc calc =
                 ProductMenuItem.calculteProductMenuItems(mListProductMenuItem);
+
+        holder.tv_insulin_dose.setText(CommonUtils.getFloatString2Decimal(item.k1*calc.xe));
 
         fillProductMenuItems(holder, calc);
         holder.tv_comm.setText("("+calc.count+")" + item.comment);
@@ -100,6 +109,7 @@ public class MenuDescAdapter extends ArrayAdapter<ProductMenuDesc> {
             holder.tv_prot.setText(CommonUtils.getFloatString2Decimal(calc.prot));
             holder.tv_gi.setText("" + calc.gi);
             holder.tv_xe.setText("" + calc.xe);
+            //holder.tv_k1.setText(""+ calc.);
 
     }
 

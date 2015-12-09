@@ -187,9 +187,9 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
     }
 
     private void fillProductMenuItems(ProductMenuItem.ProductMenuItemsCalc calc) {
-            mTvCarb.setText("" + calc.carb);
-            mTvFat.setText("" + calc.fats);
-            mTvProt.setText("" + calc.prot);
+            mTvCarb.setText(CommonUtils.getFloatString2Decimal(calc.carb));
+            mTvFat.setText(CommonUtils.getFloatString2Decimal(calc.fats));
+            mTvProt.setText(CommonUtils.getFloatString2Decimal(calc.prot));
             mTvGI.setText("" + calc.gi);
             mTvXE.setText("" + calc.xe);
     }
@@ -237,6 +237,10 @@ public class ProdMenuAddActivity extends AppCompatActivity implements AdapterVie
 
         mProductMenuDesc.name = name;
         mProductMenuDesc.comment = comm;
+
+        UserProfileCoeff aUserProfileCoeff = (UserProfileCoeff) mSpUserProfileK1.getSelectedItem();
+        if (mProductMenuDesc != null)
+            mProductMenuDesc.k1 = aUserProfileCoeff.k1;
 
         if (name.length() > 0) {
             mProductMenuDesc.save();

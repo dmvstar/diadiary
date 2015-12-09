@@ -79,7 +79,7 @@
     <string name="glucose_add_label_measure" translatable="false">ммоль/Л</string>
     <string name="glucose_measure_list_1">ммоль/Л</string>
     <string name="injection_total_label">Доза инсулина:</string>
-    <string name="insulin_K1_dose">Инсулины:</string>
+    <string name="insulin_K1_dose">Инсулин:</string>
     <string name="insulin_desc_label_max">макс:</string>
     <string name="menu_add_label_groups">Группы продуктов</string>
     <string name="menu_add_label_prot">Белки</string>
