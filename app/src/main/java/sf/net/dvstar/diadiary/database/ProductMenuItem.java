@@ -7,6 +7,8 @@ import com.activeandroid.annotation.Table;
 import java.io.Serializable;
 import java.util.List;
 
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
+
 
 @Table(name = "ProductMenuItem")
 public class ProductMenuItem extends Model implements Serializable, CommonItem {
@@ -62,7 +64,10 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
 
     @Override
     public String toString(){
-        return "["+menu.name+"] "+prod.name + "("+weight+")["+prot+"-"+fats+"-"+carb+"-"+gi+"-"+xe+"]";
+        return "["+menu.name+"] "+prod.name + "("+weight+")["+
+                CommonUtils.getFloatString2Decimal(prot)+"-"+
+                CommonUtils.getFloatString2Decimal(fats)+"-"+
+                CommonUtils.getFloatString2Decimal(carb)+"-"+gi+"-"+xe+"]";
     }
 
 
@@ -73,7 +78,9 @@ public class ProductMenuItem extends Model implements Serializable, CommonItem {
         public int xe =0;
         public int gi=0;
         public int count=0;
+
     }
+
 
     public static ProductMenuItemsCalc calculteProductMenuItems(List<ProductMenuItem> mListProductMenuItem){
         ProductMenuItemsCalc ret = new ProductMenuItemsCalc();

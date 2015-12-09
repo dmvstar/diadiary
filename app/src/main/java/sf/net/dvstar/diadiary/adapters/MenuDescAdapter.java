@@ -16,6 +16,7 @@ import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.InsulinItem;
 import sf.net.dvstar.diadiary.database.ProductMenuDesc;
 import sf.net.dvstar.diadiary.database.ProductMenuItem;
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 
 
 public class MenuDescAdapter extends ArrayAdapter<ProductMenuDesc> {
@@ -93,11 +94,13 @@ public class MenuDescAdapter extends ArrayAdapter<ProductMenuDesc> {
     }
 
     private void fillProductMenuItems(ViewHolder holder, ProductMenuItem.ProductMenuItemsCalc calc) {
-            holder.tv_carb.setText("" + calc.carb);
-            holder.tv_fats.setText("" + calc.fats);
-            holder.tv_prot.setText("" + calc.prot);
+
+            holder.tv_carb.setText(CommonUtils.getFloatString2Decimal(calc.carb));
+            holder.tv_fats.setText(CommonUtils.getFloatString2Decimal(calc.fats));
+            holder.tv_prot.setText(CommonUtils.getFloatString2Decimal(calc.prot));
             holder.tv_gi.setText("" + calc.gi);
             holder.tv_xe.setText("" + calc.xe);
+
     }
 
 }

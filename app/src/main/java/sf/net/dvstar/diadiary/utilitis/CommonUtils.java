@@ -242,7 +242,16 @@ public class CommonUtils {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return ret;    }
+        return ret;
+    }
+
+
+    public static String getFloatString2Decimal(float aFloatValue){
+        String ret = String.format("%.2f", aFloatValue);
+        return ret;
+    }
+
+
 }
 
 
