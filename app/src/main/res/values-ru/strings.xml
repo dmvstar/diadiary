@@ -128,4 +128,11 @@
     <string name="dialog_period_list_1">День</string>
     <string name="dialog_add_weight_message">Введите вес продукта</string>
     <string name="dialog_add_weight_title">Вес</string>
+    <string name="label_mode_update">Обновить</string>
+    <string name="label_mode_cancel">Отмена</string>
+    <string name="item_product_menu">Меню</string>
+    <string name="item_product_label">Продукт</string>
+    <string name="insulin_label_insulin">Инсулин</string>
+    <string name="insulin_label_comment">Коммент.</string>
+    <string name="insulin_label">Инсулины</string>
 </resources>
