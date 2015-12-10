@@ -20,6 +20,7 @@ import sf.net.dvstar.diadiary.R;
 import sf.net.dvstar.diadiary.database.UserProfile;
 import sf.net.dvstar.diadiary.database.UserProfileCoeff;
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
+import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 import sf.net.dvstar.diadiary.utilitis.UIInterfaceYesNo;
 import sf.net.dvstar.diadiary.utilitis.UIUtilities;
 
@@ -211,11 +212,11 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
         mUserProfile.name = name;
         mUserProfile.age = age;
 
-        mUserProfile.prefRangeMix = Float.parseFloat(mEtUserGlucoseRangeMin.getText().toString());
-        mUserProfile.prefRangeMax = Float.parseFloat(mEtUserGlucoseRangeMax.getText().toString());
+        mUserProfile.prefRangeMix = CommonUtils.getSafeFloatFromString(mEtUserGlucoseRangeMin.getText().toString());
+        mUserProfile.prefRangeMax = CommonUtils.getSafeFloatFromString(mEtUserGlucoseRangeMax.getText().toString());
 
-        mUserProfile.growth = Integer.parseInt(mEtUserGrowth.getText().toString());
-        mUserProfile.weight = Float.parseFloat(mEtUserWeight.getText().toString());
+        mUserProfile.growth = CommonUtils.getSafeIntFromString(mEtUserGrowth.getText().toString());
+        mUserProfile.weight = CommonUtils.getSafeFloatFromString(mEtUserWeight.getText().toString());
 
 
         if (name.length()>0) {

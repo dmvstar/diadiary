@@ -245,13 +245,25 @@ public class CommonUtils {
         return ret;
     }
 
-
     public static String getFloatString2Decimal(float aFloatValue){
         String ret = String.format("%.2f", aFloatValue);
-        return ret;
+        return ret.replace(',','.');
     }
 
 
+    public static Float getSafeFloatFromString(String value) {
+        Float ret = 0.0f;
+        if(value.length()>0)
+            ret = Float.parseFloat(value);
+        return ret;
+    }
+
+    public static int getSafeIntFromString(String value) {
+        int ret = 0;
+        if(value.length()>0)
+            ret = Integer.parseInt(value);
+        return ret;
+    }
 }
 
 
