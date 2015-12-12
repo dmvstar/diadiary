@@ -10,6 +10,13 @@ import android.widget.EditText;
 
 public class UIUtilities {
 
+    /**
+     * Show Yes No dialog
+     * @param aFrom mode
+     * @param aView parent view
+     * @param aMessage message text
+     * @param aYesNo callback
+     */
     public static void showYesNoDialog(final int aFrom, View aView, String aMessage, final UIInterfaceYesNo aYesNo) {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -36,6 +43,14 @@ public class UIUtilities {
 
     }
 
+    /**
+     * Show input text dialog
+     * @param aFrom mode
+     * @param aContext context
+     * @param aTitle title
+     * @param aMessage message text
+     * @param aYesNo callback
+     */
     public static void showInputDialog(final int aFrom, Context aContext, String aTitle, String aMessage, final UIInterfaceYesNo aYesNo) {
         final EditText input = new EditText(aContext);
 
