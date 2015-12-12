@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 public class UIUtilities {
 
-    public static void showYesNoDialog(final int aFrom, View view, String message, final UIInterfaceYesNo aYesNo) {
+    public static void showYesNoDialog(final int aFrom, View aView, String aMessage, final UIInterfaceYesNo aYesNo) {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -28,10 +28,10 @@ public class UIUtilities {
             }
         };
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-        builder.setMessage(message)
-                .setPositiveButton(view.getResources().getString(android.R.string.yes), dialogClickListener) // "Yes"
-                .setNegativeButton(view.getResources().getString(android.R.string.no), dialogClickListener)  // "No"
+        AlertDialog.Builder builder = new AlertDialog.Builder(aView.getContext());
+        builder.setMessage(aMessage)
+                .setPositiveButton(aView.getResources().getString(android.R.string.yes), dialogClickListener) // "Yes"
+                .setNegativeButton(aView.getResources().getString(android.R.string.no), dialogClickListener)  // "No"
                 .show();
 
     }
