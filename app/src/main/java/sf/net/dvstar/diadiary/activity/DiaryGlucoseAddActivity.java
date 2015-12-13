@@ -85,6 +85,8 @@ public class DiaryGlucoseAddActivity extends AppCompatActivity {
             Date today = new Date();
             mEtGlucoseTime.setText(CommonUtils.getTimeText(today));
             mEtGlucoseDate.setText(CommonUtils.getDateText(today));
+            int indexNotes = CommonUtils.getNotesIndexByTime(today);
+            if(indexNotes>=0) mSpNotes.setSelection(indexNotes);
 
         }
     }

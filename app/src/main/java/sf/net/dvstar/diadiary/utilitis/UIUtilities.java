@@ -13,11 +13,11 @@ public class UIUtilities {
     /**
      * Show Yes No dialog
      * @param aFrom mode
-     * @param aView parent view
+     * @param aContext parent context
      * @param aMessage message text
      * @param aYesNo callback
      */
-    public static void showYesNoDialog(final int aFrom, View aView, String aMessage, final UIInterfaceYesNo aYesNo) {
+    public static void showYesNoDialog(final int aFrom, Context aContext, String aMessage, final UIInterfaceYesNo aYesNo) {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -35,10 +35,10 @@ public class UIUtilities {
             }
         };
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(aView.getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(aContext);
         builder.setMessage(aMessage)
-                .setPositiveButton(aView.getResources().getString(android.R.string.yes), dialogClickListener) // "Yes"
-                .setNegativeButton(aView.getResources().getString(android.R.string.no), dialogClickListener)  // "No"
+                .setPositiveButton(aContext.getResources().getString(android.R.string.yes), dialogClickListener) // "Yes"
+                .setNegativeButton(aContext.getResources().getString(android.R.string.cancel), dialogClickListener)  // "No"
                 .show();
 
     }
@@ -82,9 +82,9 @@ public class UIUtilities {
         builder.setView(input);
 
 
-        builder.setPositiveButton("Ok", dialogClickListener);
+        builder.setPositiveButton(aContext.getResources().getString(android.R.string.yes), dialogClickListener);
 
-        builder.setNegativeButton("Cancel", dialogClickListener);
+        builder.setNegativeButton(aContext.getResources().getString(android.R.string.cancel), dialogClickListener);
         builder.show();
 
 

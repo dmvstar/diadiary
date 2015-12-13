@@ -75,6 +75,8 @@ public class DiaryPressureAddActivity extends AppCompatActivity {
             Date today = new Date();
             mEtPressureTime.setText(CommonUtils.getTimeText(today));
             mEtPressureDate.setText(CommonUtils.getDateText(today));
+            int indexNotes = CommonUtils.getNotesIndexByTime(today);
+            if(indexNotes>=0) mSpNotes.setSelection(indexNotes);
         }
     }
 

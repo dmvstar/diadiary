@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="dialog_note_type_0">Перед завтраком</string>
+    <string name="dialog_note_type_1">После завтрака</string>
+    <string name="dialog_note_type_2">Перед обедом</string>
+    <string name="dialog_note_type_3">После обеда</string>
+    <string name="dialog_note_type_4">Перед ужином</string>
+    <string name="dialog_note_type_5">После ужина</string>
+    <string name="dialog_note_type_6">Основное</string>
+    <string name="dialog_note_type_7">Проверка</string>
+    <string name="dialog_note_type_8">Ночью</string>
+    <string name="dialog_note_type_9">Другое</string>
+
+</resources>

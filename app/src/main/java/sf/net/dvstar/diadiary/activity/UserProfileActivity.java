@@ -86,7 +86,7 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
     }
 
     public void delK1(View view) {
-        UIUtilities.showYesNoDialog(DIALOG_SHOW_DEL_K1, view
+        UIUtilities.showYesNoDialog(DIALOG_SHOW_DEL_K1, this
                 , getResources().getString(R.string.dialog_del_k1_title)  + " ("+mSpUserProfileK1.getSelectedItem()+")"
                 , this);
     }

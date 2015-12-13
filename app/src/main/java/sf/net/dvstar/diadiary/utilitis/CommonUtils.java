@@ -264,6 +264,28 @@ public class CommonUtils {
             ret = Integer.parseInt(value);
         return ret;
     }
+
+    public static int getNotesIndexByTime(Date aDate){
+        int ret = 9;
+        SimpleDateFormat localDateFormat = new SimpleDateFormat("HH");
+        String sTime = localDateFormat.format(aDate);
+        int iTime = Integer.parseInt(sTime);
+
+        if(iTime>=0 && iTime<7) ret=8;
+
+        if(iTime>=7 && iTime<8) ret=0;
+        if(iTime>=8 && iTime<12) ret=1;
+
+        if(iTime>=12 && iTime<13) ret=2;
+        if(iTime>=13 && iTime<16) ret=3;
+
+        if(iTime>=16 && iTime<19) ret=4;
+        if(iTime>=19 && iTime<24) ret=5;
+
+        return ret;
+    }
+
+
 }
 
 

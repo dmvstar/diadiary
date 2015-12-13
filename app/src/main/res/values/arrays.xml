@@ -14,19 +14,19 @@
     <string name="insulin_inject_type_add">Additional</string>
     <string name="insulin_inject_type_non">Not set</string>
 
-
-    <string name="dialog_note_type_1">Before breakfast</string>
-    <string name="dialog_note_type_2">After breakfast</string>
-    <string name="dialog_note_type_3">Before lunch</string>
-    <string name="dialog_note_type_4">After lunch</string>
-    <string name="dialog_note_type_5">Before dinner</string>
-    <string name="dialog_note_type_6">After dinner</string>
-    <string name="dialog_note_type_7">General</string>
-    <string name="dialog_note_type_8">Recheck</string>
-    <string name="dialog_note_type_9">Night</string>
-    <string name="dialog_note_type_10">Other</string>
+    <string name="dialog_note_type_0">Before breakfast</string>
+    <string name="dialog_note_type_1">After breakfast</string>
+    <string name="dialog_note_type_2">Before lunch</string>
+    <string name="dialog_note_type_3">After lunch</string>
+    <string name="dialog_note_type_4">Before dinner</string>
+    <string name="dialog_note_type_5">After dinner</string>
+    <string name="dialog_note_type_6">General</string>
+    <string name="dialog_note_type_7">Recheck</string>
+    <string name="dialog_note_type_8">Night</string>
+    <string name="dialog_note_type_9">Other</string>
 
     <string-array name="dialog_notes_list" translatable="false">
+        <item>@string/dialog_note_type_0</item>
         <item>@string/dialog_note_type_1</item>
         <item>@string/dialog_note_type_2</item>
         <item>@string/dialog_note_type_3</item>
@@ -36,7 +36,6 @@
         <item>@string/dialog_note_type_7</item>
         <item>@string/dialog_note_type_8</item>
         <item>@string/dialog_note_type_9</item>
-        <item>@string/dialog_note_type_10</item>
     </string-array>
 
     <string name="dialog_period_list_1">Day</string>

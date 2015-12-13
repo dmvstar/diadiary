@@ -19,6 +19,7 @@ import com.activeandroid.query.Select;
 import com.activeandroid.util.Log;
 import com.buzzingandroid.ui.HSVColorPickerDialog;
 
+import java.util.Date;
 import java.util.List;
 
 import sf.net.dvstar.diadiary.R;
@@ -162,6 +163,11 @@ public class InsulinInjectAddActivity extends AppCompatActivity {
             mTvLabelModeAdd.setText( getResources().getString(R.string.label_mode_edit) );
 
             mSpInjectType.setSelection( mInjection.plan );
+
+        } else {
+            Date today = new Date();
+            int indexNotes = CommonUtils.getNotesIndexByTime(today);
+            if(indexNotes>=0) mSpNotes.setSelection(indexNotes);
 
         }
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
