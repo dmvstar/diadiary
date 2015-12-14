@@ -124,8 +124,6 @@
     <string name="insulin_inject_time">Время:</string>
     <string name="button_update">Обновить</string>
 
-
-    <string name="dialog_period_list_1">День</string>
     <string name="dialog_add_weight_message">Введите вес продукта</string>
     <string name="dialog_add_weight_title">Вес</string>
     <string name="label_mode_update">Обновить</string>

@@ -12,4 +12,11 @@
     <string name="dialog_note_type_8">Ночью</string>
     <string name="dialog_note_type_9">Другое</string>
 
+
+    <string name="dialog_period_list_1">День</string>
+    <string name="dialog_period_list_2">Неделя</string>
+    <string name="dialog_period_list_3">Месяц</string>
+    <string name="dialog_period_list_4">Период</string>
+
+
 </resources>
