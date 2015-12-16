@@ -59,7 +59,8 @@
                 android:id="@+id/et_user_profile_date_of_birth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="date" />
+                android:inputType="date"
+                android:maxLength="10" />
 
             <TextView
                 android:id="@+id/textView50"
