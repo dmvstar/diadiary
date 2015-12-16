@@ -40,6 +40,7 @@ import sf.net.dvstar.diadiary.database.InsulinItem;
 import sf.net.dvstar.diadiary.adapters.DiaryActionstAdapter;
 import sf.net.dvstar.diadiary.database.PressureReading;
 
+import sf.net.dvstar.diadiary.database.ProductMenuDesc;
 import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 import sf.net.dvstar.diadiary.utilitis.CalendarDialogBuilder;
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
@@ -586,6 +587,17 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         this.startActivity(intent);
     }
 
+    private void showAddMenuReading(int aMode, View aView, ProductMenuDesc aItem) {
+        Intent intent = new Intent(this, ProdMenuActivity.class);
+        intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE, aMode);
+        if (aItem != null) {
+            long rowId = aItem.getId();
+            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
+        }
+        this.startActivity(intent);
+    }
+
+
     private void showAboutActivity() {
 
         Intent intent = new Intent(this, AboutActivity.class);
@@ -624,6 +636,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
                     break;
                 case R.id.fab_eating:
                     text = fab22.getLabelText();
+                    showAddMenuReading(CommonConstants.MODE_ACTIONS_EDIT_SELECT, v, null);
                     mFloatingActionMenu.close(false);
                     break;
                 case R.id.fab_glucose:
@@ -642,6 +655,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
             Toast.makeText(DiaryActionsActivity.this, text, Toast.LENGTH_SHORT).show();
         }
     };
+
 
 
     private class DiaryActionsComparator implements Comparator<ActionCommonItem> {

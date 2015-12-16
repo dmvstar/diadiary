@@ -28,6 +28,7 @@ public interface CommonConstants {
 
     int MODE_ACTIONS_EDIT_ITEM = 1;
     int MODE_ACTIONS_EDIT_ADD = 2;
+    int MODE_ACTIONS_EDIT_SELECT = 3;
     int MODE_ACTIONS_GET_PRODUCT_ITEM = 3;
     int MODE_ACTIONS_GET_PRODUCT_ONE = 4;
 

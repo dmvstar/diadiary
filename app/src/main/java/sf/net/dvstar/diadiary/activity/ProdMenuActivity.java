@@ -1,5 +1,6 @@
 package sf.net.dvstar.diadiary.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,8 @@ import sf.net.dvstar.diadiary.utilitis.CommonConstants;
 public class ProdMenuActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ListView mMenuItems;
+    private Context mContext;
+    private int mMode;
 
     @Override
     protected void onResume(){
@@ -47,7 +50,8 @@ public class ProdMenuActivity extends AppCompatActivity implements AdapterView.O
                 showProducMenuAddActivity();
             }
         });
-
+        mContext = this;
+        mMode = getIntent().getExtras().getInt(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE);
     }
 
     private void fillMenuList() {
@@ -111,15 +115,21 @@ public class ProdMenuActivity extends AppCompatActivity implements AdapterView.O
         Toast.makeText(this, item.toString(),
                 Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(this, ProdMenuAddActivity.class);
+        if(mMode==CommonConstants.MODE_ACTIONS_EDIT_SELECT) {
 
-        if (item != null) {
-            long rowId = item.getId();
-            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
-            intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE, CommonConstants.MODE_ACTIONS_EDIT_ITEM);
+            finish();
+        } else {
+
+
+            Intent intent = new Intent(this, ProdMenuAddActivity.class);
+
+            if (item != null) {
+                long rowId = item.getId();
+                intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_ROW_ID, rowId);
+                intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE, CommonConstants.MODE_ACTIONS_EDIT_ITEM);
+            }
+
+            this.startActivity(intent);
         }
-
-        this.startActivity(intent);
-
     }
 }
