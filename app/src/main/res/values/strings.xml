@@ -151,5 +151,7 @@
     <string name="dialog_add_weight_message">Enter weight of product</string>
     <string name="item_product_label">Product</string>
     <string name="item_product_menu">Menu</string>
+    <string name="menu_dinner_label">Dinner</string>
+    <string name="menu_dinner_select">Select menu</string>
 
 </resources>
