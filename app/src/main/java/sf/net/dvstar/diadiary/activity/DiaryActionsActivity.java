@@ -38,6 +38,7 @@ import sf.net.dvstar.diadiary.database.GlucoseReading;
 import sf.net.dvstar.diadiary.database.InsulinInjection;
 import sf.net.dvstar.diadiary.database.InsulinItem;
 import sf.net.dvstar.diadiary.adapters.DiaryActionstAdapter;
+import sf.net.dvstar.diadiary.database.MenuReading;
 import sf.net.dvstar.diadiary.database.PressureReading;
 
 import sf.net.dvstar.diadiary.database.ProductMenuDesc;
@@ -587,8 +588,8 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         this.startActivity(intent);
     }
 
-    private void showAddMenuReading(int aMode, View aView, ProductMenuDesc aItem) {
-        Intent intent = new Intent(this, ProdMenuActivity.class);
+    private void showAddMenuReading(int aMode, View aView, MenuReading aItem) {
+        Intent intent = new Intent(this, DiaryMenuAddActivity.class);
         intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE, aMode);
         if (aItem != null) {
             long rowId = aItem.getId();

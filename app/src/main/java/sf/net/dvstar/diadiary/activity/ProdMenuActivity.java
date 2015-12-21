@@ -51,7 +51,7 @@ public class ProdMenuActivity extends AppCompatActivity implements AdapterView.O
             }
         });
         mContext = this;
-        mMode = getIntent().getExtras().getInt(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE);
+        //mMode = getIntent().getExtras().getInt(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE);
     }
 
     private void fillMenuList() {

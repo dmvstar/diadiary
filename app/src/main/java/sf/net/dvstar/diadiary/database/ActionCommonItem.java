@@ -8,6 +8,7 @@ public interface ActionCommonItem extends CommonItem {
     int ACTION_TYPE_GLUCOSE = 2;
     int ACTION_TYPE_INSULIN = 3;
     int ACTION_TYPE_PRESSURE = 4;
+    int ACTION_TYPE_MENU = 5;
 
     Date   getCompareTime();
     int getActionType();

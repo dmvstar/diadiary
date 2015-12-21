@@ -114,6 +114,8 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/glucose_add_label_notes"
                 android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@android:style/TextAppearance.Medium"
+                android:textStyle="bold"
                 android:textColor="@color/accent" />
 
             <Spinner
