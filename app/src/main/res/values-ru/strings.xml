@@ -133,4 +133,15 @@
     <string name="insulin_label_insulin">Инсулин</string>
     <string name="insulin_label_comment">Коммент.</string>
     <string name="insulin_label">Инсулины</string>
+    <string name="dialog_import_from_assets">Из приложения</string>
+    <string name="dialog_import_from_file">Файл</string>
+    <string name="dialog_import_title">Импорт продуктов из ...</string>
+    <string name="insulin_desc_origin">Происхождение:</string>
+    <string name="insulin_inject_insu">Инсулин:</string>
+    <string name="insulin_inject_label_type">Тип:</string>
+    <string name="insulin_inject_plan">План:</string>
+    <string name="insulin_inject_type_add">Дополнительно</string>
+    <string name="insulin_inject_type_reg">Постоянно</string>
+    <string name="insulin_inject_type_non">Нет</string>
+    <string name="insulin_label_dose">Доза</string>
 </resources>
