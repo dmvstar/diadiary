@@ -7,12 +7,12 @@ import android.view.View;
 
 import sf.net.dvstar.diadiary.R;
 
-public class SettingActivity extends AppCompatActivity {
+public class ConfigContentActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_configs);
     }
 
     @Override
@@ -21,11 +21,12 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     public void showUserProfile(View v){
-        Intent intent = new Intent(this, UserProfileActivity.class);
+        Intent intent = new Intent(this, ConfigProfileActivity.class);
         this.startActivity(intent);
     }
 
     public void showSystemSetting(View v){
-
+        Intent intent = new Intent(this, ConfigParamsActivity.class);
+        this.startActivity(intent);
     }
 }

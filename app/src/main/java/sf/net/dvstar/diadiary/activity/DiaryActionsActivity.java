@@ -41,7 +41,6 @@ import sf.net.dvstar.diadiary.adapters.DiaryActionstAdapter;
 import sf.net.dvstar.diadiary.database.MenuReading;
 import sf.net.dvstar.diadiary.database.PressureReading;
 
-import sf.net.dvstar.diadiary.database.ProductMenuDesc;
 import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 import sf.net.dvstar.diadiary.utilitis.CalendarDialogBuilder;
 import sf.net.dvstar.diadiary.utilitis.CommonConstants;
@@ -556,7 +555,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
     }
 
     private void showSettingActivity() {
-        Intent intent = new Intent(this, SettingActivity.class);
+        Intent intent = new Intent(this, ConfigContentActivity.class);
         this.startActivity(intent);
     }
 

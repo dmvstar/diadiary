@@ -24,7 +24,7 @@ import sf.net.dvstar.diadiary.utilitis.CommonUtils;
 import sf.net.dvstar.diadiary.utilitis.UIInterfaceYesNo;
 import sf.net.dvstar.diadiary.utilitis.UIUtilities;
 
-public class UserProfileActivity extends AppCompatActivity implements ActivitySaving, UIInterfaceYesNo {
+public class ConfigProfileActivity extends AppCompatActivity implements ActivitySaving, UIInterfaceYesNo {
 
     private static final int DIALOG_SHOW_INPUT_K1 = 1;
     private static final int DIALOG_SHOW_DEL_K1 = 2;
@@ -50,7 +50,7 @@ public class UserProfileActivity extends AppCompatActivity implements ActivitySa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_config_profile);
         mContext = this;
         mBtConfirm = (Button) findViewById(R.id.bt_confirm);
 

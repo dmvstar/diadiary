@@ -27,12 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.InsulinInjectAddActivity" />
-        <activity android:name=".activity.InsulinDescActivity" />
-        <activity android:name=".activity.InsulinDescAddActivity" />
-        <activity android:name=".activity.DiaryGlucoseAddActivity" />
-        <activity android:name=".activity.DiaryPressureAddActivity" />
-        <activity android:name=".activity.AboutActivity" />
+
+
 
         <meta-data
             android:name="AA_DB_NAME"
@@ -55,11 +51,19 @@
 
         <activity android:name=".activity.ProdGroupActivity"/>
         <activity android:name=".activity.ProdItemActivity" android:label="@string/activity_products_title"/>
-        <activity android:name=".activity.SettingActivity" android:label="@string/activity_settings_title"/>
-        <activity android:name=".activity.UserProfileActivity" android:label="@string/activity_profile_title"/>
+        <activity android:name=".activity.ConfigContentActivity" android:label="@string/activity_settings_title"/>
+        <activity android:name=".activity.ConfigProfileActivity" android:label="@string/activity_profile_title"/>
         <activity android:name=".activity.ProdMenuAddActivity" android:label="@string/activity_menuadd_title"/>
         <activity android:name=".activity.ProdItemAddActivity"/>
         <activity android:name=".activity.DiaryMenuAddActivity" android:label="@string/activity_menuadd_title"/>
+        <activity android:name=".activity.InsulinInjectAddActivity" />
+        <activity android:name=".activity.InsulinDescActivity" />
+        <activity android:name=".activity.InsulinDescAddActivity" />
+        <activity android:name=".activity.DiaryGlucoseAddActivity" />
+        <activity android:name=".activity.DiaryPressureAddActivity" />
+        <activity android:name=".activity.AboutActivity" />
+        <activity android:name=".activity.ConfigParamsActivity" />
+
 
     </application>
 

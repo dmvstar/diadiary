@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:text="@string/config_setting"
         android:id="@+id/bt_setting"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:onClick="showSystemSetting" />
 
 </LinearLayout>
