@@ -82,4 +82,13 @@
         <item>@string/glucose_range_list_2</item>
     </string-array>
 
+    <string name="config_global_theme_1">Dark theme</string>
+    <string name="config_global_theme_2">Light theme</string>
+
+    <string-array name="config_glogal_theme_list">
+        <item>@string/config_global_theme_1</item>
+        <item>@string/config_global_theme_2</item>
+    </string-array>
+
+
 </resources>

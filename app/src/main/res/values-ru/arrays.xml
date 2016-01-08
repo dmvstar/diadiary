@@ -18,5 +18,7 @@
     <string name="dialog_period_list_3">Месяц</string>
     <string name="dialog_period_list_4">Период</string>
 
+    <string name="config_global_theme_1">Темная тема</string>
+    <string name="config_global_theme_2">Светлая тема</string>
 
 </resources>

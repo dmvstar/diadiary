@@ -144,4 +144,8 @@
     <string name="insulin_inject_type_reg">Постоянно</string>
     <string name="insulin_inject_type_non">Нет</string>
     <string name="insulin_label_dose">Доза</string>
+
+    <string name="config_settings_label">Глобальные настройки</string>
+    <string name="config_global_theme">Тема</string>
+
 </resources>
