@@ -90,5 +90,19 @@
         <item>@string/config_global_theme_2</item>
     </string-array>
 
+    <string name="actions_additional_1">Weight</string>
+    <string name="actions_additional_2">Ketone</string>
+    <string name="actions_additional_3">HB1AC</string>
+    <string name="actions_additional_4">Cholesterol</string>
+
+    <string-array name="actions_additional_list">
+        <item>@string/actions_additional_1</item>
+        <item>@string/actions_additional_2</item>
+        <item>@string/actions_additional_3</item>
+        <item>@string/actions_additional_4</item>
+    </string-array>
+
+
+
 
 </resources>

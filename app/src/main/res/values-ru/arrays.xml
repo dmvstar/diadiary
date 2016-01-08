@@ -21,4 +21,9 @@
     <string name="config_global_theme_1">Темная тема</string>
     <string name="config_global_theme_2">Светлая тема</string>
 
+    <string name="actions_additional_1">Вес</string>
+    <string name="actions_additional_2">Кетон</string>
+    <string name="actions_additional_3">HB1AC</string>
+    <string name="actions_additional_4">Холестерин</string>
+
 </resources>
