@@ -647,7 +647,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
                     break;
                 case R.id.fab_eating:
                     text = fab22.getLabelText();
-                    showAddMenuReading(CommonConstants.MODE_ACTIONS_EDIT_SELECT, v, null);
+                    showAddMenuReading(CommonConstants.MODE_ACTIONS_EDIT_ADD, v, null);
                     mFloatingActionMenu.close(false);
                     break;
                 case R.id.fab_glucose:

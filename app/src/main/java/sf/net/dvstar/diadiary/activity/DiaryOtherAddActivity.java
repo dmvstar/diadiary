@@ -7,7 +7,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+
+import com.buzzingandroid.ui.HSVColorPickerDialog;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +25,11 @@ public class DiaryOtherAddActivity extends AppCompatActivity {
     private List mNotesList;
     private Spinner mSpNotes;
     private Spinner mSpActions;
+
+
+    private  int mStoredColor = 0xFF4488CC;
+    private LinearLayout llColor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,7 @@ public class DiaryOtherAddActivity extends AppCompatActivity {
         String list[] = getResources().getStringArray(R.array.actions_additional_list);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item,list);
         mSpActions.setAdapter(adapter);
+        llColor = (LinearLayout) findViewById(R.id.ll_color);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
@@ -50,4 +59,17 @@ public class DiaryOtherAddActivity extends AppCompatActivity {
     public void confirm(View view) {
         finish();
     }
+
+    public void selectColor(View view){
+        HSVColorPickerDialog cpd = new HSVColorPickerDialog( this, mStoredColor, new HSVColorPickerDialog.OnColorSelectedListener() {
+            @Override
+            public void colorSelected(Integer color) {
+                mStoredColor = color;
+                llColor.setBackgroundColor( color );
+            }
+        });
+        cpd.setTitle( "Pick a color" );
+        cpd.show();
+    }
+
 }
