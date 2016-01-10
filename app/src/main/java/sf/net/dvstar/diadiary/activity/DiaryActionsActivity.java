@@ -67,6 +67,7 @@ public class DiaryActionsActivity extends AppCompatActivity implements
     private FloatingActionButton fab22;
     private FloatingActionButton fab32;
     private FloatingActionButton fab33;
+    private FloatingActionButton fabOther;
     private FloatingActionMenu mFloatingActionMenu;
     private DiaryActionsComparator mDiaryActionsComparator;
     private Date mDiaryActionsDateFrom;
@@ -125,11 +126,13 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         fab22 = (FloatingActionButton) findViewById(R.id.fab_eating);
         fab32 = (FloatingActionButton) findViewById(R.id.fab_glucose);
         fab33 = (FloatingActionButton) findViewById(R.id.fab_pressure);
+        fabOther = (FloatingActionButton) findViewById(R.id.fab_other);
 
         fab12.setOnClickListener(clickListener);
         fab22.setOnClickListener(clickListener);
         fab32.setOnClickListener(clickListener);
         fab33.setOnClickListener(clickListener);
+        fabOther.setOnClickListener(clickListener);
 
         setListViewContent();
 
@@ -587,6 +590,14 @@ public class DiaryActionsActivity extends AppCompatActivity implements
         this.startActivity(intent);
     }
 
+    private void showAddOtherReading(int mode, View view, Object o) {
+        Intent intent = new Intent(this, DiaryOtherAddActivity.class);
+        intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE, mode);
+        this.startActivity(intent);
+    }
+
+
+
     private void showAddMenuReading(int aMode, View aView, MenuReading aItem) {
         Intent intent = new Intent(this, DiaryMenuAddActivity.class);
         intent.putExtra(CommonConstants.KEY_INTENT_EXTRA_EDIT_MODE, aMode);
@@ -649,13 +660,17 @@ public class DiaryActionsActivity extends AppCompatActivity implements
                     mFloatingActionMenu.close(false);
                     showAddPressureReading(CommonConstants.MODE_ACTIONS_EDIT_ADD, v, null);
                     break;
+                case R.id.fab_other:
+                    text = fab33.getLabelText();
+                    mFloatingActionMenu.close(false);
+                    showAddOtherReading(CommonConstants.MODE_ACTIONS_EDIT_ADD, v, null);
+                    break;
 
             }
 
             Toast.makeText(DiaryActionsActivity.this, text, Toast.LENGTH_SHORT).show();
         }
     };
-
 
 
     private class DiaryActionsComparator implements Comparator<ActionCommonItem> {

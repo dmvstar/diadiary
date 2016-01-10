@@ -12,12 +12,14 @@
     <color name="primary_lbrown">#e6c29f</color>
     <color name="primary_lgray">#adad00</color>
     <color name="primary_dark">#0072BB</color>
-    <color name="ripple">#F06292</color>#0072BB
+    <color name="ripple">#F06292</color>
     <color name="accent">#E91E63</color>
     <color name="accent_pressed">#C2185B</color>
 
 
     <color name="fabButtonNormal">#e9fff9</color>
+    <color name="fabButtonOther">#eeeef9</color>
+    <color name="fabButtonBlood">#F062ff</color>
 
     <color name="fabButtonPressed">#f3dfcd</color>
 

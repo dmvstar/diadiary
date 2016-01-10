@@ -63,6 +63,7 @@
         <activity android:name=".activity.DiaryPressureAddActivity" />
         <activity android:name=".activity.AboutActivity" />
         <activity android:name=".activity.ConfigParamsActivity" />
+        <activity android:name=".activity.DiaryOtherAddActivity" />
 
 
     </application>

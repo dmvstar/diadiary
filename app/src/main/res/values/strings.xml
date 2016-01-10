@@ -54,7 +54,8 @@
 
     <string name="insulin_label">Insulins</string>
     <string name="menu_event_add_inject">Add inject</string>
-    <string name="menu_event_add_eating">Add eating</string>
+    <string name="menu_event_add_eating">Add meal</string>
+    <string name="menu_event_add_other">Add other</string>
     <string name="menu_event_add_action">Add action</string>
     <string name="menu_event_add_glucose">Add glucose</string>
     <string name="glucose_label_title">Glucose value:</string>
@@ -156,5 +157,6 @@
     <string name="config_settings_label">Global params</string>
     <string name="config_global_theme">Theme</string>
     <string name="common_actions_label">Select action from list</string>
+    <string name="label_other_value">Indicator value</string>
 
 </resources>

@@ -57,7 +57,7 @@
                 style="@android:style/TextAppearance.Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/insulin_label_dose"
+                android:text="@string/label_other_value"
                 android:textColor="@color/accent"
                 android:textStyle="bold" />
 

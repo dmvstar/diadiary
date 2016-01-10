@@ -67,6 +67,15 @@
             fab:fab_label="@string/menu_event_add_eating" />
 
         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_pencil"
+            fab:fab_colorNormal="@color/fabButtonNormal"
+            fab:fab_size="mini"
+            fab:fab_label="@string/menu_event_add_other" />
+
+        <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_pressure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/menu_blooddrop"
-            fab:fab_colorNormal="@color/fabButtonNormal"
+            fab:fab_colorNormal="@color/fabButtonBlood"
             fab:fab_size="mini"
             fab:fab_label="@string/menu_event_add_glucose" />
 
