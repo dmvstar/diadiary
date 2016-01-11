@@ -34,7 +34,7 @@ public class DiaryOtherAddActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.diary_common_add);
+        setContentView(R.layout.diary_others_add);
 
         mContext = this;
         mNotesList = Arrays.asList(getResources().getStringArray(R.array.dialog_notes_list));

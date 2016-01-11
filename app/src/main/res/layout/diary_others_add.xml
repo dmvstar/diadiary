@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/common_actions_label"
+            android:text="@string/other_actions_label"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
@@ -42,7 +42,7 @@
                 style="@android:style/TextAppearance.Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/common_actions_label"
+                android:text="@string/other_actions_label"
                 android:textColor="@color/accent"
                 android:textStyle="bold" />
 
@@ -57,7 +57,7 @@
                 style="@android:style/TextAppearance.Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/label_other_value"
+                android:text="@string/other_value_label"
                 android:textColor="@color/accent"
                 android:textStyle="bold" />
 

@@ -150,7 +150,8 @@
     <string name="menu_dinner_label">Пища</string>
     <string name="menu_dinner_select">Меню</string>
     <string name="menu_event_add_other">Другое</string>
-    <string name="common_actions_label">Выберите действие</string>
-    <string name="label_other_value">Значение показателя</string>
+
+    <string name="other_actions_label">Выберите действие</string>
+    <string name="other_value_label">Значение показателя</string>
 
 </resources>
