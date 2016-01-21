@@ -10,113 +10,119 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/iv_inject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_inject" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+        <ImageView
+            android:id="@+id/iv_inject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_inject" />
 
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView"
-            style="@android:style/TextAppearance.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="@string/insulin_inject_insu"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_insulin"
-            style="@android:style/TextAppearance.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textAlignment="textEnd" />
-    </LinearLayout>
-
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView2"
-            style="@android:style/TextAppearance.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/insulin_inject_dose"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_dose"
-            style="@android:style/TextAppearance.Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="6" />
-
-        <TextView
-            android:id="@+id/textView3"
-            style="@android:style/TextAppearance.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/insulin_inject_time"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_time"
-            style="@android:style/TextAppearance.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:text="8:00"
-            android:gravity="right" />
-    </LinearLayout>
-
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_comment"
-            style="@android:style/TextAppearance.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:hint="@string/action_comment"
-            android:text="..."
-            android:lines="1" />
-        <TextView
-            android:id="@+id/tv_planned"
-            style="@android:style/TextAppearance.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:hint="@string/insulin_inject_plan"
-            android:text="..."
-            android:textAlignment="textEnd"
-            android:lines="1" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:paddingRight="@dimen/activity_horizontal_margin">
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/textView"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="@string/insulin_inject_insu"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    style="@android:style/TextAppearance.Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/insulin_inject_time"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    style="@android:style/TextAppearance.Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:gravity="right"
+                    android:text="8:00" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_insulin"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="left"
+                    android:text="Insulin" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="@string/insulin_inject_dose" />
+
+                <TextView
+                    android:id="@+id/tv_dose"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="6"
+                    android:gravity="right"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_comment"
+                    style="@android:style/TextAppearance.Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="@string/action_comment"
+                    android:lines="1"
+                    android:text="..." />
+
+                <TextView
+                    android:id="@+id/tv_planned"
+                    style="@android:style/TextAppearance.Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="@string/insulin_inject_plan"
+                    android:lines="1"
+                    android:text="..."
+                    android:textAlignment="textEnd" />
+            </LinearLayout>
+
+
+        </LinearLayout>
 
 
     </LinearLayout>
@@ -126,6 +132,6 @@
         style="@android:style/TextAppearance.Medium"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@drawable/divider"/>
+        android:background="@drawable/divider" />
 
 </LinearLayout>
