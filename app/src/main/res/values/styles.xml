@@ -25,6 +25,19 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
+    <style name="TextAppearance.Small" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">#0000FF</item>
+    </style>
+
+    <style name="TextAppearance.Medium.Data" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">#ffff00</item>
+    </style>
+
+
+    <style name="TextAppearance.Small.Comment" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">#56e4f0</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

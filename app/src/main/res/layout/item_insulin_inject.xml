@@ -40,7 +40,7 @@
 
                 <TextView
                     android:id="@+id/textView3"
-                    style="@android:style/TextAppearance.Small"
+                    style="@style/TextAppearance.Small"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -49,7 +49,7 @@
 
                 <TextView
                     android:id="@+id/tv_time"
-                    style="@android:style/TextAppearance.Small"
+                    style="@style/TextAppearance.Small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -65,16 +65,17 @@
 
                 <TextView
                     android:id="@+id/tv_insulin"
-                    style="@android:style/TextAppearance.Medium"
+                    style="@style/TextAppearance.Medium.Data"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:gravity="left"
-                    android:text="Insulin" />
+                    android:text="Insulin"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView2"
-                    style="@android:style/TextAppearance.Medium"
+                    style="@style/TextAppearance.Medium.Data"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
@@ -82,7 +83,7 @@
 
                 <TextView
                     android:id="@+id/tv_dose"
-                    style="@android:style/TextAppearance.Medium"
+                    style="@style/TextAppearance.Medium.Data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
@@ -101,7 +102,7 @@
 
                 <TextView
                     android:id="@+id/tv_comment"
-                    style="@android:style/TextAppearance.Small"
+                    style="@style/TextAppearance.Small.Comment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -111,7 +112,7 @@
 
                 <TextView
                     android:id="@+id/tv_planned"
-                    style="@android:style/TextAppearance.Small"
+                    style="@style/TextAppearance.Small.Comment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
