@@ -3,50 +3,82 @@
     <!-- Base application theme. -->
     <!--style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar"-->
     <!--style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar"-->
-    <style name="AppTheme" parent="Theme.AppCompat">
     <!--style name="AppTheme" parent="android:Theme.Holo"-->
     <!--style name="AppTheme" parent="ThemeOverlay.AppCompat.Dark"-->
+
+    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
 
+        <item name="colorTextAppearance.Small">#0000FF</item>
+        <item name="colorTextAppearance.Small.Comment">#56e4f0</item>
+        <item name="colorTextAppearance.Medium">@android:color/black</item>
+        <item name="colorTextAppearance.Medium.Data">#ffff00</item>
+
+
         <!--item name="android:textAppearanceMedium">@style/TextAppearance.Medium</item-->
-
         <!--item name="android:background">@color/colorBackground</item-->
-<!--
-        <item name="android:windowBackground">@color/colorWindowBackground</item>
-        <item name="android:colorBackground">@color/colorBackground</item>
--->
+        <!--item name="android:windowBackground">@color/colorWindowBackground</item-->
+        <!--item name="android:colorBackground">@color/colorBackground</item-->
+
 
     </style>
 
-    <style name="TextAppearance.Medium" parent="android:style/TextAppearance.Medium">
-        <item name="android:textColor">@android:color/black</item>
+
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+
+        <item name="colorTextAppearance.Small">#ff00FF</item>
+        <item name="colorTextAppearance.Small.Comment">#56e4f0</item>
+        <item name="colorTextAppearance.Medium">@android:color/black</item>
+        <item name="colorTextAppearance.Medium.Data">#eeff00</item>
+
+
     </style>
 
-    <style name="TextAppearance.Small" parent="@android:style/TextAppearance.Small">
-        <item name="android:textColor">#0000FF</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Data" parent="@android:style/TextAppearance.Medium">
-        <item name="android:textColor">#ffff00</item>
-    </style>
-
-
-    <style name="TextAppearance.Small.Comment" parent="@android:style/TextAppearance.Small">
-        <item name="android:textColor">#56e4f0</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.Dark.NoActionBar" parent="AppTheme.Dark">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.Light.NoActionBar"  parent="AppTheme.Light">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <attr name="colorTextAppearance.Medium" format="reference|color" />
+    <attr name="colorTextAppearance.Medium.Data" format="reference|color" />
+    <attr name="colorTextAppearance.Small" format="reference|color" />
+    <attr name="colorTextAppearance.Small.Comment" format="reference|color" />
+
+    <style name="TextAppearance.Medium" parent="android:style/TextAppearance.Medium">
+        <item name="android:textColor">?attr/colorTextAppearance.Medium</item>
+    </style>
+
+    <style name="TextAppearance.Small" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">?attr/colorTextAppearance.Small</item>
+    </style>
+
+    <style name="TextAppearance.Medium.Data" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">?attr/colorTextAppearance.Medium.Data</item>
+    </style>
+
+    <style name="TextAppearance.Small.Comment" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">?attr/colorTextAppearance.Small.Comment</item>
+    </style>
+
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
 
     <style name="MenuLabelsStyle">
         <item name="android:background">@drawable/fab_label_background</item>

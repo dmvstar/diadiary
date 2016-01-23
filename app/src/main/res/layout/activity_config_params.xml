@@ -46,6 +46,25 @@
                 android:layout_height="wrap_content"
                 android:entries="@array/config_glogal_theme_list" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextAppearance.Medium"
+                android:id="@+id/textView34"
+                style="@style/TextAppearance.Medium" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextAppearance.Medium.Data"
+                android:id="@+id/textView35"
+                style="@style/TextAppearance.Medium.Data" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextAppearance.Small"
+                android:id="@+id/textView36"
+                style="@style/TextAppearance.Small" />
+
 
         </LinearLayout>
     </ScrollView>
@@ -62,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="confirm"
-            android:text="@string/label_mode_add" />
+            android:text="@string/label_mode_confirm" />
 
         <Button
             android:id="@+id/bt_cancel"

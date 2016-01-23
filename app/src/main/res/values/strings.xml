@@ -51,6 +51,7 @@
     <string name="label_mode_add">Add</string>
     <string name="label_mode_edit">Edit</string>
     <string name="label_mode_cancel">Cancel</string>
+    <string name="label_mode_confirm">Confirm</string>
 
     <string name="insulin_label">Insulins</string>
     <string name="menu_event_add_inject">Add inject</string>
